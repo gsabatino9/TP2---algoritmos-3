@@ -1,0 +1,62 @@
+@startuml
+hide circle
+skinparam classAttributeIconSize 0
+
+class Tablero{
+-sectorBloques
+-sectorAlgoritmo
+-sectorDibujo
+-posiciones
+
++{static} relacionarPosiciones(cantidadDePosiciones: Int)
+}
+
+class SectorBloques{
+-bloquesDisponibles: Collection
++mostrarBloques()
++agregarBloque(bloque: Bloque)
++removerBloque(bloque: Bloque)
+}
+
+
+class SectorAlgoritmo{
+-posicion
+-bloques
+
++agregarBloque(bloque: <<interface>> Bloque)
++removerBloque(bloque: <<interface>> Bloque)
+}
+
+class SecuenciaDeBloques{
+-posicion: PosicionActual
+-bloques: Collection
+
++agregarBloque(bloque:  <<interface>>Bloque, posicion: PosicionActual)
++realizarOperaciones()
++repetirOperaciones(cantidadDeVeces: Int)
++guardarAlgoritmo(nombre: String)
++realizarSecuenciaInvertida()
+}
+class PosicionActual{
+-izquierda
+-derecha
+-arriba
+-abajo
+-actual
+
++mover(posicionSiguiente: PosicionActual)
++dibujar(posicionSiguiente: PosicionActual)
++actualizarPosicion(posicionSiguiente: PosicionActual)
++izquierda()
++derecha()
++arriba()
++abajo()
+}
+
+Tablero --> SectorBloques
+Tablero --> SectorAlgoritmo
+
+SectorAlgoritmo --> PosicionActual
+SectorAlgoritmo --> SecuenciaDeBloques
+SecuenciaDeBloques --> PosicionActual
+@enduml
