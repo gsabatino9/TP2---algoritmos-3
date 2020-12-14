@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/gsabatino9/TP2---algoritmos-3.svg?branch=main)](https://travis-ci.org/gsabatino9/TP2---algoritmos-3) [![codecov](https://codecov.io/gh/fiuba/algo3_proyecto_base_tp2/branch/master/graph/badge.svg)](https://codecov.io/gh/fiuba/algo3_proyecto_base_tp2)
+[![Build Status](https://travis-ci.org/gsabatino9/TP2---algoritmos-3.svg?branch=main)](https://travis-ci.org/gsabatino9/TP2---algoritmos-3) [![codecov](https://codecov.io/gh/gsabatino9/TP2---algoritmos-3/branch/main/graph/badge.svg)](https://codecov.io/gh/gsabatino9/TP2---algoritmos-3)
 
 
 
