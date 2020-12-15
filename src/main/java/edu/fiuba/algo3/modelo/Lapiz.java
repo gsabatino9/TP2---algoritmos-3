@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
-public abstract class Lapiz {
+public class Lapiz {
      private EstadoLapiz estado;
 
     public void subirLapiz(){
