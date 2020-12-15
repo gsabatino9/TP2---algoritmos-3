@@ -1,4 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
-public class Direccion {
+interface Direccion {
+
+    Posicion mover(Posicion posicion);
 }
