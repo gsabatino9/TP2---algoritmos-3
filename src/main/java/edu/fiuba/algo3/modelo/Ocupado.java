@@ -8,4 +8,8 @@ public class Ocupado implements Ocupacion{
     public Ocupacion cambiarEstado(){
         return new Desocupado();
     }
+
+    public boolean pintar(){
+        return true;
+    }
 }

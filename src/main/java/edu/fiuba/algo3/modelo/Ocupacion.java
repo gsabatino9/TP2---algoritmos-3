@@ -4,4 +4,6 @@ public interface Ocupacion {
     boolean estaOcupada();
 
     Ocupacion cambiarEstado();
+
+    boolean pintar();
 }
