@@ -3,14 +3,22 @@ package edu.fiuba.algo3.modelo;
 public class Lapiz {
     private EstadoLapiz estado;
 
-    public void dibujar(){
-        estado.pintar();
+    public void dibujar(Posicion posicion){
+        this.estado.pintar(posicion);
     }
     public void subirLapiz(){
-         estado = new Levantado();
+         this.estado = new Levantado();
     }
     public void bajarLapiz(){
-         estado = new Apoyado();
+         this.estado = new Apoyado();
+    }
+
+    Lapiz() {
+        this.estado = new Levantado();
+    }
+
+    public boolean estaLevantado() {
+        return this.estado.estaLevantado();
     }
 }
 
