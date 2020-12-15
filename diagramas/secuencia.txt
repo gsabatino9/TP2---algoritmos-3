@@ -2,141 +2,75 @@
 hide circle
 skinparam classAttributeIconSize 0
 
-class SecuenciaDeBloques{
--posicion: PosicionActual
--bloques: Collection
+class Algoritmo{
+-bloques: Collection<Bloque>
 
-+agregarBloque(bloque:  <<interface>>Bloque, posicion: PosicionActual)
-+realizarSecuencia()
-+repetirSecuencia(cantidadDeVeces: Int)
++agregarBloque(bloque: <<interface>>Bloque)
++realizarOperaciones(personaje: Personaje)
 +guardarAlgoritmo(nombre: String)
-+realizarSecuenciaInvertida()
 }
 
-class BloqueRepetir{
--cantidadRepeticiones: Int
--bloques: Collection
-
-+ejecutar()
-}
 
 
 interface Bloque{
--posicion: PosicionActual
-
-+{static} crearConPosicion(posicion: PosicionActual)
-+{abstract} ejecutar()
-+{abstract}ejecutarInvertido()
++{abstract} ejecutar(personaje: Personaje)
++{abstract}ejecutarInvertido(personaje: Personaje)
 }
 
 
 class BloqueInvertir{
-+{abstract}ejecutar()
+-algoritmo: Algoritmo
+
++ejecutar(personaje: Personaje)
++ejecutarInvertido(personaje: Personaje)
 }
 
-class BloqueMoverDerecha{
--personaje: Personaje
 
-+ejecutar()
-+ejecutarInvertido()
+
+
+class BloqueMover{
++ejecutar(personaje: Personaje)
++ejecutarInvertido(personaje: Personaje)
 }
 
-class BloqueMoverIzquierda{
--personaje: Personaje
-
-+ejecutar()
-+ejecutarInvertido()
-}
-
-class BloqueMoverArriba{
--personaje: Personaje
-
-+ejecutar()
-+ejecutarInvertido()
-}
-
-class BloqueMoverAbajo{
--personaje: Personaje
-
-+ejecutar()
-+ejecutarInvertido()
+interface Direccion{
++{abstract} mover(posicion: Posicion)
 }
 
 
 class BloqueLevantarLapiz{
-+ejecutar()
-+ejecutarInvertido()
++ejecutar(personaje: Personaje)
++ejecutarInvertido(personaje: Personaje)
 }
 
 class BloqueBajarLapiz{
-+ejecutar()
-+ejecutarInvertido()
-}
-
-class Personaje{
--posicion
--lapizActual
-
-+{static} crearConPosicion(posicion: PosicionActual)
-
-+subirLapiz()
-+bajarLapiz()
-+mover(posicionDestino: PosicionActual)
-}
-
-class LapizArriba{
-+mover(posicionDestino: PosicionActual)
-}
-
-class LapizAbajo{
-+mover(posicionDestino: PosicionActual)
++ejecutar(personaje: Personaje)
++ejecutarInvertido(personaje: Personaje)
 }
 
 
-class PosicionActual{
--izquierda
--derecha
--arriba
--abajo
--actual
+class BloqueRepetir{
+-cantidadRepeticiones: Int
+-algoritmo: Algoritmo
 
-+mover(posicionSiguiente: PosicionActual)
-+dibujar(posicionSiguiente: PosicionActual)
-+actualizarPosicion(posicionSiguiente: PosicionActual)
-+izquierda()
-+derecha()
-+arriba()
-+abajo()
++ejecutar(personaje: Personaje)
++ejecutarInvertido(personaje: Personaje)
 }
 
+Algoritmo "1" --> "0..*" Bloque
 
 
-SecuenciaDeBloques "1" --> "0..*" Bloque
+Bloque <|.. BloqueMover
+
+Bloque <|.. BloqueLevantarLapiz
+Bloque <|.. BloqueBajarLapiz
+
+Bloque <|.. BloqueRepetir
+Bloque <|.. BloqueInvertir
+
+BloqueMover o--> Direccion
 
 
-Bloque <|-- BloqueMoverDerecha
-Bloque <|-- BloqueMoverIzquierda
-Bloque <|-- BloqueMoverArriba
-Bloque <|-- BloqueMoverAbajo
-
-Bloque <|-- BloqueLevantarLapiz
-Bloque <|-- BloqueBajarLapiz
-
-Bloque <|-- BloqueRepetir
-Bloque <|-- BloqueInvertir
-
-
-BloqueMoverDerecha --> Personaje
-BloqueMoverIzquierda --> Personaje
-BloqueMoverArriba --> Personaje
-BloqueMoverAbajo --> Personaje
-
-BloqueLevantarLapiz --> Personaje
-BloqueBajarLapiz --> Personaje
-
-Personaje --> LapizArriba
-Personaje --> LapizAbajo
-
-LapizArriba --> PosicionActual
-LapizAbajo --> PosicionActual
+BloqueRepetir -up-> Algoritmo
+BloqueInvertir -up-> Algoritmo
 @enduml

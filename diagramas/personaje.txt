@@ -2,21 +2,9 @@
 hide circle
 skinparam classAttributeIconSize 0
 
-class Tablero{
--cantidadDePosiciones: Int
--personaje: Personaje
-
-+agregarBloque(bloque: <<interface>>Bloque)
--crearPosiciones()
--crearPersonaje(posicion: Posicion)
-}
-
-class Algoritmo{
--bloques: Collection<Bloque>
-
-+agregarBloque(bloque: <<interface>>Bloque)
-+realizarOperaciones(personaje: Personaje)
-+guardarAlgoritmo(nombre: String)
+interface Bloque{
++{abstract} ejecutar(personaje: Personaje)
++{abstract}ejecutarInvertido(personaje: Personaje)
 }
 
 class Personaje{
@@ -26,6 +14,18 @@ class Personaje{
 +subirLapiz()
 +bajarLapiz()
 +mover(direccion: Direccion)
+}
+
+interface Lapiz{
++{abstract} pintar(posicionActual: Posicion, posicionDestino: Posicion)
+}
+
+class LapizArriba{
+
+}
+
+class LapizAbajo{
+
 }
 
 class Posicion{
@@ -42,9 +42,13 @@ class Posicion{
 +abajo()
 }
 
-Tablero --> Algoritmo
+Bloque .> Personaje
 
-Tablero --> Personaje
+Personaje --> Lapiz
 
 Personaje --> Posicion
+
+Lapiz <|.. LapizArriba
+
+Lapiz <|.. LapizAbajo
 @enduml
