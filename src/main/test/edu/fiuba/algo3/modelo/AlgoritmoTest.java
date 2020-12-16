@@ -62,9 +62,9 @@ public class AlgoritmoTest {
         assertTrue(personaje.lapizEstaLevantado());
     }
 
-    /*@Test
+    @Test
     public void agregarSoloUnBloqueDeBajarLapizHaceQueElPersonajeTengaElLapizApoyado(){
-        Posicion actual = new Posicion();
+        Posicion actual = new Posicion(0, 0);
         Personaje personaje = new Personaje(actual);
 
         BloqueLapizApoyado bloque = new BloqueLapizApoyado();
@@ -79,15 +79,11 @@ public class AlgoritmoTest {
 
     @Test
     public void bajarElLapizYMoverAlPersonajeALaDerechaHaceQueLaPosicionEstePintada(){
-        Posicion actual = new Posicion();
-        Posicion derecha = new Posicion();
-        actual.agregarDerecha(derecha);
+        Posicion actual = new Posicion(0, 0);
         Personaje personaje = new Personaje(actual);
 
-        Derecha direccion = new Derecha();
-
         BloqueLapizApoyado bloque = new BloqueLapizApoyado();
-        BloqueMover bloque2 = new BloqueMover(direccion);
+        BloqueMover bloque2 = new BloqueMover(Direccion.obtenerDerecha());
 
         Algoritmo algoritmo = new Algoritmo();
         algoritmo.agregarBloque(bloque);
@@ -95,7 +91,7 @@ public class AlgoritmoTest {
         algoritmo.realizarSecuencia(personaje);
 
         assertTrue(actual.estaPintada());
-        assertTrue(derecha.estaOcupada());
+        assertTrue(personaje.devolverPosicion().estaOcupada());
         assertFalse(personaje.lapizEstaLevantado());
-    }*/
+    }
 }

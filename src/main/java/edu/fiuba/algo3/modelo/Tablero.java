@@ -9,7 +9,7 @@ public class Tablero {
 
     Tablero(){
         this.personaje = new Personaje(new Posicion(0, 0));
-
+        this.algoritmo = new Algoritmo();
     }
 
     public void agregarBloque(Bloque bloque){

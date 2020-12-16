@@ -3,57 +3,23 @@ package edu.fiuba.algo3.modelo;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+
 
 public class TableroTest {
 
-    /*@Test
-    public void unPersonajeSeCreaEnElCentroDelTablero(){
+    @Test
+    public void unPersonajeSeCreaEnElOrigenDelTablero(){
         Tablero tablero = new Tablero();
 
-        assertTrue(tablero.personajeSeEncuentraEnPosicion(1, 1));
+        assertTrue(tablero.personajeSeEncuentraEnPosicion(0, 0));
     }
 
-    @Test
+   @Test
     public void unPersonajeQueSeMueveALaDerechaSeEncuentraAlLadoDelCentro(){
         Tablero tablero = new Tablero();
 
-        Derecha direccion = new Derecha();
-        BloqueMover bloque = new BloqueMover(direccion);
+        BloqueMover bloque = new BloqueMover(Direccion.obtenerDerecha());
 
-        tablero.agregarBloque(bloque);
-        tablero.realizarSecuencia();
-
-        assertTrue(tablero.personajeSeEncuentraEnPosicion(1, 2));
-    }
-
-    @Test
-    public void unPersonajeQueSeMueveALaDerechaYLuegoArribaSeEncuentraCorrectamente(){
-        Tablero tablero = new Tablero();
-
-        Derecha direccion1 = new Derecha();
-        BloqueMover bloque1 = new BloqueMover(direccion1);
-
-        Arriba direccion2 = new Arriba();
-        BloqueMover bloque2 = new BloqueMover(direccion2);
-
-        tablero.agregarBloque(bloque1);
-        tablero.agregarBloque(bloque2);
-        tablero.realizarSecuencia();
-
-        assertTrue(tablero.personajeSeEncuentraEnPosicion(0, 2));
-    }
-
-    @Test
-    public void unPersonajeQueSeMueveDosVecesALaDerechaApareceDelOtroLadoDelTablero(){
-        Tablero tablero = new Tablero();
-
-        Derecha direccion = new Derecha();
-        BloqueMover bloque = new BloqueMover(direccion);
-
-
-        tablero.agregarBloque(bloque);
         tablero.agregarBloque(bloque);
         tablero.realizarSecuencia();
 
@@ -61,17 +27,44 @@ public class TableroTest {
     }
 
     @Test
-    public void unPersonajeQueSeMueveDosVecesArribaApareceDelOtroLadoDelTablero(){
+    public void unPersonajeQueSeMueveALaDerechaYLuegoArribaSeEncuentraCorrectamente(){
         Tablero tablero = new Tablero();
 
-        Arriba direccion = new Arriba();
-        BloqueMover bloque = new BloqueMover(direccion);
+        BloqueMover bloque1 = new BloqueMover(Direccion.obtenerDerecha());
+        BloqueMover bloque2 = new BloqueMover(Direccion.obtenerArriba());
+
+        tablero.agregarBloque(bloque1);
+        tablero.agregarBloque(bloque2);
+        tablero.realizarSecuencia();
+
+        assertTrue(tablero.personajeSeEncuentraEnPosicion(1, 1));
+    }
+
+    @Test
+    public void unPersonajeQueSeMueveDosVecesALaDerechaApareceDelOtroLadoDelTablero(){
+        Tablero tablero = new Tablero();
+
+        BloqueMover bloque = new BloqueMover(Direccion.obtenerDerecha());
 
 
         tablero.agregarBloque(bloque);
         tablero.agregarBloque(bloque);
         tablero.realizarSecuencia();
 
-        assertTrue(tablero.personajeSeEncuentraEnPosicion(2, 1));
-    }*/
+        assertTrue(tablero.personajeSeEncuentraEnPosicion(2, 0));
+    }
+
+    @Test
+    public void unPersonajeQueSeMueveDosVecesArribaApareceDelOtroLadoDelTablero(){
+        Tablero tablero = new Tablero();
+
+        BloqueMover bloque = new BloqueMover(Direccion.obtenerArriba());
+
+
+        tablero.agregarBloque(bloque);
+        tablero.agregarBloque(bloque);
+        tablero.realizarSecuencia();
+
+        assertTrue(tablero.personajeSeEncuentraEnPosicion(0, 2));
+    }
 }
