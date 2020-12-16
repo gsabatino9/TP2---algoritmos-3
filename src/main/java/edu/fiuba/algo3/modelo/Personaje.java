@@ -6,9 +6,9 @@ public class Personaje {
 
     Personaje(Posicion posicion){
         this.lapiz = new Lapiz();
+
         this.posicion = posicion;
         posicion.cambiarEstado();
-        this.lapiz.subirLapiz();
     }
 
     public void subirLapiz(){
@@ -27,5 +27,9 @@ public class Personaje {
 
     public Posicion posicion(){
         return this.posicion;
+    }
+
+    public boolean lapizEstaLevantado(){
+        return this.lapiz.estaLevantado();
     }
 }

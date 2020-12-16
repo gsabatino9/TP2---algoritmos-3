@@ -22,7 +22,6 @@ public class Tablero {
         }
 
         this.posiciones[1][1].cambiarEstado();
-
         this.personaje = new Personaje(this.posiciones[1][1]);
         this.algoritmo = new Algoritmo();
     }
@@ -59,11 +58,15 @@ public class Tablero {
         this.algoritmo.realizarSecuencia(this.personaje);
     }
 
-    public Posicion posicionDelPersonaje(){
+    public boolean personajeSeEncuentraEnPosicion(int fila, int columna){
+        return (this.posicionDelPersonaje()) == (this.obtenerPosicion(fila, columna));
+    }
+
+    private Posicion posicionDelPersonaje(){
         return this.personaje.posicion();
     }
 
-    public Posicion obtenerPosicion(int fila, int columna){
+    private Posicion obtenerPosicion(int fila, int columna){
         return this.posiciones[fila][columna];
     }
 }

@@ -6,16 +6,9 @@ public class Posicion{
     private Posicion abajo;
     private Posicion izquierda;
     private Posicion derecha;
-    private boolean pintada;
 
     Posicion(){
-        this.estado = new Desocupado();
-        this.pintada = false;
-    }
-
-
-    public boolean estaOcupada(){
-        return this.estado.estaOcupada();
+        this.estado = new DesocupadoSinPintar();
     }
 
     public void cambiarEstado(){
@@ -55,11 +48,15 @@ public class Posicion{
     }
 
     public void pintar(){
-        this.pintada = this.estado.pintar();
+        this.estado = this.estado.pintar();
     }
 
     public boolean estaPintada(){
-        return this.pintada;
+        return this.estado.estaPintada();
+    }
+
+    public boolean estaOcupada(){
+        return this.estado.estaOcupada();
     }
 }
 

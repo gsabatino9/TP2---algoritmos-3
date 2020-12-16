@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
-public class BloqueLapizApoyado {
+public class BloqueLapizApoyado implements Bloque {
 
     public void ejecutar(Personaje personaje){
         personaje.bajarLapiz();
