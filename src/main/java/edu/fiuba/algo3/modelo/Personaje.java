@@ -24,4 +24,8 @@ public class Personaje {
         this.posicion = direccion.mover(this.posicion);
         this.posicion.cambiarEstado();
     }
+
+    public Posicion posicion(){
+        return this.posicion;
+    }
 }
