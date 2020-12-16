@@ -11,13 +11,13 @@ public class PosicionTest {
 
     @Test
     public void unaPosicionSeCreaConEstadoDesocupado(){
-        Posicion unaPosicion = new Posicion();
+        Posicion unaPosicion = new Posicion(0, 0);
         assertFalse(unaPosicion.estaOcupada());
     }
 
     @Test
     public void unaPosicionQueSeCambiaDeEstadoTieneEstadoOcupado(){
-        Posicion unaPosicion = new Posicion();
+        Posicion unaPosicion = new Posicion(0,0);
         unaPosicion.cambiarEstado();
 
         assertTrue(unaPosicion.estaOcupada());
@@ -25,7 +25,7 @@ public class PosicionTest {
 
     @Test
     public void cambiarDosVecesDeEstadoNoProduceCambios(){
-        Posicion unaPosicion = new Posicion();
+        Posicion unaPosicion = new Posicion(0,0 );
         unaPosicion.cambiarEstado();
         unaPosicion.cambiarEstado();
 
@@ -34,7 +34,7 @@ public class PosicionTest {
 
     @Test
     public void unaPosicionConEstadoDesocupadoNoSePinta(){
-        Posicion unaPosicion = new Posicion();
+        Posicion unaPosicion = new Posicion(0,0);
 
         unaPosicion.pintar();
 
@@ -43,31 +43,11 @@ public class PosicionTest {
 
     @Test
     public void unaPosicionConEstadoOcupadoSePinta(){
-        Posicion unaPosicion = new Posicion();
+        Posicion unaPosicion = new Posicion(0,0);
         unaPosicion.cambiarEstado();
 
         unaPosicion.pintar();
 
         assertTrue(unaPosicion.estaPintada());
     }
-
-    @Test
-    public void seAgregaUnaPosicionADerechaCorrectamente(){
-        Posicion unaPosicion = new Posicion();
-        Posicion posicionDerecha = new Posicion();
-        unaPosicion.agregarDerecha(posicionDerecha);
-
-        assertSame(unaPosicion.derecha(), posicionDerecha);
-    }
-
-    @Test
-    public void seAgregaUnaPosicionAIzquierdaCorrectamente(){
-        Posicion unaPosicion = new Posicion();
-        Posicion posicionIzquierda = new Posicion();
-        unaPosicion.agregarIzquierda(posicionIzquierda);
-
-        assertSame(unaPosicion.izquierda(), posicionIzquierda);
-
-    }
-
 }

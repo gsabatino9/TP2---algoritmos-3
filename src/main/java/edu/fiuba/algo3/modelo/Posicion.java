@@ -2,49 +2,26 @@ package edu.fiuba.algo3.modelo;
 
 public class Posicion{
     private Ocupacion estado;
-    private Posicion arriba;
-    private Posicion abajo;
-    private Posicion izquierda;
-    private Posicion derecha;
+    private int fila;
+    private int columna;
 
-    Posicion(){
+
+    Posicion(int x, int y){
         this.estado = new DesocupadoSinPintar();
+        this.columna = x;
+        this.fila = y;
     }
+
+    public int obtenerFila() {
+        return fila;
+    }
+
+    public int obtenerColumna() { return columna; }
+
+    public boolean esIgualA(int x, int y) { return (this.columna == x && this.fila == y) ; }
 
     public void cambiarEstado(){
         this.estado = estado.cambiarEstado();
-    }
-
-    public void agregarIzquierda(Posicion posicion){
-        this.izquierda = posicion;
-    }
-
-    public void agregarDerecha(Posicion posicion){
-        this.derecha = posicion;
-    }
-
-    public void agregarArriba(Posicion posicion){
-        this.arriba = posicion;
-    }
-
-    public void agregarAbajo(Posicion posicion){
-        this.abajo = posicion;
-    }
-
-    public Posicion izquierda(){
-        return this.izquierda;
-    }
-
-    public Posicion derecha(){
-        return this.derecha;
-    }
-
-    public Posicion arriba(){
-        return this.arriba;
-    }
-
-    public Posicion abajo(){
-        return this.abajo;
     }
 
     public void pintar(){

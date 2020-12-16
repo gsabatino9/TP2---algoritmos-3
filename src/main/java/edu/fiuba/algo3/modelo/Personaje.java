@@ -21,11 +21,11 @@ public class Personaje {
     public void mover(Direccion direccion){
         this.lapiz.dibujar(this.posicion);
         this.posicion.cambiarEstado();
-        this.posicion = direccion.mover(this.posicion);
+        this.posicion = direccion.siguientePosicion(this.posicion);
         this.posicion.cambiarEstado();
     }
 
-    public Posicion posicion(){
+    public Posicion devolverPosicion(){
         return this.posicion;
     }
 

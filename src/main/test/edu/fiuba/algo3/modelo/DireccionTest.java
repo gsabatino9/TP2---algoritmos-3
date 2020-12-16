@@ -1,55 +1,39 @@
 package edu.fiuba.algo3.modelo;
 
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class DireccionTest {
 
     @Test
     public void moverConDireccionDerechaRetornaLaPosicionCorrecta(){
 
-        Posicion posicionActual = new Posicion();
-        Posicion derecha = new Posicion();
-        posicionActual.agregarDerecha(derecha);
-
-        Derecha direccionDerecha = new Derecha();
-
-        assertSame(direccionDerecha.mover(posicionActual), derecha);
+        Posicion posicionActual = new Posicion(0, 0);
+        Direccion derecha = Direccion.obtenerDerecha();
+        assertTrue(derecha.siguientePosicion(posicionActual).esIgualA(1, 0));
     }
 
     @Test
     public void moverConDireccionIzquierdaRetornaLaPosicionCorrecta(){
 
-        Posicion posicionActual = new Posicion();
-        Posicion izquierda = new Posicion();
-        posicionActual.agregarIzquierda(izquierda);
-
-        Izquierda direccionIzquierda = new Izquierda();
-
-        assertSame(direccionIzquierda.mover(posicionActual), izquierda);
+        Posicion posicionActual = new Posicion(0, 0);
+        Direccion izquierda = Direccion.obtenerIzquierda();
+        assertTrue(izquierda.siguientePosicion(posicionActual).esIgualA(-1, 0));
     }
 
     @Test
     public void moverConDireccionArribaRetornaLaPosicionCorrecta(){
 
-        Posicion posicionActual = new Posicion();
-        Posicion arriba = new Posicion();
-        posicionActual.agregarArriba(arriba);
-
-        Arriba direccionArriba = new Arriba();
-
-        assertSame(direccionArriba.mover(posicionActual), arriba);
+        Posicion posicionActual = new Posicion(0, 0);
+        Direccion arriba = Direccion.obtenerArriba();
+        assertTrue(arriba.siguientePosicion(posicionActual).esIgualA(0, 1));
     }
 
     @Test
     public void moverConDireccionAbajoRetornaLaPosicionCorrecta(){
 
-        Posicion posicionActual = new Posicion();
-        Posicion abajo = new Posicion();
-        posicionActual.agregarAbajo(abajo);
-
-        Abajo direccionAbajo = new Abajo();
-
-        assertSame(direccionAbajo.mover(posicionActual), abajo);
+        Posicion posicionActual = new Posicion(0, 0);
+        Direccion abajo = Direccion.obtenerAbajo();
+        assertTrue(abajo.siguientePosicion(posicionActual).esIgualA(0, -1));
     }
 }

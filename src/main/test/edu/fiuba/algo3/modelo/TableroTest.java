@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class TableroTest {
 
-    @Test
+    /*@Test
     public void unPersonajeSeCreaEnElCentroDelTablero(){
         Tablero tablero = new Tablero();
 
@@ -73,5 +73,5 @@ public class TableroTest {
         tablero.realizarSecuencia();
 
         assertTrue(tablero.personajeSeEncuentraEnPosicion(2, 1));
-    }
+    }*/
 }

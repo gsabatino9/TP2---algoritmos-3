@@ -5,49 +5,11 @@ import java.util.List;
 
 public class Tablero {
     private Personaje personaje;
-    private Posicion posiciones[][] = new Posicion[3][3];
     private Algoritmo algoritmo;
 
     Tablero(){
-        for(int i = 0; i < 3; i++){
-            for(int j = 0; j < 3; j++){
-              this.posiciones[i][j] = new Posicion();
-            }
-        }
+        this.personaje = new Personaje(new Posicion(0, 0));
 
-        for(int i = 0; i < 3; i++){
-            for(int j = 0; j < 3; j++){
-                this.relacionarPosicion(i, j);
-            }
-        }
-
-        this.posiciones[1][1].cambiarEstado();
-        this.personaje = new Personaje(this.posiciones[1][1]);
-        this.algoritmo = new Algoritmo();
-    }
-
-    public void relacionarPosicion(int fila, int columna){
-        if(columna == 0){
-            this.posiciones[fila][columna].agregarIzquierda(posiciones[fila][columna+2]);
-            this.posiciones[fila][columna].agregarDerecha(posiciones[fila][columna+1]);
-        }else if(columna == 2){
-            this.posiciones[fila][columna].agregarIzquierda(posiciones[fila][columna-1]);
-            this.posiciones[fila][columna].agregarDerecha(posiciones[fila][columna-2]);
-        }else{
-            this.posiciones[fila][columna].agregarIzquierda(posiciones[fila][columna-1]);
-            this.posiciones[fila][columna].agregarDerecha(posiciones[fila][columna+1]);
-        }
-
-        if(fila  == 0){
-            this.posiciones[fila][columna].agregarArriba(posiciones[fila+2][columna]);
-            this.posiciones[fila][columna].agregarAbajo(posiciones[fila+1][columna]);
-        }else if(fila == 2){
-            this.posiciones[fila][columna].agregarArriba(posiciones[fila-1][columna]);
-            this.posiciones[fila][columna].agregarAbajo(posiciones[fila-2][columna]);
-        }else{
-            this.posiciones[fila][columna].agregarArriba(posiciones[fila-1][columna]);
-            this.posiciones[fila][columna].agregarAbajo(posiciones[fila+1][columna]);
-        }
     }
 
     public void agregarBloque(Bloque bloque){
@@ -58,15 +20,10 @@ public class Tablero {
         this.algoritmo.realizarSecuencia(this.personaje);
     }
 
-    public boolean personajeSeEncuentraEnPosicion(int fila, int columna){
-        return (this.posicionDelPersonaje()) == (this.obtenerPosicion(fila, columna));
+    public boolean personajeSeEncuentraEnPosicion(int columna, int fila){
+        return (this.posicionDelPersonaje().esIgualA(columna, fila));
     }
 
-    private Posicion posicionDelPersonaje(){
-        return this.personaje.posicion();
-    }
+    private Posicion posicionDelPersonaje(){ return this.personaje.devolverPosicion(); }
 
-    private Posicion obtenerPosicion(int fila, int columna){
-        return this.posiciones[fila][columna];
-    }
 }
