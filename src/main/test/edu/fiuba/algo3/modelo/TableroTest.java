@@ -67,4 +67,5 @@ public class TableroTest {
 
         assertTrue(tablero.personajeSeEncuentraEnPosicion(0, 2));
     }
+
 }

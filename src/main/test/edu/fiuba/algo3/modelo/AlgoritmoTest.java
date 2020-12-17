@@ -94,4 +94,28 @@ public class AlgoritmoTest {
         assertTrue(personaje.devolverPosicion().estaOcupada());
         assertFalse(personaje.lapizEstaLevantado());
     }
+
+    /*
+    @Test
+    public void personajeSeMueveADerechaYLuegoAIzquierdaPintandoPosicionDeberiaEstarPintada(){
+        Posicion actual = new Posicion(0, 0);
+        Personaje personaje = new Personaje(actual);
+
+        Algoritmo algoritmo = new Algoritmo();
+        BloqueLapizApoyado apoyado = new BloqueLapizApoyado();
+        BloqueMover derecha = new BloqueMover(Direccion.obtenerDerecha());
+        BloqueMover izquierda = new BloqueMover(Direccion.obtenerIzquierda());
+
+
+        algoritmo.agregarBloque(apoyado);
+        algoritmo.agregarBloque(derecha);
+        algoritmo.agregarBloque(izquierda);
+        algoritmo.realizarSecuencia(personaje);
+
+        assertTrue(personaje.devolverPosicion().estaPintada());
+
+    }
+
+     */
+
 }
