@@ -10,7 +10,6 @@ public class PersonajeTest {
 
     @Test
     public void PersonajeSeCreaPorDefectoConElLapizLevantadoAlMoverDerechaNoSePinta() {
-
         Posicion actual = new Posicion(0,0);
         Personaje personaje = new Personaje(actual);
         Direccion derecha = Direccion.obtenerDerecha();
