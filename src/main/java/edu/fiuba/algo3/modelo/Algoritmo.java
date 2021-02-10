@@ -14,6 +14,6 @@ public class Algoritmo {
     }
 
     public void realizarSecuencia(Personaje personaje) {
-        bloques.stream().forEach(bloque->bloque.ejecutar(personaje));
+        bloques.stream().forEach(bloque -> bloque.ejecutar(personaje));
     }
 }

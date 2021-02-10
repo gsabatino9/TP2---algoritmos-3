@@ -20,6 +20,10 @@ public class Posicion{
 
     public boolean esIgualA(int x, int y) { return (this.columna == x && this.fila == y) ; }
 
+    public boolean equals(Posicion posicion){
+        return this.esIgualA(posicion.obtenerColumna(), posicion.obtenerFila());
+    }
+
     public void cambiarEstado(){
         this.estado = estado.cambiarEstado();
     }
