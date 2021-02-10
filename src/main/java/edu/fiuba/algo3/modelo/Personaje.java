@@ -8,7 +8,7 @@ public class Personaje {
         this.lapiz = new Lapiz(new Dibujo());
 
         this.posicion = posicion;
-        posicion.cambiarEstado();
+        /*posicion.cambiarEstado();*/
     }
 
     public void cambiarEstadoDelLapiz(EstadoLapiz nuevoEstado){
@@ -22,9 +22,9 @@ public class Personaje {
 
     public void mover(Direccion direccion){
         this.lapiz.pintar(this.posicion);
-        this.posicion.cambiarEstado();
+        /*this.posicion.cambiarEstado();*/
         this.posicion = direccion.siguientePosicion(this.posicion);
-        this.posicion.cambiarEstado();
+        /*this.posicion.cambiarEstado();*/
     }
 
     public Posicion devolverPosicion(){

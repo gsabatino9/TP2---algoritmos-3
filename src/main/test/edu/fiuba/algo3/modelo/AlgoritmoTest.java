@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class AlgoritmoTest {
 
+    /*
     @Test
     public void seAgregaBloqueDerechaBloqueDerechaSeOcupa(){
         Posicion actual = new Posicion(0,0);
@@ -94,7 +95,7 @@ public class AlgoritmoTest {
         assertTrue(personaje.devolverPosicion().estaOcupada());
         assertTrue(personaje.obtenerEstado() instanceof LapizApoyado);
     }
-
+    */
     @Test
     public void personajeSeMueveADerechaYLuegoAIzquierdaPintandoPosicionDeberiaEstarPintada(){
         Posicion actual = new Posicion(0, 0);

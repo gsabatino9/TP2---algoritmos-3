@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class BloqueMoverTest {
-
+    /*
     @Test
     public void seCreaUnBloqueMoverConDireccionADerechaYElPersonajeDebeMoverse(){
         Posicion posicionActual = new Posicion(0,0);
@@ -14,4 +14,5 @@ public class BloqueMoverTest {
         bloque.ejecutar(personaje);
         assertTrue(personaje.devolverPosicion().estaOcupada());
     }
+     */
 }
