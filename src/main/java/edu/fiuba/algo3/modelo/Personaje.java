@@ -5,21 +5,23 @@ public class Personaje {
     private Lapiz lapiz;
 
     Personaje(Posicion posicion){
-        this.lapiz = new Lapiz();
+        this.lapiz = new Lapiz(new Dibujo());
 
         this.posicion = posicion;
         posicion.cambiarEstado();
     }
 
-    public void subirLapiz(){
-        this.lapiz.subirLapiz();
+    public void cambiarEstadoDelLapiz(EstadoLapiz nuevoEstado){
+        this.lapiz.cambiarEstado(nuevoEstado);
     }
-    public void bajarLapiz(){
-        this.lapiz.bajarLapiz();
+
+    public EstadoLapiz obtenerEstado()
+    {
+        return this.lapiz.obtenerEstado();
     }
 
     public void mover(Direccion direccion){
-        this.lapiz.dibujar(this.posicion);
+        this.lapiz.pintar(this.posicion);
         this.posicion.cambiarEstado();
         this.posicion = direccion.siguientePosicion(this.posicion);
         this.posicion.cambiarEstado();
@@ -29,7 +31,4 @@ public class Personaje {
         return this.posicion;
     }
 
-    public boolean lapizEstaLevantado(){
-        return this.lapiz.estaLevantado();
-    }
 }

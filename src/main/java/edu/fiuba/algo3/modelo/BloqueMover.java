@@ -7,7 +7,9 @@ public class BloqueMover implements Bloque {
     BloqueMover(Direccion direccion){
         this.direccion = direccion;
     }
-    public void ejecutar(Personaje personaje){personaje.mover(direccion);}
+    public void ejecutar(Personaje personaje){
+        //personaje.mover(direccion);}
+    }
     public void ejecutarInvertido(Personaje personaje){}
 
 }

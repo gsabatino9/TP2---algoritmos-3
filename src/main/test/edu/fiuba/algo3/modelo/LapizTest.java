@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.modelo.Lapiz;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -11,58 +10,42 @@ public class LapizTest {
 
     @Test
     public void unLapizSeCreaLevantado(){
-        Lapiz unLapiz = new Lapiz();
-        assertTrue(unLapiz.estaLevantado());
+        Lapiz lapiz = new Lapiz(new Dibujo());
+        assertTrue(lapiz.obtenerEstado() instanceof LapizLevantado);
     }
 
     @Test
-    public void puedoBajarElLapiz(){
-        Lapiz unLapiz = new Lapiz();
-        unLapiz.bajarLapiz();
-
-        assertFalse(unLapiz.estaLevantado());
+    public void lapizSeCreaLevantadoAsiQueAlCambiarElEstadoElLapizBaja(){
+        Lapiz lapiz = new Lapiz(new Dibujo());
+        lapiz.cambiarEstado(new LapizApoyado());
+        assertTrue(lapiz.obtenerEstado() instanceof LapizApoyado);
     }
 
     @Test
-    public void puedoBajarYDespuesSubirElLapiz(){
-        Lapiz unLapiz = new Lapiz();
-        unLapiz.bajarLapiz();
-        unLapiz.subirLapiz();
-
-        assertTrue(unLapiz.estaLevantado());
+    public void lapizSeCreaLevantadoLeCambioElEstadoDosVecesDebeEstarLevantado() {
+        Lapiz lapiz = new Lapiz(new Dibujo());
+        lapiz.cambiarEstado(new LapizApoyado());
+        lapiz.cambiarEstado(new LapizLevantado());
+        assertTrue(lapiz.obtenerEstado() instanceof LapizLevantado);
     }
 
     @Test
     public void elLapizApoyadoPinta() {
-        Posicion posicionMock = mock(Posicion.class);
-
-        //necesito que empiece en false
-        when(posicionMock.estaPintada()).thenReturn(true);
-
-        Lapiz unLapiz = new Lapiz();
-        unLapiz.bajarLapiz();
-
-        //necesito que cuando llame a esta cosa, el false cambie a true
-        unLapiz.dibujar(posicionMock);
-
-        //necesito verificar que devolvio true
-        assertTrue(posicionMock.estaPintada());
+        Dibujo dibujo = new Dibujo();
+        Posicion pos = new Posicion(0, 0);
+        Lapiz lapiz = new Lapiz(dibujo);
+        lapiz.cambiarEstado(new LapizApoyado());
+        lapiz.pintar(pos);
+        assertTrue(dibujo.posicionEstaPintada(pos));
     }
 
     @Test
     public void elLapizLevantadoNoPinta() {
-        Posicion posicionMock = mock(Posicion.class);
-
-        //necesito que empiece en false
-        when(posicionMock.estaPintada()).thenReturn(false);
-
-        Lapiz unLapiz = new Lapiz();
-
-        //necesito que cuando llame a esta cosa, el false cambie a true
-        unLapiz.dibujar(posicionMock);
-
-        //necesito verificar que devolvio true
-        assertFalse(posicionMock.estaPintada());
+        Dibujo dibujo = new Dibujo();
+        Posicion pos = new Posicion(0, 0);
+        Lapiz lapiz = new Lapiz(dibujo);
+        lapiz.pintar(pos);
+        assertFalse(dibujo.posicionEstaPintada(pos));
     }
 
 }

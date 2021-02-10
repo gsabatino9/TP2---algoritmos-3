@@ -18,18 +18,6 @@ public class PersonajeTest {
     }
 
     @Test
-    public void PersonajeBajaElLapizSePintaLaPosicionEnLaQueEstabaAlMoverDerecha() {
-
-        Posicion actual = new Posicion(0,0);
-        Personaje personaje = new Personaje(actual);
-        personaje.bajarLapiz();
-        Direccion derecha = Direccion.obtenerDerecha();
-        personaje.mover(derecha);
-        assertTrue(actual.estaPintada());
-    }
-
-
-    @Test
     public void PersonajeSeCreaPorDefectoConElLapizLevantadoAlMoverDerechaPosicionSeEncuentraDesocupada() {
 
         Posicion actual = new Posicion(0,0 );
@@ -58,7 +46,7 @@ public class PersonajeTest {
 
         Posicion actual = new Posicion(0,0);
         Personaje personaje = new Personaje(actual);
-        personaje.bajarLapiz();
+        personaje.cambiarEstadoDelLapiz(new LapizApoyado());
         Direccion derecha = Direccion.obtenerDerecha();
         personaje.mover(derecha);
 
@@ -70,7 +58,7 @@ public class PersonajeTest {
 
         Posicion actual = new Posicion(0, 0);
         Personaje personaje = new Personaje(actual);
-        personaje.bajarLapiz();
+        personaje.cambiarEstadoDelLapiz(new LapizApoyado());
         Direccion derecha = Direccion.obtenerDerecha();
         personaje.mover(derecha);
 
