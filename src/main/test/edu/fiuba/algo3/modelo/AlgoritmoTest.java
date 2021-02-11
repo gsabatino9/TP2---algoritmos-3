@@ -268,7 +268,6 @@ public class AlgoritmoTest {
     }
 
 
-
     //Pruebas de integración
     @Test
     public void bajarElLapizYMoverseVariasVecesPintaLasPosicionesCorrectas(){
