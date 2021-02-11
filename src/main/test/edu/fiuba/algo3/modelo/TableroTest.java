@@ -7,13 +7,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TableroTest {
 
-    @Test
+  /*  @Test
     public void unPersonajeSeCreaEnElOrigenDelTablero(){
         Tablero tablero = new Tablero();
 
         assertTrue(tablero.personajeSeEncuentraEnPosicion(0, 0));
     }
-
+*/
    /*@Test
     public void unPersonajeQueSeMueveALaDerechaSeEncuentraAlLadoDelCentro(){
         Tablero tablero = new Tablero();

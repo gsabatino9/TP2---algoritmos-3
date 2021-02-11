@@ -12,7 +12,9 @@ public class BloqueLapizTest {
     public void seCreaUnBloqueApoyarLapizYAlUsarseDebeCambiarElEstadoDelLapizDelPersonajeAApoyado()
     {
         Bloque bloqueApoyarLapiz = new BloqueLapiz(new LapizApoyado());
-        Personaje personaje = new Personaje(new Posicion(0, 0));
+        Dibujo dibujo = new Dibujo();
+        Lapiz lapiz = new Lapiz(dibujo);
+        Personaje personaje = new Personaje(new Posicion(0, 0), lapiz);
         bloqueApoyarLapiz.ejecutar(personaje);
         assertTrue(personaje.obtenerEstado() instanceof LapizApoyado);
     }
@@ -22,7 +24,9 @@ public class BloqueLapizTest {
     {
         Bloque bloqueApoyarLapiz = new BloqueLapiz(new LapizApoyado());
         Bloque bloqueLevantarLapiz = new BloqueLapiz(new LapizLevantado());
-        Personaje personaje = new Personaje(new Posicion(0, 0));
+        Dibujo dibujo = new Dibujo();
+        Lapiz lapiz = new Lapiz(dibujo);
+        Personaje personaje = new Personaje(new Posicion(0, 0), lapiz);
         bloqueLevantarLapiz.ejecutar(personaje);
         bloqueApoyarLapiz.ejecutar(personaje);
         bloqueApoyarLapiz.ejecutar(personaje);

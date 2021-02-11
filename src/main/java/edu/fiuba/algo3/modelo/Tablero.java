@@ -8,8 +8,8 @@ public class Tablero {
     private Algoritmo algoritmo;
 
     Tablero(){
-        this.personaje = new Personaje(new Posicion(0, 0));
-        this.algoritmo = new Algoritmo();
+        //this.personaje = new Personaje(new Posicion(0, 0));
+        //this.algoritmo = new Algoritmo(1);
     }
 
     public void agregarBloque(Bloque bloque){
@@ -17,7 +17,7 @@ public class Tablero {
     }
 
     public void realizarSecuencia(){
-        this.algoritmo.realizarSecuencia(this.personaje);
+        this.algoritmo.ejecutar(this.personaje);
     }
 
     public boolean personajeSeEncuentraEnPosicion(int columna, int fila){

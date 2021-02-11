@@ -4,8 +4,8 @@ public class Personaje {
     private Posicion posicion;
     private Lapiz lapiz;
 
-    Personaje(Posicion posicion){
-        this.lapiz = new Lapiz(new Dibujo());
+    Personaje(Posicion posicion, Lapiz lapiz){
+        this.lapiz = lapiz;
 
         this.posicion = posicion;
         /*posicion.cambiarEstado();*/
