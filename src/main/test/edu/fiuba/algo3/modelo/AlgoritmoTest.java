@@ -10,16 +10,8 @@ import static org.junit.jupiter.api.Assertions.*;
 public class AlgoritmoTest {
 
 
-
     @Test
-    public void seCreaUnAlgoritmoQuePorDefectoSeRepiteUnaVez(){
-        Algoritmo algoritmo = new Algoritmo(1);
-
-        assertEquals(algoritmo.obtenerCantidadReproducciones(), 1);
-    }
-
-    @Test
-        public void seCreaUnAlgoritmoPeroSinBloquesElPersonajeNoSeMueveNiBajaElLapiz(){
+    public void seCreaUnAlgoritmoPeroSinBloquesElPersonajeNoSeMueve(){
             Algoritmo algoritmo = new Algoritmo(1);
             Posicion posicionInicio = new Posicion(0, 0);
             Dibujo dibujo = new Dibujo();
@@ -28,9 +20,19 @@ public class AlgoritmoTest {
             algoritmo.ejecutar(personaje);
 
             assertEquals(posicionInicio, personaje.devolverPosicion());
-            assertFalse(dibujo.posicionEstaPintada(personaje.devolverPosicion()));
-
         }
+
+    @Test
+    public void seCreaUnAlgoritmoPeroSinBloquesElPersonajeNoSeBajaElLapiz(){
+        Algoritmo algoritmo = new Algoritmo(1);
+        Posicion posicionInicio = new Posicion(0, 0);
+        Dibujo dibujo = new Dibujo();
+        Lapiz lapiz = new Lapiz(dibujo);
+        Personaje personaje = new Personaje(posicionInicio, lapiz);
+        algoritmo.ejecutar(personaje);
+
+        assertFalse(dibujo.posicionEstaPintada(personaje.devolverPosicion()));
+    }
 
     @Test
      public void agregarUnBloqueMoverMueveAlPersonajeEnLaDireccionCorrecta(){
@@ -120,6 +122,154 @@ public class AlgoritmoTest {
     }
 
     @Test
+    public void agregarUnBloqueMoverConRepeticion2MueveAlPersonajeCorrectamente(){
+        Algoritmo algoritmo = new Algoritmo();
+        Posicion posicionInicio = new Posicion(0, 0);
+        Dibujo dibujo = new Dibujo();
+        Lapiz lapiz = new Lapiz(dibujo);
+        Personaje personaje = new Personaje(posicionInicio, lapiz);
+
+        BloqueMover bloqueArriba = new BloqueMover(Direccion.obtenerArriba());
+        Algoritmo bloqueRepetir = new Algoritmo(2);
+        bloqueRepetir.agregarBloque(bloqueArriba);
+        algoritmo.agregarBloque(bloqueRepetir);
+        algoritmo.ejecutar(personaje);
+
+        Posicion posicionFinal = new Posicion(0, 2);
+        assertTrue(posicionFinal.equals(personaje.devolverPosicion()));
+    }
+
+    @Test
+    public void bajarElLapizYMoverConRepeticion2PintaCorrectamente(){
+        Algoritmo algoritmo = new Algoritmo();
+        Posicion posicionInicio = new Posicion(0, 0);
+        Dibujo dibujo = new Dibujo();
+        Lapiz lapiz = new Lapiz(dibujo);
+        Personaje personaje = new Personaje(posicionInicio, lapiz);
+
+        BloqueLapiz bloqueBajarLapiz = new BloqueLapiz(new LapizApoyado());
+        algoritmo.agregarBloque(bloqueBajarLapiz);
+
+        BloqueMover bloqueArriba = new BloqueMover(Direccion.obtenerArriba());
+        Algoritmo bloqueRepetir = new Algoritmo(2);
+        bloqueRepetir.agregarBloque(bloqueArriba);
+        algoritmo.agregarBloque(bloqueRepetir);
+        algoritmo.ejecutar(personaje);
+
+        Posicion posicionFinal = new Posicion(0, 1);
+        assertTrue(dibujo.posicionEstaPintada(posicionInicio));
+        assertTrue(dibujo.posicionEstaPintada(posicionFinal));
+    }
+
+    @Test
+    public void agregarUnBloqueMoverConRepeticion3MueveAlPersonajeCorrectamente(){
+        Algoritmo algoritmo = new Algoritmo();
+        Posicion posicionInicio = new Posicion(0, 0);
+        Dibujo dibujo = new Dibujo();
+        Lapiz lapiz = new Lapiz(dibujo);
+        Personaje personaje = new Personaje(posicionInicio, lapiz);
+
+        BloqueMover bloqueArriba = new BloqueMover(Direccion.obtenerArriba());
+        Algoritmo bloqueRepetir = new Algoritmo(3);
+        bloqueRepetir.agregarBloque(bloqueArriba);
+        algoritmo.agregarBloque(bloqueRepetir);
+        algoritmo.ejecutar(personaje);
+
+        Posicion posicionFinal = new Posicion(0, 3);
+        assertTrue(posicionFinal.equals(personaje.devolverPosicion()));
+    }
+
+    @Test
+    public void bajarElLapizYMoverConRepeticion3PintaCorrectamente(){
+        Algoritmo algoritmo = new Algoritmo();
+        Posicion posicionInicio = new Posicion(0, 0);
+        Dibujo dibujo = new Dibujo();
+        Lapiz lapiz = new Lapiz(dibujo);
+        Personaje personaje = new Personaje(posicionInicio, lapiz);
+
+        BloqueLapiz bloqueBajarLapiz = new BloqueLapiz(new LapizApoyado());
+        algoritmo.agregarBloque(bloqueBajarLapiz);
+
+        BloqueMover bloqueArriba = new BloqueMover(Direccion.obtenerArriba());
+        Algoritmo bloqueRepetir = new Algoritmo(3);
+        bloqueRepetir.agregarBloque(bloqueArriba);
+        algoritmo.agregarBloque(bloqueRepetir);
+        algoritmo.ejecutar(personaje);
+
+        Posicion posicionIntermedia = new Posicion(0, 1);
+        Posicion posicionFinal = new Posicion(0, 2);
+        assertTrue(dibujo.posicionEstaPintada(posicionInicio));
+        assertTrue(dibujo.posicionEstaPintada(posicionIntermedia));
+        assertTrue(dibujo.posicionEstaPintada(posicionFinal));
+    }
+
+    @Test
+    public void bajarConRepeticionYDespuesSubirFuncionaCorrectamente(){
+        Algoritmo algoritmo = new Algoritmo();
+        Posicion posicionInicio = new Posicion(0, 0);
+        Dibujo dibujo = new Dibujo();
+        Lapiz lapiz = new Lapiz(dibujo);
+        Personaje personaje = new Personaje(posicionInicio, lapiz);
+
+        BloqueMover bloqueArriba = new BloqueMover(Direccion.obtenerArriba());
+        Algoritmo bloqueRepetir = new Algoritmo(3);
+        bloqueRepetir.agregarBloque(bloqueArriba);
+        algoritmo.agregarBloque(bloqueRepetir);
+
+        BloqueMover bloqueAbajo = new BloqueMover(Direccion.obtenerAbajo());
+        algoritmo.agregarBloque(bloqueAbajo);
+        algoritmo.ejecutar(personaje);
+
+        Posicion posicionFinal = new Posicion(0, 2);
+        assertTrue(posicionFinal.equals(personaje.devolverPosicion()));
+    }
+
+    @Test
+    public void bajarElLapizConRepeticion2YDespuesMoversePintaCorrecta(){
+        Algoritmo algoritmo = new Algoritmo();
+        Posicion posicionInicio = new Posicion(0, 0);
+        Dibujo dibujo = new Dibujo();
+        Lapiz lapiz = new Lapiz(dibujo);
+        Personaje personaje = new Personaje(posicionInicio, lapiz);
+
+        BloqueLapiz bloqueBajarLapiz = new BloqueLapiz(new LapizApoyado());
+        Algoritmo bloqueRepetir = new Algoritmo(2);
+        bloqueRepetir.agregarBloque(bloqueBajarLapiz);
+        algoritmo.agregarBloque(bloqueRepetir);
+
+        BloqueMover bloqueArriba = new BloqueMover(Direccion.obtenerArriba());
+        algoritmo.agregarBloque(bloqueArriba);
+
+        algoritmo.ejecutar(personaje);
+
+        assertTrue(dibujo.posicionEstaPintada(posicionInicio));
+    }
+
+    @Test
+    public void bajarElLapizConRepeticion3YDespuesMoversePintaCorrecta(){
+        Algoritmo algoritmo = new Algoritmo();
+        Posicion posicionInicio = new Posicion(0, 0);
+        Dibujo dibujo = new Dibujo();
+        Lapiz lapiz = new Lapiz(dibujo);
+        Personaje personaje = new Personaje(posicionInicio, lapiz);
+
+        BloqueLapiz bloqueBajarLapiz = new BloqueLapiz(new LapizApoyado());
+        Algoritmo bloqueRepetir = new Algoritmo(3);
+        bloqueRepetir.agregarBloque(bloqueBajarLapiz);
+        algoritmo.agregarBloque(bloqueRepetir);
+
+        BloqueMover bloqueArriba = new BloqueMover(Direccion.obtenerArriba());
+        algoritmo.agregarBloque(bloqueArriba);
+
+        algoritmo.ejecutar(personaje);
+
+        assertTrue(dibujo.posicionEstaPintada(posicionInicio));
+    }
+
+
+
+    //Pruebas de integración
+    @Test
     public void bajarElLapizYMoverseVariasVecesPintaLasPosicionesCorrectas(){
         Algoritmo algoritmo = new Algoritmo();
         Posicion posicionInicio = new Posicion(0, 0);
@@ -153,124 +303,36 @@ public class AlgoritmoTest {
         assertTrue(dibujo.posicionEstaPintada(posicionInicio));
         assertTrue(dibujo.posicionEstaPintada(posicionArribaDerecha));
         assertTrue(posicionArribaIzquierda.equals(personaje.devolverPosicion()));
-
-    }
-
-
-   // Algoritmo bloqueRepetir = new Algoritmo(2);
-    //    bloqueRepetir.agregarBloque(bloqueDerecha);
-
-//        algoritmo.agregarBloque(bloqueRepetir);
-
-    /*
-    @Test
-    public void seAgregaBloqueDerechaBloqueDerechaSeOcupa(){
-        Posicion actual = new Posicion(0,0);
-        Personaje personaje = new Personaje(actual);
-        BloqueMover bloque = new BloqueMover(Direccion.obtenerDerecha());
-
-        Algoritmo algoritmo = new Algoritmo(1);
-        algoritmo.agregarBloque(bloque);
-        algoritmo.ejecutar(personaje);
-
-        assertTrue(personaje.devolverPosicion().estaOcupada());
-
     }
 
     @Test
-    public void seAgregaBloqueDerechaBloqueActualSeDesocupa(){
-        Posicion actual = new Posicion(0, 0);
-        Personaje personaje = new Personaje(actual);
-        BloqueMover bloque = new BloqueMover(Direccion.obtenerDerecha());
+    public void pintarConRepeticionYDespuesVolverPintaCorrectamente(){
+        Algoritmo algoritmo = new Algoritmo();
+        Posicion posicionInicio = new Posicion(0, 0);
+        Dibujo dibujo = new Dibujo();
+        Lapiz lapiz = new Lapiz(dibujo);
+        Personaje personaje = new Personaje(posicionInicio, lapiz);
 
-        Algoritmo algoritmo = new Algoritmo(1);
-        algoritmo.agregarBloque(bloque);
+        BloqueLapiz bloqueBajarLapiz = new BloqueLapiz(new LapizApoyado());
+        algoritmo.agregarBloque(bloqueBajarLapiz);
+
+        BloqueMover bloqueIzquierda = new BloqueMover(Direccion.obtenerIzquierda());
+
+        Algoritmo bloqueRepetir = new Algoritmo(2);
+        bloqueRepetir.agregarBloque(bloqueIzquierda);
+        algoritmo.agregarBloque(bloqueRepetir);
+
+        BloqueMover bloqueDerecha = new BloqueMover(Direccion.obtenerDerecha());
+        algoritmo.agregarBloque(bloqueDerecha);
+
         algoritmo.ejecutar(personaje);
 
-        assertTrue(actual.estaOcupada());
-
+        Posicion posicionIntermedia = new Posicion(-2, 0);
+        Posicion posicionFinal = new Posicion(-1, 0);
+        assertTrue(dibujo.posicionEstaPintada(posicionInicio));
+        assertTrue(dibujo.posicionEstaPintada(posicionIntermedia));
+        assertTrue(dibujo.posicionEstaPintada(posicionFinal));
+        assertTrue(posicionFinal.equals(personaje.devolverPosicion()));
     }
-
-    @Test
-    public void unPersonajeQueSeMueveParaLaDerechaYLuegoArribaEntoncesArribaEstaOcupado(){
-        Posicion actual = new Posicion(0,0 );
-
-        Personaje personaje = new Personaje(actual);
-        BloqueMover bloque = new BloqueMover(Direccion.obtenerDerecha());
-        BloqueMover bloque2 = new BloqueMover(Direccion.obtenerArriba());
-
-        Algoritmo algoritmo = new Algoritmo(1);
-        algoritmo.agregarBloque(bloque);
-        algoritmo.agregarBloque(bloque2);
-        algoritmo.ejecutar(personaje);
-        assertTrue(personaje.devolverPosicion().estaOcupada());
-    }
-
-
-    @Test
-    public void sinAgregarBloquesElPersonajeNoHaceNada(){
-        Posicion actual = new Posicion(0,0 );
-        Personaje personaje = new Personaje(actual);
-
-        Algoritmo algoritmo = new Algoritmo(1);
-        algoritmo.ejecutar(personaje);
-
-        assertTrue(actual.estaOcupada());
-        assertTrue(personaje.obtenerEstado() instanceof LapizLevantado);
-    }
-
-    @Test
-    public void agregarSoloUnBloqueDeBajarLapizHaceQueElPersonajeTengaElLapizApoyado(){
-        Posicion actual = new Posicion(0, 0);
-        Personaje personaje = new Personaje(actual);
-
-        Bloque bloque = new BloqueLapiz(new LapizApoyado());
-
-        Algoritmo algoritmo = new Algoritmo(1);
-        algoritmo.agregarBloque(bloque);
-        algoritmo.ejecutar(personaje);
-
-        assertTrue(actual.estaOcupada());
-        assertTrue(personaje.obtenerEstado() instanceof LapizApoyado);
-    }
-
-    @Test
-    public void bajarElLapizYMoverAlPersonajeALaDerechaHaceQueLaPosicionEstePintada(){
-        Posicion actual = new Posicion(0, 0);
-        Personaje personaje = new Personaje(actual);
-
-        Bloque bloque = new BloqueLapiz(new LapizApoyado());
-        BloqueMover bloque2 = new BloqueMover(Direccion.obtenerDerecha());
-
-        Algoritmo algoritmo = new Algoritmo(1);
-        algoritmo.agregarBloque(bloque);
-        algoritmo.agregarBloque(bloque2);
-        algoritmo.ejecutar(personaje);
-
-        //assertTrue(actual.estaPintada());
-        assertTrue(personaje.devolverPosicion().estaOcupada());
-        assertTrue(personaje.obtenerEstado() instanceof LapizApoyado);
-    }
-    */
-   /* @Test
-    public void personajeSeMueveADerechaYLuegoAIzquierdaPintandoPosicionDeberiaEstarPintada(){
-        Posicion actual = new Posicion(0, 0);
-        Personaje personaje = new Personaje(actual);
-
-        Algoritmo algoritmo = new Algoritmo(1);
-        Bloque apoyado = new BloqueLapiz(new LapizApoyado());
-        BloqueMover derecha = new BloqueMover(Direccion.obtenerDerecha());
-        BloqueMover izquierda = new BloqueMover(Direccion.obtenerIzquierda());
-
-
-        algoritmo.agregarBloque(apoyado);
-        algoritmo.agregarBloque(derecha);
-        algoritmo.agregarBloque(izquierda);
-        algoritmo.ejecutar(personaje);
-
-        //assertTrue(personaje.devolverPosicion().estaPintada());
-        assertTrue(personaje.obtenerEstado() instanceof LapizApoyado);
-
-    }*/
 
 }

@@ -27,9 +27,6 @@ public class Algoritmo implements Bloque {
         bloques.add(bloque);
     }
 
-    public int obtenerCantidadReproducciones() {
-        return cantidadReproducciones;
-    }
 
     @Override
     public void ejecutar(Personaje personaje) {
