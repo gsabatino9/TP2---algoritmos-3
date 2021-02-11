@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.awt.desktop.SystemEventListener;
@@ -333,6 +334,16 @@ public class AlgoritmoTest {
         assertTrue(dibujo.posicionEstaPintada(posicionIntermedia));
         assertTrue(dibujo.posicionEstaPintada(posicionFinal));
         assertTrue(posicionFinal.equals(personaje.devolverPosicion()));
+    }
+
+    @Test
+    public void UnAlgoritmoConCantidadNegativaLanzaUnaExcepcion(){
+        assertThrows(IllegalArgumentException.class, () -> new Algoritmo(-1));
+    }
+
+    @Test
+    public void UnAlgoritmoConCantidadCeroLanzaUnaExcepcion(){
+        assertThrows(IllegalArgumentException.class, () -> new Algoritmo(0));
     }
 
 }

@@ -17,7 +17,7 @@ public class Algoritmo implements Bloque {
 
     public Algoritmo(int cantidad) {
         if (cantidad <= 0) {
-            //tiene que saltarme una excepcion, no puedo repetir un código 0 o menos de 0 veces
+            throw new IllegalArgumentException("Cantidad debe ser positiva");
         }
         cantidadReproducciones = cantidad;
         bloques = new ArrayList<Bloque>();
