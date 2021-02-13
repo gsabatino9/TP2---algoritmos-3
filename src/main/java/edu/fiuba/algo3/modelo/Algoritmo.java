@@ -27,6 +27,27 @@ public class Algoritmo implements Bloque {
         bloques.add(bloque);
     }
 
+    public void agregarBloquePersonalizado(String nombreAlgoritmo, Personaje personaje) throws BloquePersonalizadoNoExisteException {
+        Bloque bloque = personaje.obtenerAlgoritmo(nombreAlgoritmo);
+        if (bloque == null) {
+            throw new BloquePersonalizadoNoExisteException(
+                    "El bloque personalizado buscado no fue encontrado.");
+        }
+        agregarBloque(bloque);
+    }
+
+    public void guardar(String nombreAlgoritmo, Personaje personaje) throws AlgoritmoPersonalizacionVacioException {
+        if (bloques.size() == 0){
+            throw new AlgoritmoPersonalizacionVacioException(
+                    "El bloque personalizado debe contener al menos un bloque.");
+        }
+        personaje.agregarBloque(this, nombreAlgoritmo);
+    }
+
+    public boolean algoritmoEstaGuardado(String nombreAlgoritmo, Personaje personaje){
+        return personaje.algoritmoEstaGuardado(nombreAlgoritmo);
+    }
+
 
     @Override
     public void ejecutar(Personaje personaje) {
