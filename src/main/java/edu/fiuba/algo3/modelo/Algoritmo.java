@@ -24,6 +24,7 @@ public class Algoritmo implements Bloque {
     }
 
     public void agregarBloque(Bloque bloque) {
+
         bloques.add(bloque);
     }
 
@@ -36,9 +37,9 @@ public class Algoritmo implements Bloque {
         agregarBloque(bloque);
     }
 
-    public void guardar(String nombreAlgoritmo, Personaje personaje) throws AlgoritmoPersonalizacionVacioException {
+    public void guardar(String nombreAlgoritmo, Personaje personaje) throws AlgoritmoVacioException {
         if (bloques.size() == 0){
-            throw new AlgoritmoPersonalizacionVacioException(
+            throw new AlgoritmoVacioException(
                     "El bloque personalizado debe contener al menos un bloque.");
         }
         personaje.agregarBloque(this, nombreAlgoritmo);
@@ -50,7 +51,11 @@ public class Algoritmo implements Bloque {
 
 
     @Override
-    public void ejecutar(Personaje personaje) {
+    public void ejecutar(Personaje personaje) throws AlgoritmoVacioException {
+        if (bloques.size() == 0) {
+            throw new AlgoritmoVacioException(
+                    "no se puede ejecutar una secuencia sin bloques.");
+        }
         for (int i = 0; i < cantidadReproducciones; i++) {
             bloques.forEach(bloque -> bloque.ejecutar(personaje));
         }

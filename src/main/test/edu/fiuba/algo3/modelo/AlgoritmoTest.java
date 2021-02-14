@@ -1,9 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import java.awt.desktop.SystemEventListener;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -21,28 +18,15 @@ public class AlgoritmoTest {
     }
 
     @Test
-    public void seCreaUnAlgoritmoPeroSinBloquesElPersonajeNoSeMueve(){
+    public void crearUnAlgoritmoVacioLanzaExcepcion() {
             Algoritmo algoritmo = new Algoritmo(1);
             Posicion posicionInicio = new Posicion(0, 0);
             Dibujo dibujo = new Dibujo();
             Lapiz lapiz = new Lapiz(dibujo);
             Personaje personaje = new Personaje(posicionInicio, lapiz);
-            algoritmo.ejecutar(personaje);
 
-            assertEquals(posicionInicio, personaje.devolverPosicion());
+            assertThrows(AlgoritmoVacioException.class, () ->  algoritmo.ejecutar(personaje));
         }
-
-    @Test
-    public void seCreaUnAlgoritmoPeroSinBloquesElPersonajeNoSeBajaElLapiz(){
-        Algoritmo algoritmo = new Algoritmo(1);
-        Posicion posicionInicio = new Posicion(0, 0);
-        Dibujo dibujo = new Dibujo();
-        Lapiz lapiz = new Lapiz(dibujo);
-        Personaje personaje = new Personaje(posicionInicio, lapiz);
-        algoritmo.ejecutar(personaje);
-
-        assertFalse(dibujo.posicionEstaPintada(personaje.devolverPosicion()));
-    }
 
     @Test
      public void agregarUnBloqueMoverMueveAlPersonajeEnLaDireccionCorrecta(){
@@ -133,6 +117,21 @@ public class AlgoritmoTest {
 
 
     //Pruebas BloqueRepetir
+
+    @Test
+    public void agregarUnBloqueRepetirVacioLanzaExcepcion(){
+        Algoritmo algoritmo = new Algoritmo();
+        Posicion posicionInicio = new Posicion(0, 0);
+        Dibujo dibujo = new Dibujo();
+        Lapiz lapiz = new Lapiz(dibujo);
+        Personaje personaje = new Personaje(posicionInicio, lapiz);
+
+        Algoritmo bloqueRepetir = new Algoritmo(2);
+        algoritmo.agregarBloque(bloqueRepetir);
+
+        assertThrows(AlgoritmoVacioException.class, () ->  algoritmo.ejecutar(personaje));
+    }
+
 
     @Test
     public void agregarUnBloqueMoverConRepeticion2MueveAlPersonajeCorrectamente(){
@@ -283,7 +282,23 @@ public class AlgoritmoTest {
     //Pruebas BloquePersonalizado
 
     @Test
-    public void seGuardaUnAlgoritmoPersonalizado() throws AlgoritmoPersonalizacionVacioException {
+    public void agregarUnBloqueRepetirVacioEnUnoPersonalizadoLanzaExcepcion(){
+        Algoritmo algoritmo = new Algoritmo();
+        Posicion posicionInicio = new Posicion(0, 0);
+        Dibujo dibujo = new Dibujo();
+        Lapiz lapiz = new Lapiz(dibujo);
+        Personaje personaje = new Personaje(posicionInicio, lapiz);
+
+        Algoritmo bloqueRepetir = new Algoritmo(2);
+        Algoritmo bloquePersonalizado = new Algoritmo();
+        bloquePersonalizado.agregarBloque(bloqueRepetir);
+
+        algoritmo.agregarBloque(bloquePersonalizado);
+        assertThrows(AlgoritmoVacioException.class, () ->  algoritmo.ejecutar(personaje));
+    }
+
+    @Test
+    public void seGuardaUnAlgoritmoPersonalizado() {
         Algoritmo algoritmo = new Algoritmo();
         Posicion posicionInicio = new Posicion(0, 0);
         Dibujo dibujo = new Dibujo();
@@ -293,15 +308,17 @@ public class AlgoritmoTest {
         BloqueLapiz bloqueBajarLapiz = new BloqueLapiz(new LapizApoyado());
         BloqueMover bloqueArriba = new BloqueMover(Direccion.obtenerArriba());
 
-        algoritmo.agregarBloque(bloqueBajarLapiz);
-        algoritmo.agregarBloque(bloqueArriba);
+        Algoritmo bloquePersonalizado = new Algoritmo();
 
-        algoritmo.guardar("Pintar y subir", personaje);
-        assertTrue(algoritmo.algoritmoEstaGuardado("Pintar y subir", personaje));
+        bloquePersonalizado.agregarBloque(bloqueBajarLapiz);
+        bloquePersonalizado.agregarBloque(bloqueArriba);
+
+        bloquePersonalizado.guardar("Pintar y subir", personaje);
+        assertTrue(bloquePersonalizado.algoritmoEstaGuardado("Pintar y subir", personaje));
     }
 
     @Test
-    public void seGuardaUnAlgoritmoPersonalizadoPeroNoSeEjecutaAutomaticamente() throws AlgoritmoPersonalizacionVacioException {
+    public void seGuardaUnAlgoritmoPersonalizadoPeroNoSeEjecutaAutomaticamente() {
         Algoritmo algoritmo = new Algoritmo();
         Posicion posicionInicio = new Posicion(0, 0);
         Dibujo dibujo = new Dibujo();
@@ -329,11 +346,11 @@ public class AlgoritmoTest {
         Lapiz lapiz = new Lapiz(dibujo);
         Personaje personaje = new Personaje(posicionInicio, lapiz);
 
-        assertThrows(AlgoritmoPersonalizacionVacioException.class, () ->  algoritmo.guardar("Pintar y subir", personaje));
+        assertThrows(AlgoritmoVacioException.class, () ->  algoritmo.guardar("Pintar y subir", personaje));
     }
 
     @Test
-    public void puedoGuardarUnAlgoritmoPersonalizadoYCargarloAMiAlgoritmo() throws AlgoritmoPersonalizacionVacioException, BloquePersonalizadoNoExisteException {
+    public void puedoGuardarUnAlgoritmoPersonalizadoYCargarloAMiAlgoritmo() {
         Algoritmo algoritmo = new Algoritmo();
         Posicion posicionInicio = new Posicion(0, 0);
         Dibujo dibujo = new Dibujo();
@@ -439,6 +456,59 @@ public class AlgoritmoTest {
         assertTrue(dibujo.posicionEstaPintada(posicionIntermedia));
         assertTrue(dibujo.posicionEstaPintada(posicionFinal));
         assertTrue(posicionFinal.equals(personaje.devolverPosicion()));
+    }
+
+    @Test
+    public void mezclarBloquesRepeticionConBloquesPersonalizadosYBloquesSimpleFuncionaCorrectamente(){
+        Algoritmo algoritmo = new Algoritmo();
+        Posicion posicionInicio = new Posicion(0, 0);
+        Dibujo dibujo = new Dibujo();
+        Lapiz lapiz = new Lapiz(dibujo);
+        Personaje personaje = new Personaje(posicionInicio, lapiz);
+
+        //bloque simple
+        BloqueLapiz bloqueBajarLapiz = new BloqueLapiz(new LapizApoyado());
+        algoritmo.agregarBloque(bloqueBajarLapiz);
+
+        //bloque que combina BloqueRepetir y BloquePersonalizado
+        BloqueMover bloqueArriba = new BloqueMover(Direccion.obtenerArriba());
+        BloqueMover bloqueDerecha = new BloqueMover(Direccion.obtenerDerecha());
+
+        Algoritmo bloquePersonalizado1 = new Algoritmo(3);
+        bloquePersonalizado1.agregarBloque(bloqueArriba);
+        bloquePersonalizado1.agregarBloque(bloqueDerecha);
+        bloquePersonalizado1.guardar("Arriba y a la derecha", personaje);
+
+        algoritmo.agregarBloquePersonalizado("Arriba y a la derecha", personaje);
+
+        //bloqueRepetir
+        Algoritmo bloqueRepetir = new Algoritmo(2);
+        bloqueRepetir.agregarBloque(bloqueArriba);
+
+        algoritmo.agregarBloque(bloqueRepetir);
+
+        //bloquePersonalizado
+        BloqueLapiz bloqueSubirLapiz = new BloqueLapiz(new LapizLevantado());
+        Algoritmo bloquePersonalizado2 = new Algoritmo();
+        bloquePersonalizado2.agregarBloque(bloqueDerecha);
+        bloquePersonalizado2.agregarBloque(bloqueSubirLapiz);
+
+        bloquePersonalizado2.guardar("Mover a derecha y levantar lapiz", personaje);
+        algoritmo.agregarBloquePersonalizado("Mover a derecha y levantar lapiz", personaje);
+
+
+        algoritmo.ejecutar(personaje);
+
+        assertTrue(dibujo.posicionEstaPintada(posicionInicio));
+        assertTrue(dibujo.posicionEstaPintada(new Posicion(0, 1)));
+        assertTrue(dibujo.posicionEstaPintada(new Posicion(1, 1)));
+        assertTrue(dibujo.posicionEstaPintada(new Posicion(1, 2)));
+        assertTrue(dibujo.posicionEstaPintada(new Posicion(2, 2)));
+        assertTrue(dibujo.posicionEstaPintada(new Posicion(2, 3)));
+        assertTrue(dibujo.posicionEstaPintada(new Posicion(3, 3)));
+        assertTrue(dibujo.posicionEstaPintada(new Posicion(3, 4)));
+        assertTrue(dibujo.posicionEstaPintada(new Posicion(3, 5)));
+        assertFalse(dibujo.posicionEstaPintada(new Posicion(4, 5)));
     }
 
 }
