@@ -22,6 +22,10 @@ public class Posicion{
         return this.esIgualA(posicion.obtenerColumna(), posicion.obtenerFila());
     }
 
+    public Segmento crearSegmento(Direccion direccion){
+        return new Segmento(this, direccion.siguientePosicion(this));
+    }
+
 }
 
 

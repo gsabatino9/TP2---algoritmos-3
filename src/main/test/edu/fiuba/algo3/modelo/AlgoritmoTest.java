@@ -60,7 +60,8 @@ public class AlgoritmoTest {
         algoritmo.agregarBloque(bloqueDerecha);
         algoritmo.ejecutar(personaje);
 
-        assertFalse(dibujo.posicionEstaPintada(posicionInicio));
+        Segmento segmento = posicionInicio.crearSegmento(derecha);
+        assertFalse(dibujo.segmentoEstaPintado(segmento));
     }
 
     @Test
@@ -77,23 +78,8 @@ public class AlgoritmoTest {
         algoritmo.agregarBloque(bloqueDerecha);
         algoritmo.ejecutar(personaje);
 
-        assertFalse(dibujo.posicionEstaPintada(personaje.devolverPosicion()));
-    }
-
-    @Test
-    public void bajarElLapizNoPintaElBloque(){
-        Algoritmo algoritmo = new Algoritmo();
-        Posicion posicionInicio = new Posicion(0, 0);
-        Dibujo dibujo = new Dibujo();
-        Lapiz lapiz = new Lapiz(dibujo);
-        Personaje personaje = new Personaje(posicionInicio, lapiz);
-
-
-        BloqueLapiz bloqueBajarLapiz = new BloqueLapiz(new LapizApoyado());
-        algoritmo.agregarBloque(bloqueBajarLapiz);
-        algoritmo.ejecutar(personaje);
-
-        assertFalse(dibujo.posicionEstaPintada(personaje.devolverPosicion()));
+        Segmento segmento = posicionInicio.crearSegmento(derecha);
+        assertFalse(dibujo.segmentoEstaPintado(segmento));
     }
 
     @Test
@@ -112,7 +98,8 @@ public class AlgoritmoTest {
 
         algoritmo.ejecutar(personaje);
 
-        assertTrue(dibujo.posicionEstaPintada(posicionInicio));
+        Segmento segmento = posicionInicio.crearSegmento(Direccion.obtenerDerecha());
+        assertTrue(dibujo.segmentoEstaPintado(segmento));
     }
 
 
@@ -169,8 +156,9 @@ public class AlgoritmoTest {
         algoritmo.ejecutar(personaje);
 
         Posicion posicionFinal = new Posicion(0, 1);
-        assertTrue(dibujo.posicionEstaPintada(posicionInicio));
-        assertTrue(dibujo.posicionEstaPintada(posicionFinal));
+
+        Segmento segmento = new Segmento(posicionInicio, posicionFinal);
+        assertTrue(dibujo.segmentoEstaPintado(segmento));
     }
 
     @Test
@@ -210,9 +198,12 @@ public class AlgoritmoTest {
 
         Posicion posicionIntermedia = new Posicion(0, 1);
         Posicion posicionFinal = new Posicion(0, 2);
-        assertTrue(dibujo.posicionEstaPintada(posicionInicio));
-        assertTrue(dibujo.posicionEstaPintada(posicionIntermedia));
-        assertTrue(dibujo.posicionEstaPintada(posicionFinal));
+
+        Segmento segmento1 = new Segmento(posicionInicio, posicionIntermedia);
+        assertTrue(dibujo.segmentoEstaPintado(segmento1));
+
+        Segmento segmento2 = new Segmento(posicionIntermedia, posicionFinal);
+        assertTrue(dibujo.segmentoEstaPintado(segmento2));
     }
 
     @Test
@@ -254,7 +245,8 @@ public class AlgoritmoTest {
 
         algoritmo.ejecutar(personaje);
 
-        assertTrue(dibujo.posicionEstaPintada(posicionInicio));
+        Segmento segmento = posicionInicio.crearSegmento(Direccion.obtenerArriba());
+        assertTrue(dibujo.segmentoEstaPintado(segmento));
     }
 
     @Test
@@ -275,7 +267,8 @@ public class AlgoritmoTest {
 
         algoritmo.ejecutar(personaje);
 
-        assertTrue(dibujo.posicionEstaPintada(posicionInicio));
+        Segmento segmento = posicionInicio.crearSegmento(Direccion.obtenerArriba());
+        assertTrue(dibujo.segmentoEstaPintado(segmento));
     }
 
 
@@ -334,8 +327,9 @@ public class AlgoritmoTest {
 
         algoritmoPersonalizado.guardar("Pintar y subir", personaje);
 
+        Segmento segmento = posicionInicio.crearSegmento(Direccion.obtenerArriba());
+        assertFalse(dibujo.segmentoEstaPintado(segmento));
         assertTrue(posicionInicio.equals(personaje.devolverPosicion()));
-        assertFalse(dibujo.posicionEstaPintada(posicionInicio));
     }
 
     @Test
@@ -368,7 +362,9 @@ public class AlgoritmoTest {
         algoritmo.agregarBloquePersonalizado("Pintar y subir", personaje);
 
         algoritmo.ejecutar(personaje);
-        assertTrue(dibujo.posicionEstaPintada(posicionInicio));
+
+        Segmento segmento = posicionInicio.crearSegmento(Direccion.obtenerArriba());
+        assertTrue(dibujo.segmentoEstaPintado(segmento));
     }
 
     @Test
@@ -400,8 +396,13 @@ public class AlgoritmoTest {
         Lapiz lapiz = new Lapiz(dibujo);
         Personaje personaje = new Personaje(posicionInicio, lapiz);
 
-        Posicion posicionArribaDerecha = new Posicion(1, 1);
-        Posicion posicionArribaIzquierda = new Posicion(0, 1);
+        Posicion posicion2 = new Posicion(1, 1);
+        Posicion posicionMedia = new Posicion(1, 0);
+
+        Segmento segmento1 = posicionInicio.crearSegmento(Direccion.obtenerDerecha());
+        Segmento segmento2 = posicion2.crearSegmento(Direccion.obtenerIzquierda());
+
+        Segmento segmentoMedio = posicionMedia.crearSegmento(Direccion.obtenerArriba());
 
         BloqueLapiz bloqueBajarLapiz = new BloqueLapiz(new LapizApoyado());
         algoritmo.agregarBloque(bloqueBajarLapiz);
@@ -423,9 +424,9 @@ public class AlgoritmoTest {
         algoritmo.ejecutar(personaje);
 
 
-        assertTrue(dibujo.posicionEstaPintada(posicionInicio));
-        assertTrue(dibujo.posicionEstaPintada(posicionArribaDerecha));
-        assertTrue(posicionArribaIzquierda.equals(personaje.devolverPosicion()));
+        assertTrue(dibujo.segmentoEstaPintado(segmento1));
+        assertTrue(dibujo.segmentoEstaPintado(segmento2));
+        assertFalse(dibujo.segmentoEstaPintado(segmentoMedio));
     }
 
     @Test
@@ -450,12 +451,14 @@ public class AlgoritmoTest {
 
         algoritmo.ejecutar(personaje);
 
-        Posicion posicionIntermedia = new Posicion(-2, 0);
-        Posicion posicionFinal = new Posicion(-1, 0);
-        assertTrue(dibujo.posicionEstaPintada(posicionInicio));
-        assertTrue(dibujo.posicionEstaPintada(posicionIntermedia));
-        assertTrue(dibujo.posicionEstaPintada(posicionFinal));
-        assertTrue(posicionFinal.equals(personaje.devolverPosicion()));
+        Posicion posicionIntermedia = new Posicion(-1, 0);
+
+        Segmento segmento1 = posicionInicio.crearSegmento(Direccion.obtenerIzquierda());
+        Segmento segmento2 = posicionIntermedia.crearSegmento(Direccion.obtenerIzquierda());
+
+
+        assertTrue(dibujo.segmentoEstaPintado(segmento1));
+        assertTrue(dibujo.segmentoEstaPintado(segmento2));
     }
 
     @Test
@@ -499,16 +502,12 @@ public class AlgoritmoTest {
 
         algoritmo.ejecutar(personaje);
 
-        assertTrue(dibujo.posicionEstaPintada(posicionInicio));
-        assertTrue(dibujo.posicionEstaPintada(new Posicion(0, 1)));
-        assertTrue(dibujo.posicionEstaPintada(new Posicion(1, 1)));
-        assertTrue(dibujo.posicionEstaPintada(new Posicion(1, 2)));
-        assertTrue(dibujo.posicionEstaPintada(new Posicion(2, 2)));
-        assertTrue(dibujo.posicionEstaPintada(new Posicion(2, 3)));
-        assertTrue(dibujo.posicionEstaPintada(new Posicion(3, 3)));
-        assertTrue(dibujo.posicionEstaPintada(new Posicion(3, 4)));
-        assertTrue(dibujo.posicionEstaPintada(new Posicion(3, 5)));
-        assertFalse(dibujo.posicionEstaPintada(new Posicion(4, 5)));
+        assertTrue(dibujo.segmentoEstaPintado(new Segmento(posicionInicio, new Posicion(0,1))));
+        assertTrue(dibujo.segmentoEstaPintado(new Segmento(new Posicion(0,1), new Posicion(1,1))));
+        assertTrue(dibujo.segmentoEstaPintado(new Segmento(new Posicion(1,1), new Posicion(1,2))));
+        assertTrue(dibujo.segmentoEstaPintado(new Segmento(new Posicion(2,2), new Posicion(2,3))));
+        assertTrue(dibujo.segmentoEstaPintado(new Segmento(new Posicion(2,3), new Posicion(3,3))));
+        assertTrue(dibujo.segmentoEstaPintado(new Segmento(new Posicion(3,3), new Posicion(3,4))));
     }
 
 }

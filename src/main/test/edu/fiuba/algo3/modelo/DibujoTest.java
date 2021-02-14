@@ -10,36 +10,15 @@ import static org.junit.jupiter.api.Assertions.*;
 public class DibujoTest {
 
     @Test
-    public void alAgregarUnaSolaPosicionEstaSeEncuentraPintada(){
+    public void seAgregaUnSegmentoYSeEncuentraPintado(){
         Posicion posicion = new Posicion(0, 0);
+        Direccion direccion = Direccion.obtenerArriba();
         Dibujo dibujo = new Dibujo();
 
-        dibujo.agregarPosicion(posicion);
-        assertTrue(dibujo.posicionEstaPintada(posicion));
+        Segmento segmento = posicion.crearSegmento(direccion);
+
+        dibujo.agregarSegmento(segmento);
+        assertTrue(dibujo.segmentoEstaPintado(segmento));
     }
 
-    @Test
-    public void unaPosicionNoAgregadaNoSeEncuentraPintada(){
-        Posicion posicion1 = new Posicion(0, 0);
-        Posicion posicion2 = new Posicion(1, 0);
-        Dibujo dibujo = new Dibujo();
-
-        dibujo.agregarPosicion(posicion1);
-        assertFalse(dibujo.posicionEstaPintada(posicion2));
-    }
-
-    @Test
-    public void todasLasPosicionesAgregadasSeEncuentranPintadas(){
-        Posicion posicion1 = new Posicion(0, 0);
-        Posicion posicion2 = new Posicion(1, 0);
-        List<Posicion> posiciones = new ArrayList<Posicion>();
-        posiciones.add(posicion1);
-        posiciones.add(posicion2);
-
-        Dibujo dibujo = new Dibujo();
-
-        dibujo.agregarPosicion(posicion1);
-        dibujo.agregarPosicion(posicion2);
-        assertTrue(dibujo.posicionesEstanPintadas(posiciones));
-    }
 }

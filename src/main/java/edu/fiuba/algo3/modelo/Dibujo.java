@@ -4,18 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Dibujo {
-    private List<Posicion> posicionesPintadas = new ArrayList<Posicion>();
+    private List<Segmento> segmentosPintados = new ArrayList<Segmento>();
 
-    public void agregarPosicion(Posicion posicion) {
-        posicionesPintadas.add(posicion);
+    public void agregarSegmento(Segmento segmento) {
+        segmentosPintados.add(segmento);
     }
 
-    public boolean posicionEstaPintada(Posicion posicion){
-        return posicionesPintadas.stream().anyMatch(pos -> pos.equals(posicion));
+    public boolean segmentoEstaPintado(Segmento segmento){
+        return segmentosPintados.stream().anyMatch(seg -> seg.equals(segmento));
     }
 
-    public boolean posicionesEstanPintadas(List<Posicion> posiciones){
-        return posiciones.stream().allMatch(pos -> posicionEstaPintada(pos));
+    public boolean segmentosEstanPintados(List<Segmento> segmentos){
+        return segmentos.stream().allMatch(pos -> segmentoEstaPintado(pos));
     }
 
 }

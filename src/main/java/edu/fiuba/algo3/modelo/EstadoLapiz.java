@@ -5,6 +5,6 @@ public interface EstadoLapiz {
 
         EstadoLapiz cambiarEstado(EstadoLapiz nuevoEstado);
         
-        void pintar(Posicion posicion, Dibujo dibujo);
+        void pintar(Segmento segmento, Dibujo dibujo);
 
 }

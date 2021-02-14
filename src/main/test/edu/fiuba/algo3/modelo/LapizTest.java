@@ -33,19 +33,26 @@ public class LapizTest {
     public void elLapizApoyadoPinta() {
         Dibujo dibujo = new Dibujo();
         Posicion pos = new Posicion(0, 0);
+        Direccion direccion = Direccion.obtenerArriba();
+
         Lapiz lapiz = new Lapiz(dibujo);
         lapiz.cambiarEstado(new LapizApoyado());
-        lapiz.pintar(pos);
-        assertTrue(dibujo.posicionEstaPintada(pos));
+
+        Segmento segmento = pos.crearSegmento(direccion);
+        lapiz.pintar(segmento);
+        assertTrue(dibujo.segmentoEstaPintado(segmento));
     }
 
     @Test
     public void elLapizLevantadoNoPinta() {
         Dibujo dibujo = new Dibujo();
         Posicion pos = new Posicion(0, 0);
+        Direccion direccion = Direccion.obtenerArriba();
+        Segmento segmento = pos.crearSegmento(direccion);
+
         Lapiz lapiz = new Lapiz(dibujo);
-        lapiz.pintar(pos);
-        assertFalse(dibujo.posicionEstaPintada(pos));
+        lapiz.pintar(segmento);
+        assertFalse(dibujo.segmentoEstaPintado(segmento));
     }
 
 }

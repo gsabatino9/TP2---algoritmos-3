@@ -30,7 +30,7 @@ public class Personaje {
     }
 
     public void mover(Direccion direccion){
-        this.lapiz.pintar(this.posicion);
+        this.lapiz.pintar(this.posicion.crearSegmento(direccion));
         /*this.posicion.cambiarEstado();*/
         this.posicion = direccion.siguientePosicion(this.posicion);
         /*this.posicion.cambiarEstado();*/

@@ -13,8 +13,8 @@ public class LapizApoyado implements EstadoLapiz{
     }
 
     @Override
-    public void pintar(Posicion posicion, Dibujo dibujo)
+    public void pintar(Segmento segmento, Dibujo dibujo)
     {
-        dibujo.agregarPosicion(posicion);
+        dibujo.agregarSegmento(segmento);
     }
 }

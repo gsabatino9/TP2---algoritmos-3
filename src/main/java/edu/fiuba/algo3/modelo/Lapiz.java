@@ -20,8 +20,8 @@ public class Lapiz {
         this.estado = this.estado.cambiarEstado(nuevoEstado);
     }
 
-    public void pintar(Posicion posicion)
+    public void pintar(Segmento segmento)
     {
-        this.estado.pintar(posicion, this.dibujo);
+        this.estado.pintar(segmento, this.dibujo);
     }
 }
