@@ -32,4 +32,24 @@ public class BloqueLapizTest {
         bloqueApoyarLapiz.ejecutar(personaje);
         assertTrue(personaje.obtenerEstado() instanceof LapizApoyado);
     }
+
+    @Test
+    public void bloqueApoyarLapizDejaElLapizLevantadoAlEjecutarInvertido() {
+        Bloque bloqueApoyarLapiz = new BloqueLapiz(new LapizApoyado());
+        Dibujo dibujo = new Dibujo();
+        Lapiz lapiz = new Lapiz(dibujo);
+        Personaje personaje = new Personaje(new Posicion(0, 0), lapiz);
+        bloqueApoyarLapiz.ejecutarInvertido(personaje);
+        assertTrue(personaje.obtenerEstado() instanceof LapizLevantado);
+    }
+
+    @Test
+    public void bloqueLevantarLapizDejaElLapizApoyadoAlEjecutarInvertido() {
+        Bloque bloqueLevantarLapiz = new BloqueLapiz(new LapizLevantado());
+        Dibujo dibujo = new Dibujo();
+        Lapiz lapiz = new Lapiz(dibujo);
+        Personaje personaje = new Personaje(new Posicion(0, 0), lapiz);
+        bloqueLevantarLapiz.ejecutarInvertido(personaje);
+        assertTrue(personaje.obtenerEstado() instanceof LapizApoyado);
+    }
 }

@@ -29,6 +29,10 @@ public class Direccion {
         return new Posicion(columna, fila);
     }
 
+    public Direccion obtenerDireccionInversa (){
+        return new Direccion(this.x * -1, this.y * -1);
+    }
+
     public static Direccion obtenerArriba() {
         return arriba;
     }

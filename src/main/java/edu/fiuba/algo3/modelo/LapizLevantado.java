@@ -8,6 +8,11 @@ public class LapizLevantado implements EstadoLapiz{
     }
 
     @Override
+    public EstadoLapiz obtenerEstadoInverso(){
+        return new LapizApoyado();
+    }
+
+    @Override
     public EstadoLapiz cambiarEstado(EstadoLapiz nuevoEstado){
         return nuevoEstado;
     }

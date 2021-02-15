@@ -12,6 +12,9 @@ public class BloqueMover implements Bloque {
         personaje.mover(direccion);
     }
 
-    public void ejecutarInvertido(Personaje personaje){}
+    public void ejecutarInvertido(Personaje personaje){
+        Direccion direccionInversa = direccion.obtenerDireccionInversa();
+        personaje.mover(direccionInversa);
+    }
 
 }

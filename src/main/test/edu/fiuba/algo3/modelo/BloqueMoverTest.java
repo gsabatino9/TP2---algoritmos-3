@@ -53,4 +53,52 @@ public class BloqueMoverTest {
         assertTrue(personaje.devolverPosicion().equals(abajo));
     }
 
+    @Test
+    public void seCreaUnBloqueMoverConDireccionAbajoYAlEjecutarInvertidoElPersonajeSeMueveHaciaArriba(){
+        Posicion posicionActual = new Posicion(0,0);
+        Lapiz lapiz = new Lapiz(new Dibujo());
+        Personaje personaje = new Personaje(posicionActual, lapiz);
+        BloqueMover bloque = new BloqueMover(Direccion.obtenerAbajo());
+
+        bloque.ejecutarInvertido(personaje);
+        Posicion arriba = new Posicion(0,1);
+        assertTrue(personaje.devolverPosicion().equals(arriba));
+    }
+
+    @Test
+    public void seCreaUnBloqueMoverConDireccionArribaYAlEjecutarInvertidoElPersonajeSeMueveHaciaAbajo(){
+        Posicion posicionActual = new Posicion(0,0);
+        Lapiz lapiz = new Lapiz(new Dibujo());
+        Personaje personaje = new Personaje(posicionActual, lapiz);
+        BloqueMover bloque = new BloqueMover(Direccion.obtenerArriba());
+
+        bloque.ejecutarInvertido(personaje);
+        Posicion abajo = new Posicion(0,-1);
+        assertTrue(personaje.devolverPosicion().equals(abajo));
+    }
+
+    @Test
+    public void seCreaUnBloqueMoverConDireccionDerechaYAlEjecutarInvertidoElPersonajeSeMueveHaciaIzquierda(){
+        Posicion posicionActual = new Posicion(0,0);
+        Lapiz lapiz = new Lapiz(new Dibujo());
+        Personaje personaje = new Personaje(posicionActual, lapiz);
+        BloqueMover bloque = new BloqueMover(Direccion.obtenerIzquierda());
+
+        bloque.ejecutarInvertido(personaje);
+        Posicion derecha = new Posicion(1,0);
+        assertTrue(personaje.devolverPosicion().equals(derecha));
+    }
+
+    @Test
+    public void seCreaUnBloqueMoverConDireccionIzquierdaYAlEjecutarInvertidoElPersonajeSeMueveHaciaDerecha(){
+        Posicion posicionActual = new Posicion(0,0);
+        Lapiz lapiz = new Lapiz(new Dibujo());
+        Personaje personaje = new Personaje(posicionActual, lapiz);
+        BloqueMover bloque = new BloqueMover(Direccion.obtenerDerecha());
+
+        bloque.ejecutarInvertido(personaje);
+        Posicion izquierda = new Posicion(-1,0);
+        assertTrue(personaje.devolverPosicion().equals(izquierda));
+    }
+
 }

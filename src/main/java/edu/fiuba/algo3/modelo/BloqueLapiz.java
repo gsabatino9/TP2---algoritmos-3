@@ -14,6 +14,7 @@ public class BloqueLapiz implements Bloque{
 
     @Override
     public void ejecutarInvertido(Personaje personaje) {
-
+        EstadoLapiz estadoInverso = estadoDelLapiz.obtenerEstadoInverso();
+        personaje.cambiarEstadoDelLapiz(estadoInverso);
     }
 }
