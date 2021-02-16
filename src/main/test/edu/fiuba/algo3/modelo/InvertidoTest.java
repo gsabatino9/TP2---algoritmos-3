@@ -1,14 +1,12 @@
 package edu.fiuba.algo3.modelo;
-
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
-public class BloqueInvertirTest {
+public class InvertidoTest {
 
     @Test
-    public void ejecutarBloqueInvertirVacioLanzaExcepcion() {
-        BloqueInvertir bloque = new BloqueInvertir();
+    public void ejecutarInvertidoVacioLanzaExcepcion() {
+        Invertido bloque = new Invertido();
         Posicion posicionInicio = new Posicion(0, 0);
         Dibujo dibujo = new Dibujo();
         Lapiz lapiz = new Lapiz(dibujo);
@@ -21,7 +19,7 @@ public class BloqueInvertirTest {
 
     @Test
     public void agregarUnBloqueMoverDerechaMueveAlPersonajeEnLaDireccionIzquierda(){
-        BloqueInvertir bloqueInvertir = new BloqueInvertir();
+        Invertido bloqueInvertir = new Invertido();
         Posicion posicionInicio = new Posicion(0, 0);
         Dibujo dibujo = new Dibujo();
         Lapiz lapiz = new Lapiz(dibujo);
@@ -39,7 +37,7 @@ public class BloqueInvertirTest {
 
     @Test
     public void agregarUnBloqueMoverIzquierdaMueveAlPersonajeEnLaDireccionDerecha(){
-        BloqueInvertir bloqueInvertir = new BloqueInvertir();
+        Invertido bloqueInvertir = new Invertido();
         Posicion posicionInicio = new Posicion(0, 0);
         Dibujo dibujo = new Dibujo();
         Lapiz lapiz = new Lapiz(dibujo);
@@ -57,7 +55,7 @@ public class BloqueInvertirTest {
 
     @Test
     public void agregarUnBloqueMoverArribaMueveAlPersonajeEnLaDireccionDebajo(){
-        BloqueInvertir bloqueInvertir = new BloqueInvertir();
+        Invertido bloqueInvertir = new Invertido();
         Posicion posicionInicio = new Posicion(0, 0);
         Dibujo dibujo = new Dibujo();
         Lapiz lapiz = new Lapiz(dibujo);
@@ -75,7 +73,7 @@ public class BloqueInvertirTest {
 
     @Test
     public void agregarUnBloqueMoverAbajoMueveAlPersonajeEnLaDireccionArriba(){
-        BloqueInvertir bloqueInvertir = new BloqueInvertir();
+        Invertido bloqueInvertir = new Invertido();
         Posicion posicionInicio = new Posicion(0, 0);
         Dibujo dibujo = new Dibujo();
         Lapiz lapiz = new Lapiz(dibujo);
@@ -92,8 +90,8 @@ public class BloqueInvertirTest {
     }
 
     @Test
-    public void ejecutarInvertidoDeBloqueInvertirNoInvierte(){
-        BloqueInvertir bloqueInvertir = new BloqueInvertir();
+    public void ejecutarInvertidoDeInvertidoNoInvierte(){
+        Invertido bloqueInvertir = new Invertido();
         Posicion posicionInicio = new Posicion(0, 0);
         Dibujo dibujo = new Dibujo();
         Lapiz lapiz = new Lapiz(dibujo);
@@ -115,7 +113,7 @@ public class BloqueInvertirTest {
 
     @Test
     public void agregarUnBloqueSubirLapizBajaElLapizYPintaElSegmentoQueUneALaPosicionAnterior(){
-        BloqueInvertir bloqueInvertir = new BloqueInvertir();
+        Invertido bloqueInvertir = new Invertido();
         Posicion posicionInicio = new Posicion(0, 0);
         Dibujo dibujo = new Dibujo();
         Lapiz lapiz = new Lapiz(dibujo);
@@ -137,7 +135,7 @@ public class BloqueInvertirTest {
 
     @Test
     public void agregarUnBloqueBajarLapizSubeElLapizYNoPintaElSegmentoQueUneALaPosicionAnterior(){
-        BloqueInvertir bloqueInvertir = new BloqueInvertir();
+        Invertido bloqueInvertir = new Invertido();
         Posicion posicionInicio = new Posicion(0, 0);
         Dibujo dibujo = new Dibujo();
         Lapiz lapiz = new Lapiz(dibujo);
@@ -157,4 +155,3 @@ public class BloqueInvertirTest {
         assertFalse(dibujo.segmentoEstaPintado(segmento));
     }
 }
-

@@ -4,10 +4,18 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+public class SecuenciaBloques implements Bloque {
 
-public class Algoritmo extends SecuenciaBloques{
 
-    public Algoritmo() { }
+    protected List<Bloque> bloques;
+
+    public SecuenciaBloques() {
+        bloques = new ArrayList<Bloque>();
+    }
+
+    public void agregarBloque(Bloque bloque) {
+        bloques.add(bloque);
+    }
 
     public void agregarBloquePersonalizado(String nombreAlgoritmo, Personaje personaje) throws BloquePersonalizadoNoExisteException {
         Bloque bloque = personaje.obtenerAlgoritmo(nombreAlgoritmo);
@@ -18,16 +26,14 @@ public class Algoritmo extends SecuenciaBloques{
         agregarBloque(bloque);
     }
 
-    public void guardar(String nombreAlgoritmo, Personaje personaje) throws AlgoritmoVacioException {
-        if (bloques.size() == 0){
+    @Override
+    public void ejecutar(Personaje personaje) throws AlgoritmoVacioException {
+        if (bloques.size() == 0) {
             throw new AlgoritmoVacioException(
-                    "El bloque personalizado debe contener al menos un bloque.");
+                    "no se puede ejecutar una secuencia sin bloques.");
         }
-        personaje.agregarBloque(this, nombreAlgoritmo);
-    }
+        bloques.forEach(bloque -> bloque.ejecutar(personaje));
 
-    public boolean algoritmoEstaGuardado(String nombreAlgoritmo, Personaje personaje){
-        return personaje.algoritmoEstaGuardado(nombreAlgoritmo);
     }
 
     @Override
@@ -36,9 +42,7 @@ public class Algoritmo extends SecuenciaBloques{
             throw new AlgoritmoVacioException(
                     "no se puede ejecutar una secuencia sin bloques.");
         }
-        List<Bloque> copia = new ArrayList<Bloque>(bloques);
-        Collections.reverse(copia);
-        copia.forEach(bloque->bloque.ejecutar(personaje));
+        bloques.forEach(bloque->bloque.ejecutarInvertido(personaje));
     }
 
 }
