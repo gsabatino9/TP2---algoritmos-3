@@ -19,14 +19,14 @@ public class AlgoritmoTest {
 
     @Test
     public void crearUnAlgoritmoVacioLanzaExcepcion() {
-            Algoritmo algoritmo = new Algoritmo(1);
-            Posicion posicionInicio = new Posicion(0, 0);
-            Dibujo dibujo = new Dibujo();
-            Lapiz lapiz = new Lapiz(dibujo);
-            Personaje personaje = new Personaje(posicionInicio, lapiz);
+        Algoritmo algoritmo = new Algoritmo(1);
+        Posicion posicionInicio = new Posicion(0, 0);
+        Dibujo dibujo = new Dibujo();
+        Lapiz lapiz = new Lapiz(dibujo);
+        Personaje personaje = new Personaje(posicionInicio, lapiz);
 
-            assertThrows(AlgoritmoVacioException.class, () ->  algoritmo.ejecutar(personaje));
-        }
+        assertThrows(AlgoritmoVacioException.class, () ->  algoritmo.ejecutar(personaje));
+    }
 
     @Test
      public void agregarUnBloqueMoverMueveAlPersonajeEnLaDireccionCorrecta(){

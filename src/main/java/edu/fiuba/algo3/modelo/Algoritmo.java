@@ -70,15 +70,4 @@ public class Algoritmo implements Bloque {
         for (int i = 0; i < cantidadReproducciones; i++)
             copia.forEach(bloque->bloque.ejecutar(personaje));
     }
-
-    /*
-    public void ejecutarInvertido(Personaje personaje) {
-        //el bloque ejecutar invertir podría dar vuelta la lista y ejecutarla dada vuelta.
-        //puedo sino dar vuelta dos veces la lista en el lugar, sin necesidad de crearme otra
-
-        Collections.reverse(bloques);
-        for (int i = 0; i < cantidadReproducciones; i++)
-            bloques.forEach(bloque->bloque.ejecutar(personaje));
-        Collections.reverse(bloques);
-    }*/
 }
