@@ -3,15 +3,16 @@ package edu.fiuba.algo3;
 import javafx.application.Application;
 import javafx.geometry.Orientation;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Separator;
-import javafx.scene.control.SplitPane;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,36 +22,52 @@ import java.util.List;
 public class App extends Application {
 
     @Override
-    public void start(Stage stage) {
+    public void start(Stage stage) throws FileNotFoundException{
         SplitPane splitPane = new SplitPane();
+
+        Button bloqueDerecha = new Button("Mover Derecha");
+        bloqueDerecha.setMinSize(150, 30);
+        Button bloqueIzquierda = new Button("Mover Izquierda");
+        bloqueIzquierda.setMinSize(150, 30);
+        Button bloqueArriba = new Button("Mover Arriba");
+        bloqueArriba.setMinSize(150, 30);
+        Button bloqueAbajo = new Button("Mover Abajo");
+        bloqueAbajo.setMinSize(150, 30);
+        Button bloqueLevantar = new Button("Levantar Lapiz");
+        bloqueLevantar.setMinSize(150, 30);
+        Button bloqueApoyar = new Button("Apoyar Lapiz");
+        bloqueApoyar.setMinSize(150, 30);
+        VBox bottomControl = new VBox(new Label("Bloques disponibles"), new Label("Bloques simples"),  bloqueDerecha, bloqueIzquierda, bloqueArriba, bloqueAbajo, bloqueLevantar, bloqueApoyar);
+
+        Button bloqueInvertir = new Button("Bloque Invertir");
+        bloqueInvertir.setMinSize(150, 30);
+        Button bloqueRepetir = new Button("Bloque Repetir");
+        bloqueRepetir.setMinSize(150, 30);
+        VBox bottomControl2 = new VBox( new Label("Bloques compuestos"), bloqueInvertir, bloqueRepetir);
+
 
         Button ejecutar = new Button("Ejecutar");
         Button guardar = new Button("Guardar");
-        HBox bottomControl = new HBox(ejecutar, guardar);
+        VBox secuencia = new VBox();
+        bloqueDerecha.setOnAction(actionEvent -> {Button derecha = new Button("Mover Derecha");
+        derecha.setMinSize(150, 30);
+        secuencia.getChildren().add(derecha);
+        });
 
-        Button bloqueDerecha = new Button("Mover Derecha");
-        Button bloqueIzqueirda = new Button("Mover Izquierda");
-        Button bloqueArriba = new Button("Mover Arriba");
-        Button bloqueAbajo = new Button("Mover Abajo");
-        Button bloqueLevantar = new Button("Levantar Lapiz");
-        Button bloqueApoyar = new Button("Apoyar Lapiz");
-        HBox bottomControl2 = new HBox(bloqueDerecha, bloqueIzqueirda, bloqueArriba, bloqueAbajo, bloqueLevantar, bloqueApoyar);
+        ScrollPane scrollPane = new ScrollPane(secuencia);
+        VBox centerControl = new VBox(new Label("Secuencia de Bloques"), ejecutar, guardar, scrollPane);
+        VBox leftControl  = new VBox(bottomControl,bottomControl2);
 
-        Button bloqueInvertir = new Button("Bloque Invertir");
-        Button bloqueRepetir = new Button("Bloque Repetir");
-        HBox bottomControl3 = new HBox(bloqueInvertir, bloqueRepetir);
 
-        VBox leftControl  = new VBox(new Label("Secuencia de Bloques"), bottomControl, new Label("Bloques disponibles"), new Label("Bloques simples"), bottomControl2, new Label("Bloques compuestos"), bottomControl3);
-        VBox rightControl = new VBox(new Label("Donde se mueve el personaje"));
+        VBox rightControl = new VBox(new Label("Aca va el personaje"));
 
-//      leftControl.setSpacing(300);
+        splitPane.getItems().addAll(leftControl, centerControl,  rightControl);
+        splitPane.setDividerPositions(0.1f, 0.25f, 0.6f);
 
-        splitPane.getItems().addAll(leftControl, rightControl);
-
-        Scene scene = new Scene(splitPane, 800, 700);
+        Scene scene = new Scene(splitPane, 1200, 600);
 
         stage.setScene(scene);
-        stage.setTitle("JavaFX App");
+        stage.setTitle("DibujAR");
 
         stage.show();
 
