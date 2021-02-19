@@ -14,8 +14,4 @@ public class Dibujo {
         return segmentosPintados.stream().anyMatch(seg -> seg.equals(segmento));
     }
 
-    public boolean segmentosEstanPintados(List<Segmento> segmentos){
-        return segmentos.stream().allMatch(pos -> segmentoEstaPintado(pos));
-    }
-
 }

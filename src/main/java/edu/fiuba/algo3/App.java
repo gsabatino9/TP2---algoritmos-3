@@ -58,8 +58,10 @@ public class App extends Application {
         VBox centerControl = new VBox(new Label("Secuencia de Bloques"), ejecutar, guardar, scrollPane);
         VBox leftControl  = new VBox(bottomControl,bottomControl2);
 
+        Image imagen = new Image("Ash.jpeg");
+        ImageView imageView = new ImageView(imagen);
 
-        VBox rightControl = new VBox(new Label("Aca va el personaje"));
+        VBox rightControl = new VBox(imageView);
 
         splitPane.getItems().addAll(leftControl, centerControl,  rightControl);
         splitPane.setDividerPositions(0.1f, 0.25f, 0.6f);
