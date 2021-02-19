@@ -179,11 +179,59 @@ public class InvertidoTest {
         assertFalse(dibujo.segmentoEstaPintado(segmento));
     }
 
+
+    @Test
+    public void invertidoConArribaSubirLapizEIzquierdaHaceAbajoBajaLapizDerecha(){
+        Invertido bloqueInvertir = new Invertido();
+        Posicion posicionInicio = new Posicion(0, 0);
+        Dibujo dibujo = new Dibujo();
+        Lapiz lapiz = new Lapiz(dibujo);
+        Personaje personaje = new Personaje(posicionInicio, lapiz);
+
+        Direccion arriba = Direccion.obtenerArriba();
+        BloqueMover bloqueArriba = new BloqueMover(arriba);
+        Direccion izquierda = Direccion.obtenerIzquierda();
+        BloqueMover bloqueIzquierda = new BloqueMover(izquierda);
+
+        bloqueInvertir.agregarBloque(bloqueArriba);
+        bloqueInvertir.agregarBloque(new BloqueLapiz(new LapizLevantado()));
+        bloqueInvertir.agregarBloque(bloqueIzquierda);
+        bloqueInvertir.ejecutar(personaje);
+        // Secuencia: (0,0) -> (0,-1) -> BAJA LAPIZ -> (1,-1)
+        assertFalse(dibujo.segmentoEstaPintado(new Segmento(new Posicion(0,0), new Posicion(0,-1))));
+        assertTrue(dibujo.segmentoEstaPintado(new Segmento(new Posicion(0,-1), new Posicion(1,-1))));
+
+
+    }
     //sobre Algoritmo
+
+
+    @Test
+    public void InvertirUnAlgoritmoConUnSoloElementoNoModificaLaSecuencia(){
+        Invertido bloqueInvertir = new Invertido();
+        Posicion posicionInicio = new Posicion(0, 0);
+        Dibujo dibujo = new Dibujo();
+        Lapiz lapiz = new Lapiz(dibujo);
+        Personaje personaje = new Personaje(posicionInicio, lapiz);
+
+        Direccion arriba = Direccion.obtenerArriba();
+        BloqueMover bloqueArriba = new BloqueMover(arriba);
+        Posicion posicionArriba = new Posicion(0,1);
+        Algoritmo algoritmo = new Algoritmo();
+        algoritmo.agregarBloque(bloqueArriba);
+
+        bloqueInvertir.agregarBloque(algoritmo);
+        //al ejecutar hara: (0,0) -> (0,1)
+        bloqueInvertir.ejecutar(personaje);
+
+        assertTrue(posicionArriba.equals(personaje.devolverPosicion()));
+    }
+
+
 
     /*
     * Para poder observar el orden en que ejecuta los bloques utilizamos al lapiz.
-    * */
+    */
     @Test
     public void InvertirUnAlgoritmoConArribaIzquierdaHaceQueSeRecorraLaListaDeAtrasParaAdelanteIzquierdaYLuegoArriba(){
         Invertido bloqueInvertir = new Invertido();
@@ -199,8 +247,6 @@ public class InvertidoTest {
 
         Direccion izquierda = Direccion.obtenerIzquierda();
         BloqueMover bloqueIzquierda = new BloqueMover(izquierda);
-        Posicion posicionAbajoDerecha = new Posicion(1, -1);
-
 
         Algoritmo algoritmo = new Algoritmo();
 
@@ -213,6 +259,204 @@ public class InvertidoTest {
 
         assertFalse(dibujo.segmentoEstaPintado(new Segmento(new Posicion(0,0), new Posicion(-1,0))));
         assertTrue(dibujo.segmentoEstaPintado(new Segmento(new Posicion(-1,0), new Posicion(-1,1))));
+    }
+
+    @Test
+    public void InvertirUnAlgoritmoConSubirLapizIzquierdaBajarLapizArribaDaVueltaLaListaYEjecuta(){
+        Invertido bloqueInvertir = new Invertido();
+        Posicion posicionInicio = new Posicion(0, 0);
+        Dibujo dibujo = new Dibujo();
+        Lapiz lapiz = new Lapiz(dibujo);
+        Personaje personaje = new Personaje(posicionInicio, lapiz);
+
+        Algoritmo algoritmo = new Algoritmo();
+
+        algoritmo.agregarBloque(new BloqueMover(Direccion.obtenerArriba()));
+        algoritmo.agregarBloque(new BloqueLapiz(new LapizLevantado()));
+        algoritmo.agregarBloque(new BloqueMover(Direccion.obtenerIzquierda()));
+        algoritmo.agregarBloque(new BloqueLapiz(new LapizApoyado()));
+        algoritmo.agregarBloque(new BloqueMover(Direccion.obtenerAbajo()));
+
+        bloqueInvertir.agregarBloque(algoritmo);
+        //al ejecutar hara: (0,0) -> (0,-1) -> BAJA LAPIZ -> (-1,-1) -> SUBE LAPIZ -> (-1,0)
+        bloqueInvertir.ejecutar(personaje);
+
+        assertFalse(dibujo.segmentoEstaPintado(new Segmento(new Posicion(0,0), new Posicion(0,-1))));
+        assertTrue(dibujo.segmentoEstaPintado(new Segmento(new Posicion(0,-1), new Posicion(-1,-1))));
+        assertFalse(dibujo.segmentoEstaPintado(new Segmento(new Posicion(-1,-1), new Posicion(-1,0))));
+
+    }
+
+    @Test
+    public void CombinarAlgoritmoPersonalizadoConBloquesSimples(){
+        Invertido bloqueInvertir = new Invertido();
+        Posicion posicionInicio = new Posicion(0, 0);
+        Dibujo dibujo = new Dibujo();
+        Lapiz lapiz = new Lapiz(dibujo);
+        Personaje personaje = new Personaje(posicionInicio, lapiz);
+
+        Algoritmo algoritmo = new Algoritmo();
+
+        algoritmo.agregarBloque(new BloqueMover(Direccion.obtenerArriba()));
+        algoritmo.agregarBloque(new BloqueLapiz(new LapizLevantado()));
+        algoritmo.agregarBloque(new BloqueMover(Direccion.obtenerIzquierda()));
+        algoritmo.agregarBloque(new BloqueLapiz(new LapizApoyado()));
+        algoritmo.agregarBloque(new BloqueMover(Direccion.obtenerAbajo()));
+
+        bloqueInvertir.agregarBloque(algoritmo);
+        bloqueInvertir.agregarBloque(new BloqueLapiz(new LapizLevantado()));
+        bloqueInvertir.agregarBloque(new BloqueMover(Direccion.obtenerArriba()));
+        bloqueInvertir.agregarBloque(new BloqueMover(Direccion.obtenerIzquierda()));
+
+        //al ejecutar hara: (0,0) -> (0,-1) -> BAJA LAPIZ -> (-1,-1) -> SUBE LAPIZ -> (-1,0) -> BAJA LAPIZ -> (-1,-1) -> (0,-1)
+        bloqueInvertir.ejecutar(personaje);
+
+        assertFalse(dibujo.segmentoEstaPintado(new Segmento(new Posicion(0,0), new Posicion(0,-1))));
+        assertTrue(dibujo.segmentoEstaPintado(new Segmento(new Posicion(0,-1), new Posicion(-1,-1))));
+        assertFalse(dibujo.segmentoEstaPintado(new Segmento(new Posicion(-1,-1), new Posicion(-1,0))));
+        assertTrue(dibujo.segmentoEstaPintado(new Segmento(new Posicion(-1,0), new Posicion(-1,-1))));
+        assertTrue(dibujo.segmentoEstaPintado(new Segmento(new Posicion(-1,-1), new Posicion(0,-1))));
+
+
+    }
+
+
+    // bloque Repetir
+
+
+    @Test
+    public void bloqueRepeticionDeTresIteracionesAlInvertirDaVueltaSuListaYSeEjecuta(){
+        Invertido bloqueInvertir = new Invertido();
+        Posicion posicionInicio = new Posicion(0, 0);
+        Dibujo dibujo = new Dibujo();
+        Lapiz lapiz = new Lapiz(dibujo);
+        Personaje personaje = new Personaje(posicionInicio, lapiz);
+
+        Repeticion repetir = new Repeticion(3);
+
+        repetir.agregarBloque(new BloqueMover(Direccion.obtenerAbajo()));
+        repetir.agregarBloque(new BloqueMover(Direccion.obtenerAbajo()));
+        repetir.agregarBloque(new BloqueLapiz(new LapizApoyado()));
+
+        bloqueInvertir.agregarBloque(repetir);
+        //al ejecutar hara: (0,0) ->BAJA LAPIZ -> (0,-1) -> (0,-2) -> BAJA LAPIZ -> (0,-3)-> (0,-4)
+        bloqueInvertir.ejecutar(personaje);
+
+        assertTrue(dibujo.segmentoEstaPintado(new Segmento(new Posicion(0,0), new Posicion(0,-1))));
+        assertTrue(dibujo.segmentoEstaPintado(new Segmento(new Posicion(0,-1), new Posicion(0,-2))));
+        assertTrue(dibujo.segmentoEstaPintado(new Segmento(new Posicion(0,-2), new Posicion(0,-3))));
+        assertTrue(dibujo.segmentoEstaPintado(new Segmento(new Posicion(0,-3), new Posicion(0,-4))));
+
+    }
+
+
+    @Test
+    public void bloqueRepeticionAlInvertirDaVueltaSuListaYSeEjecuta(){
+        Invertido bloqueInvertir = new Invertido();
+        Posicion posicionInicio = new Posicion(0, 0);
+        Dibujo dibujo = new Dibujo();
+        Lapiz lapiz = new Lapiz(dibujo);
+        Personaje personaje = new Personaje(posicionInicio, lapiz);
+
+        Direccion arriba = Direccion.obtenerArriba();
+        BloqueMover bloqueArriba = new BloqueMover(arriba);
+
+        BloqueLapiz bloqueApoyarLapiz = new BloqueLapiz(new LapizApoyado());
+        BloqueLapiz bloqueSubirLapiz = new BloqueLapiz(new LapizLevantado());
+
+        Direccion izquierda = Direccion.obtenerIzquierda();
+        BloqueMover bloqueIzquierda = new BloqueMover(izquierda);
+
+        Repeticion repetir = new Repeticion(2);
+
+        repetir.agregarBloque(bloqueArriba);
+        repetir.agregarBloque(bloqueApoyarLapiz);
+        repetir.agregarBloque(bloqueIzquierda);
+        repetir.agregarBloque(bloqueSubirLapiz);
+        bloqueInvertir.agregarBloque(repetir);
+        //al ejecutar hara: (0,0) -> SUBE LAPIZ -> (-1,0) -> BAJA LAPIZ -> (-1,1) -> SUBE LAPIZ -> (-2,1) -> BAJA LAPIZ -> (-2,2)
+        bloqueInvertir.ejecutar(personaje);
+
+        assertFalse(dibujo.segmentoEstaPintado(new Segmento(new Posicion(0,0), new Posicion(-1,0))));
+        assertTrue(dibujo.segmentoEstaPintado(new Segmento(new Posicion(-1,0), new Posicion(-1,1))));
+        assertFalse(dibujo.segmentoEstaPintado(new Segmento(new Posicion(-1,1), new Posicion(-2,1))));
+        assertTrue(dibujo.segmentoEstaPintado(new Segmento(new Posicion(-2,1), new Posicion(-2,2))));
+    }
+
+
+    @Test
+    public void bloqueInvertirConBloqueRepeticionYBloquesSueltosDaVueltaListaDeInvertirYEjecutaInvertidoLosDemasBloques(){
+        Invertido bloqueInvertir = new Invertido();
+        Posicion posicionInicio = new Posicion(0, 0);
+        Dibujo dibujo = new Dibujo();
+        Lapiz lapiz = new Lapiz(dibujo);
+        Personaje personaje = new Personaje(posicionInicio, lapiz);
+
+        Direccion arriba = Direccion.obtenerArriba();
+        BloqueMover bloqueArriba = new BloqueMover(arriba);
+
+        BloqueLapiz bloqueApoyarLapiz = new BloqueLapiz(new LapizApoyado());
+        BloqueLapiz bloqueSubirLapiz = new BloqueLapiz(new LapizLevantado());
+
+        Direccion izquierda = Direccion.obtenerIzquierda();
+        BloqueMover bloqueIzquierda = new BloqueMover(izquierda);
+
+        Repeticion repetir = new Repeticion(2);
+
+        repetir.agregarBloque(bloqueArriba);
+        repetir.agregarBloque(bloqueApoyarLapiz);
+        repetir.agregarBloque(bloqueIzquierda);
+        repetir.agregarBloque(bloqueSubirLapiz);
+
+
+        bloqueInvertir.agregarBloque(repetir);
+        bloqueInvertir.agregarBloque(new BloqueMover(Direccion.obtenerDerecha()));
+        bloqueInvertir.agregarBloque(new BloqueLapiz(new LapizApoyado()));
+        bloqueInvertir.agregarBloque(new BloqueMover(Direccion.obtenerAbajo()));
+        bloqueInvertir.agregarBloque(new BloqueLapiz(new LapizLevantado()));
+        bloqueInvertir.agregarBloque(new BloqueMover(Direccion.obtenerDerecha()));
+
+
+        //al ejecutar hara: (0,0) -> SUBE LAPIZ -> (-1,0) -> BAJA LAPIZ -> (-1,1) -> SUBE LAPIZ -> (-2,1) -> BAJA LAPIZ -> (-2,2)
+        //                        -> (-3,2) -> SUBIR LAPIZ -> (-3,3) -> BAJAR LAPIZ ->   (-4,3)
+        bloqueInvertir.ejecutar(personaje);
+
+        assertFalse(dibujo.segmentoEstaPintado(new Segmento(new Posicion(0,0), new Posicion(-1,0))));
+        assertTrue(dibujo.segmentoEstaPintado(new Segmento(new Posicion(-1,0), new Posicion(-1,1))));
+        assertFalse(dibujo.segmentoEstaPintado(new Segmento(new Posicion(-1,1), new Posicion(-2,1))));
+        assertTrue(dibujo.segmentoEstaPintado(new Segmento(new Posicion(-2,1), new Posicion(-2,2))));
+        assertTrue(dibujo.segmentoEstaPintado(new Segmento(new Posicion(-2,2), new Posicion(-3,2))));
+        assertFalse(dibujo.segmentoEstaPintado(new Segmento(new Posicion(-3,2), new Posicion(-3,3))));
+        assertTrue(dibujo.segmentoEstaPintado(new Segmento(new Posicion(-3,3), new Posicion(-4,3))));
+    }
+
+    @Test
+    public void invertirConMoverDerechaYBloqueRepeticion(){
+        Invertido bloqueInvertir = new Invertido();
+        Posicion posicionInicio = new Posicion(0, 0);
+        Dibujo dibujo = new Dibujo();
+        Lapiz lapiz = new Lapiz(dibujo);
+        Personaje personaje = new Personaje(posicionInicio, lapiz);
+
+        Repeticion repetir = new Repeticion(2);
+
+        repetir.agregarBloque(new BloqueLapiz(new LapizApoyado()));
+        repetir.agregarBloque(new BloqueMover(Direccion.obtenerArriba()));
+        repetir.agregarBloque(new BloqueLapiz(new LapizLevantado()));
+        repetir.agregarBloque(new BloqueMover(Direccion.obtenerArriba()));
+
+        bloqueInvertir.agregarBloque(new BloqueMover(Direccion.obtenerDerecha()));
+        bloqueInvertir.agregarBloque(repetir);
+        //al ejecutar hara: (0,0) -> (-1,0) -> (-1,1) -> SUBE LAPIZ -> (-1,2) -> BAJA LAPIZ -> (-1,3) -> SUBE LAPIZ -> (-1, 4)-> BAJA LAPIZ
+        bloqueInvertir.ejecutar(personaje);
+
+
+        assertFalse(dibujo.segmentoEstaPintado(new Segmento(new Posicion(0,0), new Posicion(-1,0))));
+        assertFalse(dibujo.segmentoEstaPintado(new Segmento(new Posicion(-1,0), new Posicion(-1,1))));
+        assertFalse(dibujo.segmentoEstaPintado(new Segmento(new Posicion(-1,1), new Posicion(-1,2))));
+        assertTrue(dibujo.segmentoEstaPintado(new Segmento(new Posicion(-1,2), new Posicion(-1,3))));
+        assertFalse(dibujo.segmentoEstaPintado(new Segmento(new Posicion(-1,3), new Posicion(-1,4))));
+
     }
 
 
@@ -285,6 +529,37 @@ public class InvertidoTest {
         assertFalse(dibujo.segmentoEstaPintado(new Segmento(new Posicion(0,0), new Posicion(0,-1))));
         assertTrue(dibujo.segmentoEstaPintado(new Segmento(new Posicion(0,-1), new Posicion(-1,-1))));
         assertTrue(dibujo.segmentoEstaPintado(new Segmento(new Posicion(-1,-1), new Posicion(-2,-1))));
+
+    }
+
+
+    @Test
+    public void tresBloquesInvertidosUnoDentroDelOtroElMasGrandeNoTieneEfectoAlTenerUnaListaDeUnSoloElemento(){
+
+        Posicion posicionInicio = new Posicion(0, 0);
+        Dibujo dibujo = new Dibujo();
+        Lapiz lapiz = new Lapiz(dibujo);
+        Personaje personaje = new Personaje(posicionInicio, lapiz);
+
+        Direccion derecha = Direccion.obtenerDerecha();
+        BloqueMover bloqueDerecha = new BloqueMover(derecha);
+        Direccion arriba = Direccion.obtenerArriba();
+        BloqueMover bloqueArriba = new BloqueMover(arriba);
+        BloqueLapiz bloqueSubirLapiz = new BloqueLapiz(new LapizLevantado());
+
+        Invertido bloqueInvertir = new Invertido();
+        Invertido invertidoAnidado = new Invertido();
+        invertidoAnidado.agregarBloque(bloqueDerecha);
+        invertidoAnidado.agregarBloque(bloqueSubirLapiz);
+        invertidoAnidado.agregarBloque(bloqueArriba);
+        bloqueInvertir.agregarBloque(invertidoAnidado);
+
+        Invertido bloqueInvertirPrincipal = new Invertido();
+        bloqueInvertirPrincipal.agregarBloque(bloqueInvertir);
+        bloqueInvertirPrincipal.ejecutar(personaje);
+
+        assertTrue(dibujo.segmentoEstaPintado(new Segmento(new Posicion(0,-1), new Posicion(-1,-1))));
+        assertFalse(dibujo.segmentoEstaPintado(new Segmento(new Posicion(0,0), new Posicion(0,-1))));
 
     }
 
