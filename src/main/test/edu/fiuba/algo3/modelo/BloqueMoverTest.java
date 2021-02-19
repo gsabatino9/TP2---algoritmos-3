@@ -60,7 +60,8 @@ public class BloqueMoverTest {
         Personaje personaje = new Personaje(posicionActual, lapiz);
         BloqueMover bloque = new BloqueMover(Direccion.obtenerAbajo());
 
-        bloque.ejecutarInvertido(personaje);
+        bloque.invertir();
+        bloque.ejecutar(personaje);
         Posicion arriba = new Posicion(0,1);
         assertTrue(personaje.devolverPosicion().equals(arriba));
     }
@@ -72,7 +73,8 @@ public class BloqueMoverTest {
         Personaje personaje = new Personaje(posicionActual, lapiz);
         BloqueMover bloque = new BloqueMover(Direccion.obtenerArriba());
 
-        bloque.ejecutarInvertido(personaje);
+        bloque.invertir();
+        bloque.ejecutar(personaje);
         Posicion abajo = new Posicion(0,-1);
         assertTrue(personaje.devolverPosicion().equals(abajo));
     }
@@ -84,7 +86,8 @@ public class BloqueMoverTest {
         Personaje personaje = new Personaje(posicionActual, lapiz);
         BloqueMover bloque = new BloqueMover(Direccion.obtenerIzquierda());
 
-        bloque.ejecutarInvertido(personaje);
+        bloque.invertir();
+        bloque.ejecutar(personaje);
         Posicion derecha = new Posicion(1,0);
         assertTrue(personaje.devolverPosicion().equals(derecha));
     }
@@ -96,9 +99,63 @@ public class BloqueMoverTest {
         Personaje personaje = new Personaje(posicionActual, lapiz);
         BloqueMover bloque = new BloqueMover(Direccion.obtenerDerecha());
 
-        bloque.ejecutarInvertido(personaje);
+        bloque.invertir();
+        bloque.ejecutar(personaje);
         Posicion izquierda = new Posicion(-1,0);
         assertTrue(personaje.devolverPosicion().equals(izquierda));
+    }
+
+
+    @Test
+    public void seCreaUnBloqueMoverConDireccionADerechaSeInvierteDosVecesYElPersonajeDebeMoverseADerecha(){
+        Posicion posicionActual = new Posicion(0,0);
+        Lapiz lapiz = new Lapiz(new Dibujo());
+        Personaje personaje = new Personaje(posicionActual, lapiz);
+        BloqueMover bloque = new BloqueMover(Direccion.obtenerDerecha());
+        bloque.invertir();
+        bloque.invertir();
+        bloque.ejecutar(personaje);
+        Posicion derecha = new Posicion(1,0);
+        assertTrue(personaje.devolverPosicion().equals(derecha));
+    }
+
+    @Test
+    public void seCreaUnBloqueMoverConDireccionAIzquierdaSeInvierteDosVecesYElPersonajeDebeMoverseAIzquierda(){
+        Posicion posicionActual = new Posicion(0,0);
+        Lapiz lapiz = new Lapiz(new Dibujo());
+        Personaje personaje = new Personaje(posicionActual, lapiz);
+        BloqueMover bloque = new BloqueMover(Direccion.obtenerIzquierda());
+        bloque.invertir();
+        bloque.invertir();
+        bloque.ejecutar(personaje);
+        Posicion izquierda = new Posicion(-1,0);
+        assertTrue(personaje.devolverPosicion().equals(izquierda));
+    }
+
+    @Test
+    public void seCreaUnBloqueMoverConDireccionArribaSeInvierteDosVecesYElPersonajeDebeMoverseArriba(){
+        Posicion posicionActual = new Posicion(0,0);
+        Lapiz lapiz = new Lapiz(new Dibujo());
+        Personaje personaje = new Personaje(posicionActual, lapiz);
+        BloqueMover bloque = new BloqueMover(Direccion.obtenerArriba());
+        bloque.invertir();
+        bloque.invertir();
+        bloque.ejecutar(personaje);
+        Posicion arriba = new Posicion(0,1);
+        assertTrue(personaje.devolverPosicion().equals(arriba));
+    }
+
+    @Test
+    public void seCreaUnBloqueMoverConDireccionAbajoSeInvierteDosVecesYElPersonajeDebeMoverseAbajo(){
+        Posicion posicionActual = new Posicion(0,0);
+        Lapiz lapiz = new Lapiz(new Dibujo());
+        Personaje personaje = new Personaje(posicionActual, lapiz);
+        BloqueMover bloque = new BloqueMover(Direccion.obtenerAbajo());
+        bloque.invertir();
+        bloque.invertir();
+        bloque.ejecutar(personaje);
+        Posicion abajo = new Posicion(0,-1);
+        assertTrue(personaje.devolverPosicion().equals(abajo));
     }
 
 }

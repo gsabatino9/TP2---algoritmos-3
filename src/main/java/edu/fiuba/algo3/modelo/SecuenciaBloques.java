@@ -10,7 +10,7 @@ public class SecuenciaBloques implements Bloque {
     protected List<Bloque> bloques;
 
     public SecuenciaBloques() {
-        bloques = new ArrayList<Bloque>();
+        bloques = new ArrayList<>();
     }
 
     public void agregarBloque(Bloque bloque) {
@@ -33,16 +33,11 @@ public class SecuenciaBloques implements Bloque {
                     "no se puede ejecutar una secuencia sin bloques.");
         }
         bloques.forEach(bloque -> bloque.ejecutar(personaje));
-
     }
 
     @Override
-    public void ejecutarInvertido(Personaje personaje) throws AlgoritmoVacioException{
-        if (bloques.size() == 0) {
-            throw new AlgoritmoVacioException(
-                    "no se puede ejecutar una secuencia sin bloques.");
-        }
-        bloques.forEach(bloque->bloque.ejecutarInvertido(personaje));
+    public void invertir(){
+        Collections.reverse(bloques);
     }
 
 }

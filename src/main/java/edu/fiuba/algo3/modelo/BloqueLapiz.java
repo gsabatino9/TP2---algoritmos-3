@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
 public class BloqueLapiz implements Bloque{
-    private final EstadoLapiz estadoDelLapiz;
+    private EstadoLapiz estadoDelLapiz;
 
     public BloqueLapiz(EstadoLapiz estadoLapiz){
         this.estadoDelLapiz = estadoLapiz;
@@ -13,8 +13,7 @@ public class BloqueLapiz implements Bloque{
     }
 
     @Override
-    public void ejecutarInvertido(Personaje personaje) {
-        EstadoLapiz estadoInverso = estadoDelLapiz.obtenerEstadoInverso();
-        personaje.cambiarEstadoDelLapiz(estadoInverso);
+    public void invertir(){
+        this.estadoDelLapiz = estadoDelLapiz.obtenerEstadoInverso();
     }
 }
