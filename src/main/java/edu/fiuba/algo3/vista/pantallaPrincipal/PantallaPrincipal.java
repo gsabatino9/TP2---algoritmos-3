@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.vista.pantallaPrincipal;
 
+import edu.fiuba.algo3.vista.evento.BloqueEventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -16,12 +17,14 @@ public class PantallaPrincipal extends BorderPane {
     private VBox botoneras;
     private VBox dibujo;
     private VBox secuencia;
+    private ScrollPane secuenciaBloques;
+    private VBox contenedor;
     private MenuBar barraMenu;
     private Scene escenaJuego;
 
     public void inicializar(Stage stage){
         this.setMenu(stage);
-        this.setSecuencia();
+        this.setContenedor();
         this.setDibujo();
         this.setBotonera();
     }
@@ -53,16 +56,19 @@ public class PantallaPrincipal extends BorderPane {
         this.setCenter(dibujo);
     }
 
-    public void setSecuencia(){
+    public void setContenedor(){
         Button ejecutar = new Button("Ejecutar");
         Button guardar = new Button("Guardar");
-        VBox bloques = new VBox();
-        ScrollPane scrollPane = new ScrollPane(bloques);
-        secuencia = new VBox(new Label("Secuencia de Bloques"), ejecutar, guardar, scrollPane);
-        secuencia.setSpacing(5);
-        secuencia.setPadding(new Insets(20));
-        this.setRight(secuencia);
+        contenedor = new VBox(new Label("Secuencia de Bloques"), ejecutar, guardar);
+        contenedor.setSpacing(5);
+        contenedor.setPadding(new Insets(20));
+        this.setRight(contenedor);
+
+        this.secuencia = new VBox();
+        this.secuenciaBloques = new ScrollPane(this.secuencia);
+        contenedor.getChildren().add(this.secuenciaBloques);
     }
+
     public void inicializar(){
        /* bloqueDerecha.setOnAction(actionEvent -> {Button derecha = new Button("Mover Derecha");
             derecha.setMinSize(150, 30);
@@ -72,6 +78,8 @@ public class PantallaPrincipal extends BorderPane {
 
     private Button crearBoton(Button boton, int minWidth, int minHeight){
         boton.setMinSize(minWidth, minHeight);
+
+        boton.setOnAction(new BloqueEventHandler(boton.getText().toString(), minWidth, minHeight, secuencia));
         return boton;
     }
 

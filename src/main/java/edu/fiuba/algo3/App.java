@@ -11,7 +11,6 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) {
-
         stage.setTitle("AlgoBlocks");
         PantallaInicial pantalla = new PantallaInicial(stage);
         pantalla.inicializar();
