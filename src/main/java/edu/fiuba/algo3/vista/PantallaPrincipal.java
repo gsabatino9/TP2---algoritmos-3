@@ -1,8 +1,12 @@
 package edu.fiuba.algo3.vista;
 
 import edu.fiuba.algo3.vista.PantallaInicial;
+import edu.fiuba.algo3.vista.evento.OpcionComoJugarEventHandler;
+import edu.fiuba.algo3.vista.evento.OpcionSalirEventHandler;
 import javafx.application.Application;
+import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -24,15 +28,45 @@ public class PantallaPrincipal extends BorderPane {
     private VBox botoneras;
     private VBox dibujo;
     private VBox secuencia;
-    private Scene escena;
+    private MenuBar barraMenu;
+    private Scene escenaJuego;
 
     public PantallaPrincipal(Stage stage){
-        //this.setMenu(stage);
+        this.escenaJuego = stage.getScene();
+        this.setMenu(stage);
         this.setSecuencia();
         this.setDibujo();
         this.setBotonera();
-        escena = new Scene(this, 1200, 600);
-        stage.setScene(escena);
+    }
+
+    public void setMenu(Stage stage){
+        //como jugar, reinicar, salir
+        this.barraMenu = new MenuBar();
+
+        Menu menu = new Menu("Opciones");
+
+        MenuItem opcionSalir = new Menu("Salir");
+        OpcionSalirEventHandler opcionSalirHandler = new OpcionSalirEventHandler();
+        opcionSalir.setOnAction(opcionSalirHandler);
+
+
+        MenuItem opcionComoJugar = new Menu("Como Jugar");
+        OpcionComoJugarEventHandler opcionComoJugarHandler = new OpcionComoJugarEventHandler(stage, escenaJuego);
+        opcionComoJugar.setOnAction(opcionComoJugarHandler);
+
+
+        MenuItem opcionReiniciar = new Menu("Reiniciar");
+
+
+        menu.getItems().addAll(opcionSalir, opcionComoJugar, opcionReiniciar);
+
+
+        //opcionPantallaCompleta.setDisable(true);
+
+        this.barraMenu.getMenus().addAll(menu);
+
+        this.setTop(barraMenu);
+
     }
 
 
@@ -51,13 +85,17 @@ public class PantallaPrincipal extends BorderPane {
         Button bloqueApoyar = new Button("Apoyar Lapiz");
         bloqueApoyar.setMinSize(150, 30);
         VBox bottomControl = new VBox(new Label("Bloques disponibles"), new Label("Bloques simples"),  bloqueDerecha, bloqueIzquierda, bloqueArriba, bloqueAbajo, bloqueLevantar, bloqueApoyar);
+        bottomControl.setSpacing(5);
 
         Button bloqueInvertir = new Button("Bloque Invertir");
         bloqueInvertir.setMinSize(150, 30);
         Button bloqueRepetir = new Button("Bloque Repetir");
         bloqueRepetir.setMinSize(150, 30);
         VBox bottomControl2 = new VBox( new Label("Bloques compuestos"), bloqueInvertir, bloqueRepetir);
+        bottomControl2.setSpacing(5);
+
         botoneras = new VBox(bottomControl, bottomControl2);
+        botoneras.setPadding(new Insets(20));
         this.setLeft(botoneras);
 
     }
@@ -67,17 +105,19 @@ public class PantallaPrincipal extends BorderPane {
         ImageView imageView = new ImageView(imagen);
 
         dibujo = new VBox(imageView);
-        this.setRight(dibujo);
+        dibujo.setPadding(new Insets(20));
+        this.setCenter(dibujo);
     }
 
     public void setSecuencia(){
-
         Button ejecutar = new Button("Ejecutar");
         Button guardar = new Button("Guardar");
         VBox bloques = new VBox();
         ScrollPane scrollPane = new ScrollPane(bloques);
         secuencia = new VBox(new Label("Secuencia de Bloques"), ejecutar, guardar, scrollPane);
-        this.setCenter(secuencia);
+        secuencia.setSpacing(5);
+        secuencia.setPadding(new Insets(20));
+        this.setRight(secuencia);
     }
     public void inicializar(){
 

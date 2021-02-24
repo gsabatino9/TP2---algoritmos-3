@@ -27,8 +27,7 @@ public class App extends Application {
     public void start(Stage stage) throws FileNotFoundException{
 
         stage.setTitle("DibujAR");
-        //PantallaInicial pantalla = new PantallaInicial(stage);
-        PantallaPrincipal pantalla = new PantallaPrincipal(stage);
+        PantallaInicial pantalla = new PantallaInicial(stage);
 
 /*
 
@@ -59,8 +58,8 @@ public class App extends Application {
         Button guardar = new Button("Guardar");
         VBox secuencia = new VBox();
         bloqueDerecha.setOnAction(actionEvent -> {Button derecha = new Button("Mover Derecha");
-        derecha.setMinSize(150, 30);
-        secuencia.getChildren().add(derecha);
+            derecha.setMinSize(150, 30);
+            secuencia.getChildren().add(derecha);
         });
 
         ScrollPane scrollPane = new ScrollPane(secuencia);

@@ -1,5 +1,8 @@
 package edu.fiuba.algo3.vista;
 
+import edu.fiuba.algo3.vista.evento.BotonEntrarEventHandler;
+import edu.fiuba.algo3.vista.evento.OpcionComoJugarEventHandler;
+import edu.fiuba.algo3.vista.evento.OpcionSalirEventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -21,6 +24,8 @@ public class PantallaInicial extends VBox {
         this.stage = stage;
         escenaInicial = new Scene(this, 640, 480);
 
+        PantallaPrincipal principal = new PantallaPrincipal(stage);
+        Scene escenaJuego = new Scene(principal, 640, 480);
 
         this.setAlignment(Pos.CENTER);
         this.setSpacing(20);
@@ -30,29 +35,32 @@ public class PantallaInicial extends VBox {
         this.setBackground(new Background(imagenDeFondo));
 
         Button botonEntrar = new Button();
-        botonEntrar.setText("Entrar");
+        botonEntrar.setText("Jugar");
+        BotonEntrarEventHandler botonEntrarHandler = new BotonEntrarEventHandler(stage, escenaJuego);
+        botonEntrar.setOnAction(botonEntrarHandler);
 
         Label etiqueta = new Label();
         etiqueta.setFont(Font.font("Tahoma", FontWeight.BOLD, 18));
-
         etiqueta.setText("Bienvenidos a la aplicación MVC con JAVA FX de algoritmos y programación III. Haga click en entrar");
-        etiqueta.setTextFill(Color.web("#66A7C5"));
+        etiqueta.setTextFill(Color.web("#424242"));
+
+        Button botonComoJugar = new Button();
+        botonComoJugar.setText("Como Jugar");
+        OpcionComoJugarEventHandler opcionComoJugarHandler = new OpcionComoJugarEventHandler(stage, escenaInicial);
+        botonComoJugar.setOnAction(opcionComoJugarHandler);
 
         Button botonSalir = new Button();
         botonSalir.setText("Salir");
-        //BotonEntrarEventHandler botonEntrarHandler = new BotonEntrarEventHandler(stage, proximaEscena);
-        //botonEntrar.setOnAction(botonEntrarHandler);
+        OpcionSalirEventHandler botonSalirHandler = new OpcionSalirEventHandler();
+        botonSalir.setOnAction(botonSalirHandler);
 
 
-        //PantallaPrincipal principal = new PantallaPrincipal(stage);
-        //Scene escenaJuego = new Scene(principal, 640, 480);
 
-
-        this.getChildren().addAll(etiqueta, botonEntrar, botonSalir);
+        this.getChildren().addAll(etiqueta, botonEntrar, botonComoJugar, botonSalir);
     }
 
     public void inicializar(){
         stage.setScene(escenaInicial);
-        stage.setFullScreen(true);
+        stage.setFullScreen(false);
     }
 }
