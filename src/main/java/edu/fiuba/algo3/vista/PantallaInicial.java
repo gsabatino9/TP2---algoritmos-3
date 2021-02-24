@@ -48,7 +48,7 @@ public class PantallaInicial extends VBox {
         this.setAlignment(Pos.CENTER);
         this.setSpacing(20);
         this.setPadding(new Insets(25));
-        Image imagen = new Image("Nubes.jpeg");
+        Image imagen = new Image("Fondo.jpg");
         BackgroundImage imagenDeFondo = new BackgroundImage(imagen, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         this.setBackground(new Background(imagenDeFondo));
     }
@@ -56,7 +56,7 @@ public class PantallaInicial extends VBox {
     private void agregarEtiqueta(){
         Label etiqueta = new Label();
         etiqueta.setFont(Font.font("Tahoma", FontWeight.BOLD, 18));
-        etiqueta.setText("Bienvenidos a la aplicación MVC con JAVA FX de algoritmos y programación III. Haga click en entrar");
+        etiqueta.setText("Bienvenido a AlgoBlocks");
         etiqueta.setTextFill(Color.web("#424242"));
         this.getChildren().addAll(etiqueta);
     }

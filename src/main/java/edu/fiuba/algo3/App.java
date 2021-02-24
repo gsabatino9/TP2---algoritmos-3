@@ -12,7 +12,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) {
 
-        stage.setTitle("DibujAR");
+        stage.setTitle("AlgoBlocks");
         PantallaInicial pantalla = new PantallaInicial(stage);
         pantalla.inicializar();
         stage.show();

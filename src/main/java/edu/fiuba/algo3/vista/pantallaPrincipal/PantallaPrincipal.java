@@ -31,41 +31,17 @@ public class PantallaPrincipal extends BorderPane {
     }
 
     public void setMenu(Stage stage){
-        //como jugar, reinicar, salir
         barraMenu = new BarraMenu(stage, escenaJuego);
         this.setTop(barraMenu);
-
     }
 
-
     public void setBotonera(){
+        VBox bottomControl1 = agregarBotonesSimples();
+        VBox bottomControl2 = agregarBotonesCompuestos();
 
-        Button bloqueDerecha = new Button("Mover Derecha");
-        bloqueDerecha.setMinSize(150, 30);
-        Button bloqueIzquierda = new Button("Mover Izquierda");
-        bloqueIzquierda.setMinSize(150, 30);
-        Button bloqueArriba = new Button("Mover Arriba");
-        bloqueArriba.setMinSize(150, 30);
-        Button bloqueAbajo = new Button("Mover Abajo");
-        bloqueAbajo.setMinSize(150, 30);
-        Button bloqueLevantar = new Button("Levantar Lapiz");
-        bloqueLevantar.setMinSize(150, 30);
-        Button bloqueApoyar = new Button("Apoyar Lapiz");
-        bloqueApoyar.setMinSize(150, 30);
-        VBox bottomControl = new VBox(new Label("Bloques disponibles"), new Label("Bloques simples"),  bloqueDerecha, bloqueIzquierda, bloqueArriba, bloqueAbajo, bloqueLevantar, bloqueApoyar);
-        bottomControl.setSpacing(5);
-
-        Button bloqueInvertir = new Button("Bloque Invertir");
-        bloqueInvertir.setMinSize(150, 30);
-        Button bloqueRepetir = new Button("Bloque Repetir");
-        bloqueRepetir.setMinSize(150, 30);
-        VBox bottomControl2 = new VBox( new Label("Bloques compuestos"), bloqueInvertir, bloqueRepetir);
-        bottomControl2.setSpacing(5);
-
-        botoneras = new VBox(bottomControl, bottomControl2);
+        botoneras = new VBox(bottomControl1, bottomControl2);
         botoneras.setPadding(new Insets(20));
         this.setLeft(botoneras);
-
     }
 
     public void setDibujo(){
@@ -88,14 +64,37 @@ public class PantallaPrincipal extends BorderPane {
         this.setRight(secuencia);
     }
     public void inicializar(){
-
        /* bloqueDerecha.setOnAction(actionEvent -> {Button derecha = new Button("Mover Derecha");
             derecha.setMinSize(150, 30);
             secuencia.getChildren().add(derecha);
-        });
-*/
+        });*/
+    }
 
+    private Button crearBoton(Button boton, int minWidth, int minHeight){
+        boton.setMinSize(minWidth, minHeight);
+        return boton;
+    }
 
+    private VBox agregarBotonesSimples(){
+        Button bloqueDerecha = crearBoton(new Button("Mover Derecha"), 150, 30);
+        Button bloqueIzquierda = crearBoton(new Button("Mover Izquierda"), 150, 30);
+        Button bloqueArriba = crearBoton(new Button("Mover Arriba"), 150, 30);
+        Button bloqueAbajo = crearBoton(new Button("Mover Abajo"), 150, 30);
+        Button bloqueLevantar = crearBoton(new Button("Levantar lapiz"), 150, 30);
+        Button bloqueApoyar = crearBoton(new Button("Apoyar lapiz"), 150, 30);
+        VBox bottomControl = new VBox(new Label("Bloques disponibles"),  bloqueDerecha, bloqueIzquierda, bloqueArriba, bloqueAbajo, bloqueLevantar, bloqueApoyar);
+        bottomControl.setSpacing(5);
+
+        return bottomControl;
+    }
+
+    private VBox agregarBotonesCompuestos(){
+        Button bloqueInvertir = crearBoton(new Button("Invertir"), 150, 30);
+        Button bloqueRepetir = crearBoton(new Button("Repetir"), 150, 30);
+        VBox bottomControl = new VBox(bloqueInvertir, bloqueRepetir);
+        bottomControl.setSpacing(5);
+
+        return bottomControl;
     }
 
 }
