@@ -16,7 +16,6 @@ public class OpcionComoJugarEventHandler implements EventHandler<ActionEvent> {
         this.escenaAnterior = escenaAnterior;
     }
 
-
     @Override
     public void handle(ActionEvent actionEvent) {
         PantallaReglas pantallaReglas = new PantallaReglas(stage, escenaAnterior);

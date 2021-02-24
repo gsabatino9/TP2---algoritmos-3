@@ -1,25 +1,13 @@
-package edu.fiuba.algo3.vista;
+package edu.fiuba.algo3.vista.pantallaPrincipal;
 
-import edu.fiuba.algo3.vista.PantallaInicial;
-import edu.fiuba.algo3.vista.evento.OpcionComoJugarEventHandler;
-import edu.fiuba.algo3.vista.evento.OpcionSalirEventHandler;
-import javafx.application.Application;
 import javafx.geometry.Insets;
-import javafx.geometry.Orientation;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javafx.scene.layout.BorderPane;
 
@@ -31,40 +19,20 @@ public class PantallaPrincipal extends BorderPane {
     private MenuBar barraMenu;
     private Scene escenaJuego;
 
-    public PantallaPrincipal(Stage stage){
-        this.escenaJuego = stage.getScene();
+    public void inicializar(Stage stage){
         this.setMenu(stage);
         this.setSecuencia();
         this.setDibujo();
         this.setBotonera();
     }
 
+    public void setScene(Scene escenaJuego){
+        this.escenaJuego = escenaJuego;
+    }
+
     public void setMenu(Stage stage){
         //como jugar, reinicar, salir
-        this.barraMenu = new MenuBar();
-
-        Menu menu = new Menu("Opciones");
-
-        MenuItem opcionSalir = new Menu("Salir");
-        OpcionSalirEventHandler opcionSalirHandler = new OpcionSalirEventHandler();
-        opcionSalir.setOnAction(opcionSalirHandler);
-
-
-        MenuItem opcionComoJugar = new Menu("Como Jugar");
-        OpcionComoJugarEventHandler opcionComoJugarHandler = new OpcionComoJugarEventHandler(stage, escenaJuego);
-        opcionComoJugar.setOnAction(opcionComoJugarHandler);
-
-
-        MenuItem opcionReiniciar = new Menu("Reiniciar");
-
-
-        menu.getItems().addAll(opcionSalir, opcionComoJugar, opcionReiniciar);
-
-
-        //opcionPantallaCompleta.setDisable(true);
-
-        this.barraMenu.getMenus().addAll(menu);
-
+        barraMenu = new BarraMenu(stage, escenaJuego);
         this.setTop(barraMenu);
 
     }
