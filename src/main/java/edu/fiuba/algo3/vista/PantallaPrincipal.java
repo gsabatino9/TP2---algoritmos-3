@@ -1,7 +1,6 @@
-package edu.fiuba.algo3;
+package edu.fiuba.algo3.vista;
 
 import edu.fiuba.algo3.vista.PantallaInicial;
-import edu.fiuba.algo3.vista.PantallaPrincipal;
 import javafx.application.Application;
 import javafx.geometry.Orientation;
 import javafx.scene.Scene;
@@ -18,21 +17,26 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * JavaFX App
- */
-public class App extends Application {
+import javafx.scene.layout.BorderPane;
 
-    @Override
-    public void start(Stage stage) throws FileNotFoundException{
+public class PantallaPrincipal extends BorderPane {
 
-        stage.setTitle("DibujAR");
-        //PantallaInicial pantalla = new PantallaInicial(stage);
-        PantallaPrincipal pantalla = new PantallaPrincipal(stage);
+    private VBox botoneras;
+    private VBox dibujo;
+    private VBox secuencia;
+    private Scene escena;
 
-/*
+    public PantallaPrincipal(Stage stage){
+        //this.setMenu(stage);
+        this.setSecuencia();
+        this.setDibujo();
+        this.setBotonera();
+        escena = new Scene(this, 1200, 600);
+        stage.setScene(escena);
+    }
 
-        SplitPane splitPane = new SplitPane();
+
+    public void setBotonera(){
 
         Button bloqueDerecha = new Button("Mover Derecha");
         bloqueDerecha.setMinSize(150, 30);
@@ -53,38 +57,37 @@ public class App extends Application {
         Button bloqueRepetir = new Button("Bloque Repetir");
         bloqueRepetir.setMinSize(150, 30);
         VBox bottomControl2 = new VBox( new Label("Bloques compuestos"), bloqueInvertir, bloqueRepetir);
-
-
-        Button ejecutar = new Button("Ejecutar");
-        Button guardar = new Button("Guardar");
-        VBox secuencia = new VBox();
-        bloqueDerecha.setOnAction(actionEvent -> {Button derecha = new Button("Mover Derecha");
-        derecha.setMinSize(150, 30);
-        secuencia.getChildren().add(derecha);
-        });
-
-        ScrollPane scrollPane = new ScrollPane(secuencia);
-        VBox centerControl = new VBox(new Label("Secuencia de Bloques"), ejecutar, guardar, scrollPane);
-        VBox leftControl  = new VBox(bottomControl,bottomControl2);
-
-        Image imagen = new Image("Ash.jpeg");
-        ImageView imageView = new ImageView(imagen);
-
-        VBox rightControl = new VBox(imageView);
-
-        splitPane.getItems().addAll(leftControl, centerControl,  rightControl);
-        splitPane.setDividerPositions(0.1f, 0.25f, 0.6f);
-
-        Scene scene = new Scene(splitPane, 1200, 600);
-
-*/
-        pantalla.inicializar();
-        stage.show();
+        botoneras = new VBox(bottomControl, bottomControl2);
+        this.setLeft(botoneras);
 
     }
 
-    public static void main(String[] args) {
-        launch();
+    public void setDibujo(){
+        Image imagen = new Image("Ash.jpeg");
+        ImageView imageView = new ImageView(imagen);
+
+        dibujo = new VBox(imageView);
+        this.setRight(dibujo);
+    }
+
+    public void setSecuencia(){
+
+        Button ejecutar = new Button("Ejecutar");
+        Button guardar = new Button("Guardar");
+        VBox bloques = new VBox();
+        ScrollPane scrollPane = new ScrollPane(bloques);
+        secuencia = new VBox(new Label("Secuencia de Bloques"), ejecutar, guardar, scrollPane);
+        this.setCenter(secuencia);
+    }
+    public void inicializar(){
+
+       /* bloqueDerecha.setOnAction(actionEvent -> {Button derecha = new Button("Mover Derecha");
+            derecha.setMinSize(150, 30);
+            secuencia.getChildren().add(derecha);
+        });
+*/
+
+
     }
 
 }
