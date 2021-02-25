@@ -2,6 +2,7 @@ package edu.fiuba.algo3.vista.pantallaPrincipal;
 
 import edu.fiuba.algo3.vista.evento.BloqueEventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -18,6 +19,8 @@ public class PantallaPrincipal extends BorderPane {
     private VBox contenedor;
     private BarraMenu barraMenu;
     private Scene escenaJuego;
+
+
 
     public void inicializar(Stage stage){
         this.setMenu(stage);
@@ -62,16 +65,22 @@ public class PantallaPrincipal extends BorderPane {
         dibujo.add(view, 8, 6);
         dibujo.add(view2, 15, 10);
         dibujo.setGridLinesVisible(true);
+        dibujo.setAlignment(Pos.CENTER);
 
+
+        Image imagen = new Image("Fond.jpg");
+        BackgroundImage imagenDeFondo = new BackgroundImage(imagen, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+        dibujo.setBackground(new Background(imagenDeFondo));
         this.setCenter(dibujo);
     }
 
-
-
     public void setContenedor(){
         Button ejecutar = new Button("Ejecutar");
+        ejecutar.setStyle("-fx-background-color: #F7FD81; ");
         Button guardar = new Button("Guardar");
-        contenedor = new VBox(new Label("Secuencia de Bloques"), ejecutar, guardar);
+        guardar.setStyle("-fx-background-color: #C8FD81; ");
+
+        contenedor = new VBox(ejecutar, guardar, new Label("Secuencia de Bloques"));
         contenedor.setSpacing(5);
         contenedor.setPadding(new Insets(20));
         this.setRight(contenedor);
@@ -81,27 +90,20 @@ public class PantallaPrincipal extends BorderPane {
         contenedor.getChildren().add(this.secuenciaBloques);
     }
 
-    public void inicializar(){
-       /* bloqueDerecha.setOnAction(actionEvent -> {Button derecha = new Button("Mover Derecha");
-            derecha.setMinSize(150, 30);
-            secuencia.getChildren().add(derecha);
-        });*/
-    }
-
-    private Button crearBoton(Button boton, int minWidth, int minHeight){
+    private Button crearBoton(Button boton, int minWidth, int minHeight, String color){
         boton.setMinSize(minWidth, minHeight);
-
-        boton.setOnAction(new BloqueEventHandler(boton.getText().toString(), minWidth, minHeight, secuencia));
+        boton.setStyle(color);
+        boton.setOnAction(new BloqueEventHandler(boton.getText().toString(), minWidth, minHeight, color, secuencia));
         return boton;
     }
 
     private VBox agregarBotonesSimples(){
-        Button bloqueDerecha = crearBoton(new Button("Mover Derecha"), 150, 30);
-        Button bloqueIzquierda = crearBoton(new Button("Mover Izquierda"), 150, 30);
-        Button bloqueArriba = crearBoton(new Button("Mover Arriba"), 150, 30);
-        Button bloqueAbajo = crearBoton(new Button("Mover Abajo"), 150, 30);
-        Button bloqueLevantar = crearBoton(new Button("Levantar lapiz"), 150, 30);
-        Button bloqueApoyar = crearBoton(new Button("Apoyar lapiz"), 150, 30);
+        Button bloqueDerecha = crearBoton(new Button("Mover Derecha"), 150, 30, "-fx-background-color: #95B2F9; ");
+        Button bloqueIzquierda = crearBoton(new Button("Mover Izquierda"), 150, 30, "-fx-background-color: #95B2F9; ");
+        Button bloqueArriba = crearBoton(new Button("Mover Arriba"), 150, 30, "-fx-background-color: #95B2F9; ");
+        Button bloqueAbajo = crearBoton(new Button("Mover Abajo"), 150, 30, "-fx-background-color: #95B2F9; ");
+        Button bloqueLevantar = crearBoton(new Button("Levantar lapiz"), 150, 30, "-fx-background-color: #95B2F9; ");
+        Button bloqueApoyar = crearBoton(new Button("Apoyar lapiz"), 150, 30, "-fx-background-color: #95B2F9; ");
         VBox bottomControl = new VBox(new Label("Bloques disponibles"),  bloqueDerecha, bloqueIzquierda, bloqueArriba, bloqueAbajo, bloqueLevantar, bloqueApoyar);
         bottomControl.setSpacing(5);
 
@@ -109,10 +111,10 @@ public class PantallaPrincipal extends BorderPane {
     }
 
     private VBox agregarBotonesCompuestos(){
-        Button bloqueInvertir = crearBoton(new Button("Invertir"), 150, 30);
-        Button bloqueRepetir = crearBoton(new Button("Repetir"), 150, 30);
+        Button bloqueInvertir = crearBoton(new Button("Invertir"), 150, 30, "-fx-background-color: #C781FD; ");
+        Button bloqueRepetir = crearBoton(new Button("Repetir"), 150, 30, "-fx-background-color: #C781FD; ");
         VBox bottomControl = new VBox(bloqueInvertir, bloqueRepetir);
-        bottomControl.setSpacing(5);
+        bottomControl.setSpacing(10);
 
         return bottomControl;
     }

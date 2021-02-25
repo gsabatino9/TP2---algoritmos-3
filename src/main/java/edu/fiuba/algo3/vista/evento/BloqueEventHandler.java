@@ -12,19 +12,22 @@ public class BloqueEventHandler implements EventHandler<ActionEvent> {
     private String text;
     private int minWidth;
     private int minHeight;
+    private String color;
 
 
-    public BloqueEventHandler(String text, int minWidth, int minHeight, VBox secuencia){
+    public BloqueEventHandler(String text, int minWidth, int minHeight, String color, VBox secuencia){
         this.secuencia = secuencia;
         this.text = text;
         this.minWidth = minWidth;
         this.minHeight = minHeight;
+        this.color = color;
     }
 
     @Override
     public void handle(ActionEvent actionEvent) {
         Button boton = new Button(text);
         boton.setMinSize(minWidth, minHeight);
+        boton.setStyle(color);
         secuencia.getChildren().add(boton);
     }
 }

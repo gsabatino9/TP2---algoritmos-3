@@ -17,6 +17,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
+import java.util.Collections;
+
 public class PantallaInicial extends VBox {
     private Stage stage;
     private Scene escenaInicial;
@@ -49,8 +51,8 @@ public class PantallaInicial extends VBox {
         this.setAlignment(Pos.CENTER);
         this.setSpacing(20);
         this.setPadding(new Insets(25));
-        Image imagen = new Image("Fondo.jpg");
-        BackgroundImage imagenDeFondo = new BackgroundImage(imagen, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+        Image imagen = new Image("Fond.jpg");
+        BackgroundImage imagenDeFondo = new BackgroundImage(imagen, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
         this.setBackground(new Background(imagenDeFondo));
     }
 
@@ -58,7 +60,7 @@ public class PantallaInicial extends VBox {
         Label etiqueta = new Label();
         etiqueta.setFont(Font.font("Tahoma", FontWeight.BOLD, 18));
         etiqueta.setText("Bienvenido a AlgoBlocks");
-        etiqueta.setTextFill(Color.web("#424242"));
+        etiqueta.setTextFill(Color.web("#FDB281"));
         this.getChildren().addAll(etiqueta);
     }
 
@@ -66,12 +68,18 @@ public class PantallaInicial extends VBox {
 
         Button botonEntrar = new Button("Jugar");
         botonEntrar.setOnAction(new BotonEntrarEventHandler(stage, escenaJuego));
+        botonEntrar.setMinSize(90, 25);
+        botonEntrar.setStyle("-fx-background-color: #FDB281; ");
 
         Button botonComoJugar = new Button("Como Jugar");
         botonComoJugar.setOnAction(new OpcionComoJugarEventHandler(stage, escenaInicial));
+        botonComoJugar.setMinSize(90, 25);
+        botonComoJugar.setStyle("-fx-background-color: #FDB281; ");
 
         Button botonSalir = new Button("Salir");
         botonSalir.setOnAction(new OpcionSalirEventHandler());
+        botonSalir.setMinSize(90, 25);
+        botonSalir.setStyle("-fx-background-color: #FDB281; ");
 
 
         this.getChildren().addAll(botonEntrar, botonComoJugar, botonSalir);

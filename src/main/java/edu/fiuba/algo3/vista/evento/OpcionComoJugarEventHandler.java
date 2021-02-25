@@ -22,5 +22,6 @@ public class OpcionComoJugarEventHandler implements EventHandler<ActionEvent> {
         Scene escenaReglas = new Scene(pantallaReglas, 640, 480);
 
         stage.setScene(escenaReglas);
+        stage.setFullScreen(true);
     }
 }
