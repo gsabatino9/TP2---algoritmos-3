@@ -19,19 +19,15 @@ public class BarraMenu extends HBox {
     public BarraMenu(Stage stage, Scene escenaJuego, PantallaPrincipal pantallaPrincipal){
         //Menu menu = new Menu("Opciones");
 
-        Button opcionSalir = new Button("Salir");
+        Button opcionSalir = crearBoton("Salir", 90, 25, "-fx-background-color: #CECFC3; ");
         opcionSalir.setOnAction(new OpcionSalirEventHandler());
-        opcionSalir.setStyle("-fx-background-color: #CECFC3; ");
-        opcionSalir.setMinSize(90, 25);
 
-        Button opcionComoJugar = new Button("Como Jugar");
+        Button opcionComoJugar = crearBoton("Como jugar", 90, 25, "-fx-background-color: #CECFC3; ");
+        opcionSalir.setOnAction(new OpcionSalirEventHandler());
         opcionComoJugar.setOnAction(new OpcionComoJugarEventHandler(stage, escenaJuego));
-        opcionComoJugar.setStyle("-fx-background-color: #CECFC3; ");
-        opcionComoJugar.setMinSize(90, 25);
 
-        Button opcionReiniciar = new Button("Reiniciar");
-        opcionReiniciar.setStyle("-fx-background-color: #CECFC3; ");
-        opcionReiniciar.setMinSize(90, 25);
+        Button opcionReiniciar = crearBoton("Reiniciar", 90, 25, "-fx-background-color: #CECFC3; ");
+        opcionSalir.setOnAction(new OpcionSalirEventHandler());
         opcionReiniciar.setOnAction(new OpcionReiniciarEventHandler(stage, escenaJuego, pantallaPrincipal));
         //FALTA EVENTHANDLER PARA OPCION REINICIAR
 
@@ -41,5 +37,12 @@ public class BarraMenu extends HBox {
         this.setAlignment(Pos.CENTER);
     }
 
+    public Button crearBoton(String text, int minWidth, int minHeight, String color){
+        Button boton = new Button(text);
+        boton.setStyle(color);
+        boton.setMinSize(minWidth, minHeight);
+
+        return boton;
+    }
 
 }

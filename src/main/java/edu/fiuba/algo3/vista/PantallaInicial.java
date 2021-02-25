@@ -69,7 +69,7 @@ public class PantallaInicial extends VBox {
         Button botonEntrar = new Button("Jugar");
         botonEntrar.setOnAction(new BotonEntrarEventHandler(stage, escenaJuego));
         botonEntrar.setMinSize(90, 25);
-        botonEntrar.setStyle("-fx-background-color: #FDB281; ");
+        botonEntrar.setStyle("-fx-background-color: #fdb281; ");
 
         Button botonComoJugar = new Button("Como Jugar");
         botonComoJugar.setOnAction(new OpcionComoJugarEventHandler(stage, escenaInicial));
