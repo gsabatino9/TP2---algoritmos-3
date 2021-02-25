@@ -5,8 +5,7 @@ public class Lapiz {
     private EstadoLapiz estado;
     private Dibujo dibujo;
 
-    public Lapiz(Dibujo dibujo)
-    {
+    public Lapiz(Dibujo dibujo) {
         this.dibujo = dibujo;
         this.estado = new LapizLevantado();
     }

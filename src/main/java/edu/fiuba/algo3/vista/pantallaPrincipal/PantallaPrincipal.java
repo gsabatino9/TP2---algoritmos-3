@@ -6,20 +6,17 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
-
-
-import javafx.scene.layout.BorderPane;
 
 public class PantallaPrincipal extends BorderPane {
 
     private VBox botoneras;
-    private VBox dibujo;
+    private GridPane dibujo;
     private VBox secuencia;
     private ScrollPane secuenciaBloques;
     private VBox contenedor;
-    private MenuBar barraMenu;
+    private BarraMenu barraMenu;
     private Scene escenaJuego;
 
     public void inicializar(Stage stage){
@@ -48,13 +45,28 @@ public class PantallaPrincipal extends BorderPane {
     }
 
     public void setDibujo(){
-        Image imagen = new Image("Ash.jpeg");
-        ImageView imageView = new ImageView(imagen);
+        ImageView view = new ImageView();
+        view.setFitWidth(50);
+        view.setFitHeight(50);
 
-        dibujo = new VBox(imageView);
-        dibujo.setPadding(new Insets(20));
+        Image img = new Image("Ash.jpeg");
+        view.setImage(img);
+
+        ImageView view2 = new ImageView();
+
+        this.dibujo = new GridPane();
+        dibujo.setMinWidth(800);
+        dibujo.setMinHeight(600);
+        dibujo.setHgap(50);
+        dibujo.setVgap(50);
+        dibujo.add(view, 8, 6);
+        dibujo.add(view2, 15, 10);
+        dibujo.setGridLinesVisible(true);
+
         this.setCenter(dibujo);
     }
+
+
 
     public void setContenedor(){
         Button ejecutar = new Button("Ejecutar");

@@ -24,7 +24,7 @@ public class PantallaInicial extends VBox {
     public PantallaInicial(Stage stage){
         super();
         this.stage = stage;
-        escenaInicial = new Scene(this, 640, 480);
+        escenaInicial = new Scene(this);
 
         Scene escenaJuego = crearEscenaPrincipal();
         acomodarParametros();
@@ -34,12 +34,12 @@ public class PantallaInicial extends VBox {
 
     public void inicializar(){
         stage.setScene(escenaInicial);
-        stage.setFullScreen(false);
+        stage.setFullScreen(true);
     }
 
     private Scene crearEscenaPrincipal(){
         PantallaPrincipal principal = new PantallaPrincipal();
-        Scene escenaJuego = new Scene(principal, 640, 480);
+        Scene escenaJuego = new Scene(principal);
         principal.setScene(escenaJuego);
         principal.inicializar(stage);
         return escenaJuego;

@@ -2,8 +2,6 @@ package edu.fiuba.algo3.modelo;
 
 public class Algoritmo extends SecuenciaBloques{
 
-    public Algoritmo() { }
-
     public void agregarBloquePersonalizado(String nombreAlgoritmo, Personaje personaje) throws BloquePersonalizadoNoExisteException {
         Bloque bloque = personaje.obtenerAlgoritmo(nombreAlgoritmo);
         if (bloque == null) {
