@@ -2,6 +2,7 @@ package edu.fiuba.algo3.vista;
 
 import edu.fiuba.algo3.vista.evento.BotonEntrarEventHandler;
 import edu.fiuba.algo3.vista.evento.OpcionComoJugarEventHandler;
+import edu.fiuba.algo3.vista.evento.OpcionPantallaCompletaEventHandler;
 import edu.fiuba.algo3.vista.evento.OpcionSalirEventHandler;
 import edu.fiuba.algo3.vista.pantallaPrincipal.PantallaPrincipal;
 import javafx.geometry.Insets;
@@ -72,7 +73,9 @@ public class PantallaInicial extends VBox {
         Button botonSalir = new Button("Salir");
         botonSalir.setOnAction(new OpcionSalirEventHandler());
 
+
         this.getChildren().addAll(botonEntrar, botonComoJugar, botonSalir);
     }
+
 }
 
