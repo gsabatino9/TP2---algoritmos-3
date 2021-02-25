@@ -29,7 +29,7 @@ public class PantallaReglas extends VBox {
         this.setSpacing(20);
         this.setPadding(new Insets(25));
         Image imagen = new Image("Fond.jpg");
-        BackgroundImage imagenDeFondo = new BackgroundImage(imagen, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+        BackgroundImage imagenDeFondo = new BackgroundImage(imagen, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(1000, 800, false, false, false, false));
         this.setBackground(new Background(imagenDeFondo));
 
         Label ponerBloques = crearEtiqueta("Por cada bloque que se inserte, el personaje realizará una acción");
@@ -41,11 +41,15 @@ public class PantallaReglas extends VBox {
         botonVolver.setText("Atras");
         BotonEntrarEventHandler botonVolverHandler = new BotonEntrarEventHandler(stage, escenaAnterior);
         botonVolver.setOnAction(botonVolverHandler);
+        botonVolver.setMinSize(90, 25);
+        botonVolver.setStyle("-fx-background-color: #FDB281; ");
 
         Button botonSalir = new Button();
         botonSalir.setText("Salir");
         OpcionSalirEventHandler botonSalirHandler = new OpcionSalirEventHandler();
         botonSalir.setOnAction(botonSalirHandler);
+        botonSalir.setMinSize(90, 25);
+        botonSalir.setStyle("-fx-background-color: #FDB281; ");
 
         HBox botones = new HBox();
         botones.getChildren().addAll(botonVolver, botonSalir);

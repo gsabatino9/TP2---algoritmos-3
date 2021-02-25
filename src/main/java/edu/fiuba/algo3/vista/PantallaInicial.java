@@ -52,7 +52,7 @@ public class PantallaInicial extends VBox {
         this.setSpacing(20);
         this.setPadding(new Insets(25));
         Image imagen = new Image("Fond.jpg");
-        BackgroundImage imagenDeFondo = new BackgroundImage(imagen, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+        BackgroundImage imagenDeFondo = new BackgroundImage(imagen, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(1000, 800, false, false, false, false));
         this.setBackground(new Background(imagenDeFondo));
     }
 

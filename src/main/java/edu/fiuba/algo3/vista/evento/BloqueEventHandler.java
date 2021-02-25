@@ -29,5 +29,6 @@ public class BloqueEventHandler implements EventHandler<ActionEvent> {
         boton.setMinSize(minWidth, minHeight);
         boton.setStyle(color);
         secuencia.getChildren().add(boton);
+        secuencia.setSpacing(5);
     }
 }

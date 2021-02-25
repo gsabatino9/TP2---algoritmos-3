@@ -1,9 +1,6 @@
 package edu.fiuba.algo3.vista.pantallaPrincipal;
 
-import edu.fiuba.algo3.vista.evento.OpcionComoJugarEventHandler;
-import edu.fiuba.algo3.vista.evento.OpcionPantallaCompletaEventHandler;
-import edu.fiuba.algo3.vista.evento.OpcionPantallaMinimizadaEventHandler;
-import edu.fiuba.algo3.vista.evento.OpcionSalirEventHandler;
+import edu.fiuba.algo3.vista.evento.*;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -19,18 +16,23 @@ import javafx.stage.Stage;
 
 public class BarraMenu extends HBox {
 
-    public BarraMenu(Stage stage, Scene escenaJuego){
+    public BarraMenu(Stage stage, Scene escenaJuego, PantallaPrincipal pantallaPrincipal){
         //Menu menu = new Menu("Opciones");
 
         Button opcionSalir = new Button("Salir");
         opcionSalir.setOnAction(new OpcionSalirEventHandler());
         opcionSalir.setStyle("-fx-background-color: #CECFC3; ");
+        opcionSalir.setMinSize(90, 25);
+
         Button opcionComoJugar = new Button("Como Jugar");
         opcionComoJugar.setOnAction(new OpcionComoJugarEventHandler(stage, escenaJuego));
         opcionComoJugar.setStyle("-fx-background-color: #CECFC3; ");
+        opcionComoJugar.setMinSize(90, 25);
 
         Button opcionReiniciar = new Button("Reiniciar");
         opcionReiniciar.setStyle("-fx-background-color: #CECFC3; ");
+        opcionReiniciar.setMinSize(90, 25);
+        opcionReiniciar.setOnAction(new OpcionReiniciarEventHandler(stage, escenaJuego, pantallaPrincipal));
         //FALTA EVENTHANDLER PARA OPCION REINICIAR
 
 

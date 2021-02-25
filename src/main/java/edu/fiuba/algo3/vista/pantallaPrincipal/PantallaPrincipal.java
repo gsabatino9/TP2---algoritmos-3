@@ -34,15 +34,14 @@ public class PantallaPrincipal extends BorderPane {
     }
 
     public void setMenu(Stage stage){
-        barraMenu = new BarraMenu(stage, escenaJuego);
+        barraMenu = new BarraMenu(stage, escenaJuego, this);
         this.setTop(barraMenu);
     }
 
     public void setBotonera(){
         VBox bottomControl1 = agregarBotonesSimples();
-        VBox bottomControl2 = agregarBotonesCompuestos();
 
-        botoneras = new VBox(bottomControl1, bottomControl2);
+        botoneras = new VBox(bottomControl1);
         botoneras.setPadding(new Insets(20));
         this.setLeft(botoneras);
     }
@@ -69,7 +68,7 @@ public class PantallaPrincipal extends BorderPane {
 
 
         Image imagen = new Image("Fond.jpg");
-        BackgroundImage imagenDeFondo = new BackgroundImage(imagen, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+        BackgroundImage imagenDeFondo = new BackgroundImage(imagen, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(1000, 800, false, false, false, false));
         dibujo.setBackground(new Background(imagenDeFondo));
         this.setCenter(dibujo);
     }
@@ -77,8 +76,10 @@ public class PantallaPrincipal extends BorderPane {
     public void setContenedor(){
         Button ejecutar = new Button("Ejecutar");
         ejecutar.setStyle("-fx-background-color: #F7FD81; ");
+        ejecutar.setMinSize(90, 25);
         Button guardar = new Button("Guardar");
         guardar.setStyle("-fx-background-color: #C8FD81; ");
+        guardar.setMinSize(90, 25);
 
         contenedor = new VBox(ejecutar, guardar, new Label("Secuencia de Bloques"));
         contenedor.setSpacing(5);
@@ -104,17 +105,12 @@ public class PantallaPrincipal extends BorderPane {
         Button bloqueAbajo = crearBoton(new Button("Mover Abajo"), 150, 30, "-fx-background-color: #95B2F9; ");
         Button bloqueLevantar = crearBoton(new Button("Levantar lapiz"), 150, 30, "-fx-background-color: #95B2F9; ");
         Button bloqueApoyar = crearBoton(new Button("Apoyar lapiz"), 150, 30, "-fx-background-color: #95B2F9; ");
-        VBox bottomControl = new VBox(new Label("Bloques disponibles"),  bloqueDerecha, bloqueIzquierda, bloqueArriba, bloqueAbajo, bloqueLevantar, bloqueApoyar);
-        bottomControl.setSpacing(5);
 
-        return bottomControl;
-    }
-
-    private VBox agregarBotonesCompuestos(){
         Button bloqueInvertir = crearBoton(new Button("Invertir"), 150, 30, "-fx-background-color: #C781FD; ");
         Button bloqueRepetir = crearBoton(new Button("Repetir"), 150, 30, "-fx-background-color: #C781FD; ");
-        VBox bottomControl = new VBox(bloqueInvertir, bloqueRepetir);
-        bottomControl.setSpacing(10);
+
+        VBox bottomControl = new VBox(new Label("Bloques disponibles"),  bloqueDerecha, bloqueIzquierda, bloqueArriba, bloqueAbajo, bloqueLevantar, bloqueApoyar, bloqueInvertir, bloqueRepetir);
+        bottomControl.setSpacing(5);
 
         return bottomControl;
     }
