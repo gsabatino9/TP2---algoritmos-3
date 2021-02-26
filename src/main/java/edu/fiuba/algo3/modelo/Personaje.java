@@ -15,12 +15,8 @@ public class Personaje implements Observable {
 
     Personaje(Posicion posicion, Lapiz lapiz){
         this.lapiz = lapiz;
-
         this.posicion = posicion;
-
-        this.bloquesGuardados = new HashMap<String, Bloque>();
-
-        /*posicion.cambiarEstado();*/
+        this.bloquesGuardados = new HashMap<>();
     }
 
     public void cambiarEstadoDelLapiz(EstadoLapiz nuevoEstado){
@@ -34,9 +30,7 @@ public class Personaje implements Observable {
 
     public void mover(Direccion direccion){
         this.lapiz.pintar(this.posicion.crearSegmento(direccion));
-        /*this.posicion.cambiarEstado();*/
         this.posicion = direccion.siguientePosicion(this.posicion);
-        /*this.posicion.cambiarEstado();*/
         //NotifyObservers();
     }
 
@@ -44,16 +38,17 @@ public class Personaje implements Observable {
         return this.posicion;
     }
 
-    public boolean algoritmoEstaGuardado(String nombreAlgoritmo) {
-        Bloque bloquePedido = obtenerAlgoritmo(nombreAlgoritmo);
-        return (bloquePedido != null);
+    public Bloque obtenerAlgoritmo(String nombreAlgoritmo) throws BloquePersonalizadoNoExisteException{
+        Bloque bloque = bloquesGuardados.get(nombreAlgoritmo);
+        if (bloque == null) {
+            throw new BloquePersonalizadoNoExisteException("El bloque personalizado buscado no fue encontrado.");
+        }
+        return bloque;
     }
 
-    public Bloque obtenerAlgoritmo(String nombreAlgoritmo) {
-        return bloquesGuardados.get(nombreAlgoritmo);
-    }
-
-    public void agregarBloque(Algoritmo algoritmoPersonalizado, String nombreAlgoritmo){
+    public void agregarBloque(Algoritmo algoritmoPersonalizado, String nombreAlgoritmo) throws BloquePersonalizadoYaExisteException{
+        if (bloquesGuardados.get(nombreAlgoritmo) != null)
+            throw new BloquePersonalizadoYaExisteException("El nombre elegido no esta disponible.");
         bloquesGuardados.put(nombreAlgoritmo, algoritmoPersonalizado);
     }
 
