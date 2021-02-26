@@ -13,5 +13,4 @@ public class Dibujo {
     public boolean segmentoEstaPintado(Segmento segmento){
         return segmentosPintados.stream().anyMatch(seg -> seg.equals(segmento));
     }
-
 }

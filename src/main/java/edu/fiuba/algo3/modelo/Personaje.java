@@ -15,12 +15,8 @@ public class Personaje implements Observable {
 
     Personaje(Posicion posicion, Lapiz lapiz){
         this.lapiz = lapiz;
-
         this.posicion = posicion;
-
         this.bloquesGuardados = new HashMap<String, Bloque>();
-
-        /*posicion.cambiarEstado();*/
     }
 
     public void cambiarEstadoDelLapiz(EstadoLapiz nuevoEstado){
@@ -34,10 +30,7 @@ public class Personaje implements Observable {
 
     public void mover(Direccion direccion){
         this.lapiz.pintar(this.posicion.crearSegmento(direccion));
-        /*this.posicion.cambiarEstado();*/
         this.posicion = direccion.siguientePosicion(this.posicion);
-        /*this.posicion.cambiarEstado();*/
-        //NotifyObservers();
     }
 
     public Posicion devolverPosicion(){
