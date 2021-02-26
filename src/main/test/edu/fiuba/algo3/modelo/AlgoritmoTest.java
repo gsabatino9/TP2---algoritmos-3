@@ -114,8 +114,9 @@ public class AlgoritmoTest {
     }
 
     @Test
-    public void seGuardaUnAlgoritmoPersonalizado() {
+    public void seGuardaUnAlgoritmoPersonalizado() throws BloquePersonalizadoYaExisteException {
         Algoritmo algoritmo = new Algoritmo();
+        algoritmo.agregarBloque(new BloqueMover(Direccion.obtenerArriba()));
         Posicion posicionInicio = new Posicion(0, 0);
         Dibujo dibujo = new Dibujo();
         Lapiz lapiz = new Lapiz(dibujo);
@@ -130,11 +131,11 @@ public class AlgoritmoTest {
         bloquePersonalizado.agregarBloque(bloqueArriba);
 
         bloquePersonalizado.guardar("Pintar y subir", personaje);
-        assertTrue(bloquePersonalizado.algoritmoEstaGuardado("Pintar y subir", personaje));
+        assertThrows(BloquePersonalizadoYaExisteException.class, () ->  personaje.agregarBloque(algoritmo,"Pintar y subir"));
     }
 
     @Test
-    public void seGuardaUnAlgoritmoPersonalizadoPeroNoSeEjecutaAutomaticamente() {
+    public void seGuardaUnAlgoritmoPersonalizadoPeroNoSeEjecutaAutomaticamente() throws BloquePersonalizadoYaExisteException {
         Algoritmo algoritmo = new Algoritmo();
         Posicion posicionInicio = new Posicion(0, 0);
         Dibujo dibujo = new Dibujo();
@@ -167,7 +168,7 @@ public class AlgoritmoTest {
     }
 
     @Test
-    public void puedoGuardarUnAlgoritmoPersonalizadoYCargarloAMiAlgoritmo() {
+    public void puedoGuardarUnAlgoritmoPersonalizadoYCargarloAMiAlgoritmo() throws BloquePersonalizadoYaExisteException {
         Algoritmo algoritmo = new Algoritmo();
         Posicion posicionInicio = new Posicion(0, 0);
         Dibujo dibujo = new Dibujo();
@@ -285,7 +286,7 @@ public class AlgoritmoTest {
     }
 
     @Test
-    public void mezclarBloquesRepeticionConBloquesPersonalizadosYBloquesSimpleFuncionaCorrectamente(){
+    public void mezclarBloquesRepeticionConBloquesPersonalizadosYBloquesSimpleFuncionaCorrectamente() throws BloquePersonalizadoYaExisteException {
         Algoritmo algoritmo = new Algoritmo();
         Posicion posicionInicio = new Posicion(0, 0);
         Dibujo dibujo = new Dibujo();

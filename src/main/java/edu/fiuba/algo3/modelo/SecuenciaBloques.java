@@ -17,12 +17,8 @@ public class SecuenciaBloques implements Bloque {
         bloques.add(bloque);
     }
 
-    public void agregarBloquePersonalizado(String nombreAlgoritmo, Personaje personaje) throws BloquePersonalizadoNoExisteException {
+    public void agregarBloquePersonalizado(String nombreAlgoritmo, Personaje personaje) {
         Bloque bloque = personaje.obtenerAlgoritmo(nombreAlgoritmo);
-        if (bloque == null) {
-            throw new BloquePersonalizadoNoExisteException(
-                    "El bloque personalizado buscado no fue encontrado.");
-        }
         agregarBloque(bloque);
     }
 
