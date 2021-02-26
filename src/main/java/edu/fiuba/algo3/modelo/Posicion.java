@@ -8,7 +8,6 @@ public class Posicion{
     private static int filaMax = 9;
     private static int columnaMax = 9;
 
-
     Posicion(int x, int y){
         this.columna = (x + columnaMax) % columnaMax;
         this.fila = (y + filaMax) % filaMax;
@@ -20,10 +19,10 @@ public class Posicion{
 
     public int obtenerColumna() { return columna; }
 
-    public boolean esIgualA(int x, int y) { return (abs(this.columna - x) % columnaMax == 0 && abs(this.fila - y) % filaMax == 0) ; }
+    private boolean esIgualA(int x, int y) { return (abs(this.columna - x) % columnaMax == 0 && abs(this.fila - y) % filaMax == 0) ; }
 
     public boolean equals(Posicion posicion){
-        return this.esIgualA(posicion.obtenerColumna(), posicion.obtenerFila());
+        return posicion.esIgualA(columna,fila);
     }
 
     public Segmento crearSegmento(Direccion direccion){
