@@ -3,26 +3,22 @@ package edu.fiuba.algo3.vista.pantallaPrincipal;
 import edu.fiuba.algo3.vista.evento.BloqueEventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class PantallaPrincipal extends BorderPane {
 
     private VBox botoneras;
+    private GridPane dibujo;
     private VBox secuencia;
     private ScrollPane secuenciaBloques;
     private VBox contenedor;
     private BarraMenu barraMenu;
     private Scene escenaJuego;
-    private StackPane tablero;
 
 
 
@@ -58,25 +54,9 @@ public class PantallaPrincipal extends BorderPane {
         Image img = new Image("Ash.jpeg");
         view.setImage(img);
 
-        Image img2 = new Image("Nnnn.png");
-        ImageView view4 = new ImageView();
-        view4.setFitWidth(10);
-        view4.setFitHeight(10);
-        view4.setImage(img2);
-
-        ImageView view5 = new ImageView();
-        view5.setFitWidth(10);
-        view5.setFitHeight(10);
-        view5.setImage(img2);
-
-        ImageView view6 = new ImageView();
-        view6.setFitWidth(10);
-        view6.setFitHeight(10);
-        view6.setImage(img2);
-
         ImageView view2 = new ImageView();
 
-        GridPane dibujo = new GridPane();
+        this.dibujo = new GridPane();
         dibujo.setMinWidth(800);
         dibujo.setMinHeight(600);
         dibujo.setHgap(50);
@@ -86,36 +66,11 @@ public class PantallaPrincipal extends BorderPane {
         dibujo.setGridLinesVisible(true);
         dibujo.setAlignment(Pos.CENTER);
 
+
         Image imagen = new Image("Fond.jpg");
         BackgroundImage imagenDeFondo = new BackgroundImage(imagen, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(1000, 800, false, false, false, false));
-
-        ImageView view3 = new ImageView();
-
-        GridPane dibujo2 = new GridPane();
-        dibujo2.setMinWidth(771);
-        dibujo2.setMinHeight(549);
-        dibujo2.setHgap(1);
-        dibujo2.setVgap(1);
-        dibujo2.add(view3, 771, 549);
-        dibujo2.setGridLinesVisible(false);
-
-        for(int i = 0; i < 4; i++){
-            ImageView viewAux = new ImageView();
-            viewAux.setFitWidth(5);
-            viewAux.setFitHeight(5);
-            viewAux.setImage(img2);
-
-            dibujo2.add(viewAux, 175 + i, 175);
-        }
-
-
-        dibujo2.setAlignment(Pos.CENTER);
-
-
-        this.tablero = new StackPane();
-        tablero.getChildren().addAll(dibujo2, dibujo);
-        tablero.setBackground(new Background(imagenDeFondo));
-        this.setCenter(tablero);
+        dibujo.setBackground(new Background(imagenDeFondo));
+        this.setCenter(dibujo);
     }
 
     public void setContenedor(){
@@ -133,7 +88,6 @@ public class PantallaPrincipal extends BorderPane {
 
         this.secuencia = new VBox();
         this.secuenciaBloques = new ScrollPane(this.secuencia);
-        this.secuenciaBloques.setMinSize(170, 25);
         contenedor.getChildren().add(this.secuenciaBloques);
     }
 
