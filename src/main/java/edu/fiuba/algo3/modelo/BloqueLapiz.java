@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
-public class BloqueLapiz implements Bloque{
+public class BloqueLapiz extends Bloque{
     private EstadoLapiz estadoDelLapiz;
 
     public BloqueLapiz(EstadoLapiz estadoLapiz){

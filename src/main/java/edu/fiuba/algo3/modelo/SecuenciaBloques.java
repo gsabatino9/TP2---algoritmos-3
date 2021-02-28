@@ -2,14 +2,13 @@ package edu.fiuba.algo3.modelo;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
-public class SecuenciaBloques implements Bloque {
+public class SecuenciaBloques extends Bloque {
 
-
-    protected List<Bloque> bloques;
+    protected ArrayList<Bloque> bloques;
 
     public SecuenciaBloques() {
+        super();
         bloques = new ArrayList<>();
     }
 
@@ -34,6 +33,11 @@ public class SecuenciaBloques implements Bloque {
     @Override
     public void invertir(){
         Collections.reverse(bloques);
+    }
+
+    @Override
+    public ArrayList<Bloque> obtenerHijos(){
+        return bloques;
     }
 
 }

@@ -1,10 +1,10 @@
 package edu.fiuba.algo3.modelo;
 
-public class BloqueMover implements Bloque {
+public class BloqueMover extends Bloque {
 
     private Direccion direccion;
 
-    BloqueMover(Direccion direccion) {
+    public BloqueMover(Direccion direccion) {
         this.direccion = direccion;
     }
 

@@ -8,7 +8,7 @@ public class Posicion{
     private static int filaMax = 9;
     private static int columnaMax = 9;
 
-    Posicion(int x, int y){
+    public Posicion(int x, int y){
         this.columna = (x + columnaMax) % columnaMax;
         this.fila = (y + filaMax) % filaMax;
     }

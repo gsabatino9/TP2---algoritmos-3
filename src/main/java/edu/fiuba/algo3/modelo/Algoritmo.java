@@ -1,6 +1,14 @@
 package edu.fiuba.algo3.modelo;
 
-public class Algoritmo extends SecuenciaBloques{
+import java.util.ArrayList;
+
+public class Algoritmo extends SecuenciaBloques implements Observado{
+
+    private ArrayList<Observador> observadores;
+
+    public Algoritmo(){
+        observadores = new ArrayList<>();
+    }
 
     public void guardar(String nombreAlgoritmo, Personaje personaje) throws AlgoritmoVacioException, BloquePersonalizadoYaExisteException {
         if (bloques.size() == 0){
@@ -10,4 +18,11 @@ public class Algoritmo extends SecuenciaBloques{
         personaje.agregarBloque(this, nombreAlgoritmo);
     }
 
+    @Override
+    public void agregarObservador(Observador observador) {
+        observadores.add(observador);
+    }
+
+    @Override
+    public void notificarObservadores() { observadores.forEach(Observador::actualizar); }
 }

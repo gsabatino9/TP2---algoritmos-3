@@ -13,7 +13,7 @@ public class Personaje implements Observable {
     private Lapiz lapiz;
     private Map<String, Bloque> bloquesGuardados;
 
-    Personaje(Posicion posicion, Lapiz lapiz){
+    public Personaje(Posicion posicion, Lapiz lapiz){
         this.lapiz = lapiz;
         this.posicion = posicion;
         this.bloquesGuardados = new HashMap<>();
