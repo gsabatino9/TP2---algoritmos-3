@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.vista.pantallaPrincipal;
 
 import edu.fiuba.algo3.controlador.ControladorBloqueComplejo;
+import edu.fiuba.algo3.controlador.ControladorBloqueFinalizar;
 import edu.fiuba.algo3.controlador.ControladorBloqueSimple;
 import edu.fiuba.algo3.controlador.ControladorModelo;
 import edu.fiuba.algo3.controlador.creadorDeBloque.*;
@@ -11,6 +12,7 @@ import javafx.scene.layout.VBox;
 
 public class VistaBloquesColocables extends VBox {
     private ControladorModelo controlador;
+    private Button botonFinalizar;
 
     public VistaBloquesColocables(ControladorModelo controlador){
         this.controlador = controlador;
@@ -27,7 +29,7 @@ public class VistaBloquesColocables extends VBox {
 
     private Button crearBotonComplejo(Button boton, int minWidth, int minHeight, String color, CreadorBloqueComplejo creador){
         crearBoton(boton, minWidth, minHeight, color);
-        boton.setOnAction(new ControladorBloqueComplejo(controlador, creador));
+        boton.setOnAction(new ControladorBloqueComplejo(controlador, creador, this));
         return boton;
     }
 
@@ -47,9 +49,24 @@ public class VistaBloquesColocables extends VBox {
         Button bloqueInvertir = crearBotonComplejo(new Button("Invertir"), 150, 30, "-fx-background-color: #C781FD; ", new CreadorBloqueInvertir());
         Button bloqueRepetir = crearBotonComplejo(new Button("Repetir x2"), 150, 30, "-fx-background-color: #C781FD; ", new CreadorBloqueRepeticion(2));
 
-        VBox bottomControl = new VBox(new Label("Bloques disponibles"),  bloqueDerecha, bloqueIzquierda, bloqueArriba, bloqueAbajo, bloqueLevantar, bloqueApoyar, bloqueInvertir, bloqueRepetir);
+        botonFinalizar = new Button("Finalizar Secuencia");
+        botonFinalizar.setMinSize(150, 30);
+        botonFinalizar.setStyle("-fx-background-color: #95B2F9; ");
+        botonFinalizar.setOnAction(new ControladorBloqueFinalizar(this, controlador));
+        botonFinalizar.setDisable(true);
+
+        VBox bottomControl = new VBox(new Label("Bloques disponibles"),  bloqueDerecha, bloqueIzquierda, bloqueArriba, bloqueAbajo, bloqueLevantar, bloqueApoyar, bloqueInvertir, bloqueRepetir, botonFinalizar);
         bottomControl.setSpacing(5);
 
         return bottomControl;
     }
+
+    public void activarBloqueFinalizar(){
+        botonFinalizar.setDisable(false);
+    }
+
+    public void desactivarBloqueFinalizar(){
+        botonFinalizar.setDisable(true);
+    }
+
 }

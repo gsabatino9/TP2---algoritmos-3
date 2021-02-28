@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.controlador;
 
 import edu.fiuba.algo3.modelo.*;
+import edu.fiuba.algo3.vista.pantallaPrincipal.VistaBloquesColocables;
+
 import java.util.Stack;
 
 public class ControladorModelo {
@@ -32,5 +34,11 @@ public class ControladorModelo {
     public void agregarBloqueComplejo(SecuenciaBloques bloques){
         agregarBloque(bloques);
         secuenciasAnidadas.push(bloques);
+    }
+
+    public void finalizarSecuencia(VistaBloquesColocables vista){
+        secuenciasAnidadas.pop();
+        if(secuenciasAnidadas.size() == 1)
+            vista.desactivarBloqueFinalizar();
     }
 }
