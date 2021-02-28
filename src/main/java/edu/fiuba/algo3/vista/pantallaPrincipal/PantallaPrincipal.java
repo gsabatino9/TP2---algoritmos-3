@@ -23,12 +23,12 @@ public class PantallaPrincipal extends BorderPane {
     private VBox contenedor;
     private BarraMenu barraMenu;
     private Scene escenaJuego;
-    private StackPane tablero;
     private ControladorModelo controladorModelo;
     private VistaBloquesColocables botoneras;
+    private GridPane dibujo;
 
 
-    public void inicializar(Stage stage){
+    public void inicializar(Stage stage) {
         controladorModelo = new ControladorModelo();
         this.setMenu(stage);
         this.setBotonera();
@@ -36,21 +36,21 @@ public class PantallaPrincipal extends BorderPane {
         this.setDibujo();
     }
 
-    public void setScene(Scene escenaJuego){
+    public void setScene(Scene escenaJuego) {
         this.escenaJuego = escenaJuego;
     }
 
-    public void setMenu(Stage stage){
+    public void setMenu(Stage stage) {
         barraMenu = new BarraMenu(stage, escenaJuego, this);
         this.setTop(barraMenu);
     }
 
-    public void setBotonera(){
+    public void setBotonera() {
         botoneras = new VistaBloquesColocables(controladorModelo);
         this.setLeft(botoneras);
     }
 
-    public void setContenedor(){
+    public void setContenedor() {
         Button ejecutar = new Button("Ejecutar");
         ejecutar.setStyle("-fx-background-color: #F7FD81; ");
         ejecutar.setMinSize(90, 25);
@@ -71,6 +71,9 @@ public class PantallaPrincipal extends BorderPane {
         contenedor.getChildren().add(this.secuenciaBloques);
     }
 
+
+
+    /*
     public void setDibujo(){
         ImageView view = new ImageView();
         view.setFitWidth(50);
@@ -137,5 +140,33 @@ public class PantallaPrincipal extends BorderPane {
         tablero.getChildren().addAll(dibujo2, dibujo);
         tablero.setBackground(new Background(imagenDeFondo));
         this.setCenter(tablero);
+    }
+
+
+     */
+
+    public void setDibujo() {
+        ImageView view = new ImageView();
+        view.setFitWidth(50);
+        view.setFitHeight(50);
+        Image img = new Image("Ash.jpeg");
+        view.setImage(img);
+        ImageView view2 = new ImageView();
+        this.dibujo = new GridPane();
+        dibujo.setMinWidth(800);
+        dibujo.setMinHeight(600);
+        dibujo.setHgap(50);
+        dibujo.setVgap(50);
+        dibujo.add(view, 8, 6);
+        dibujo.add(view2, 15, 10);
+        dibujo.setGridLinesVisible(true);
+        dibujo.setAlignment(Pos.CENTER);
+
+
+        Image imagen = new Image("Fond.jpg");
+        BackgroundImage imagenDeFondo = new BackgroundImage(imagen, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(1000, 800, false, false, false, false));
+        dibujo.setBackground(new Background(imagenDeFondo));
+        this.setCenter(dibujo);
+
     }
 }
