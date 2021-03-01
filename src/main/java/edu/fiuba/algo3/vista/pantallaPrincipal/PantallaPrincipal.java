@@ -59,7 +59,15 @@ public class PantallaPrincipal extends BorderPane {
         ejecutar.setMinSize(90, 25);
         ejecutar.setOnAction(accion -> {
             controladorModelo.ejecutar();
+            controladorModelo.vaciarSecuencia();
+
+            contenedor.getChildren().remove(this.secuenciaBloques);
+            vistaAlgoritmo.actualizar();
+            secuenciaBloques = new ScrollPane(vistaAlgoritmo);
+            secuenciaBloques.setMinSize(170, 25);
+            contenedor.getChildren().add(this.secuenciaBloques);
         });
+
         Button guardar = new Button("Guardar");
         guardar.setStyle("-fx-background-color: #C8FD81; ");
         guardar.setMinSize(90, 25);

@@ -17,5 +17,4 @@ public class ControladorPersonaje {
     public int obtenerY(){
         return personaje.devolverPosicion().obtenerFila();
     }
-
 }

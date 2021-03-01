@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.controlador;
 
 import edu.fiuba.algo3.modelo.*;
+import edu.fiuba.algo3.vista.pantallaPrincipal.VistaAlgoritmo;
 import edu.fiuba.algo3.vista.pantallaPrincipal.VistaBloquesColocables;
 
 import java.util.Stack;
@@ -43,6 +44,9 @@ public class ControladorModelo {
         if(secuenciasAnidadas.size() == 1)
             vista.desactivarBloqueFinalizar();
     }
+
+    public void vaciarSecuencia(){ algoritmo.vaciar(); }
+
 
     public void ejecutar()
     {

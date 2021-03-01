@@ -51,7 +51,7 @@ public class VistaBloquesColocables extends VBox  {
 
         botonFinalizar = new Button("Finalizar Secuencia");
         botonFinalizar.setMinSize(150, 30);
-        botonFinalizar.setStyle("-fx-background-color: #95B2F9; ");
+        botonFinalizar.setStyle("-fx-background-color: #95b2f9; ");
         botonFinalizar.setOnAction(new ControladorBloqueFinalizar(this, controlador));
         botonFinalizar.setDisable(true);
 

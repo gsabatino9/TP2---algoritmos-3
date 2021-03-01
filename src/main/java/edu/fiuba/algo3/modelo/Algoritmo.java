@@ -18,6 +18,8 @@ public class Algoritmo extends SecuenciaBloques implements Observado{
         personaje.agregarBloque(this, nombreAlgoritmo);
     }
 
+    public void vaciar(){ this.bloques.clear(); }
+
     @Override
     public void agregarObservador(Observador observador) {
         observadores.add(observador);

@@ -3,7 +3,6 @@ package edu.fiuba.algo3.vista.pantallaPrincipal;
 import edu.fiuba.algo3.modelo.Algoritmo;
 import edu.fiuba.algo3.modelo.Bloque;
 import edu.fiuba.algo3.modelo.Observador;
-import edu.fiuba.algo3.vista.evento.BloqueEventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 
