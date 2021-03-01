@@ -18,7 +18,7 @@ public class DireccionTest {
     public void moverConDireccionIzquierdaRetornaLaPosicionCorrecta(){
         Posicion posicionActual = new Posicion(0, 0);
         Direccion izquierda = Direccion.obtenerIzquierda();
-        assertTrue(izquierda.siguientePosicion(posicionActual).equals(new Posicion(8, 0)));
+        assertTrue(izquierda.siguientePosicion(posicionActual).equals(new Posicion(15, 0)));
     }
 
     @Test
@@ -26,13 +26,13 @@ public class DireccionTest {
 
         Posicion posicionActual = new Posicion(0, 0);
         Direccion arriba = Direccion.obtenerArriba();
-        assertTrue(arriba.siguientePosicion(posicionActual).equals(new Posicion(0, 1)));
+        assertTrue(arriba.siguientePosicion(posicionActual).equals(new Posicion(0, -1)));
     }
 
     @Test
     public void moverConDireccionAbajoRetornaLaPosicionCorrecta(){
         Posicion posicionActual = new Posicion(0, 0);
         Direccion abajo = Direccion.obtenerAbajo();
-        assertTrue(abajo.siguientePosicion(posicionActual).equals(new Posicion(0, 8)));
+        assertTrue(abajo.siguientePosicion(posicionActual).equals(new Posicion(0, 1)));
     }
 }

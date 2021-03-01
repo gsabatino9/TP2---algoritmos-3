@@ -11,8 +11,8 @@ public class Direccion {
     private int y;
 
     static {
-        arriba = new Direccion(0, 1);
-        abajo = new Direccion(0, -1);
+        arriba = new Direccion(0, -1);
+        abajo = new Direccion(0, 1);
         izquierda = new Direccion(-1, 0);
         derecha = new Direccion(1, 0);
     }

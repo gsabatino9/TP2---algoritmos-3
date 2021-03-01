@@ -3,13 +3,13 @@ package edu.fiuba.algo3.vista.pantallaPrincipal;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.paint.Color;
 
-public class VistaPersonaje {
+public class VistaDibujo {
     //private Personaje personaje;
     Canvas canvas;
     private int x;
     private int y;
 
-    public VistaPersonaje(int x, int y, Canvas canvas) {
+    public VistaDibujo(int x, int y, Canvas canvas) {
         this.x = x;
         this.y = y;
         this.canvas = canvas;

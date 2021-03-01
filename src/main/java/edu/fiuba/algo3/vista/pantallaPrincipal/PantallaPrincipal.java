@@ -1,37 +1,38 @@
 package edu.fiuba.algo3.vista.pantallaPrincipal;
 
 import edu.fiuba.algo3.controlador.ControladorModelo;
-import edu.fiuba.algo3.modelo.*;
-import edu.fiuba.algo3.vista.evento.BloqueEventHandler;
+import edu.fiuba.algo3.controlador.ControladorPersonaje;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class PantallaPrincipal extends BorderPane {
 
     private VistaAlgoritmo vistaAlgoritmo;
+    private VistaPersonaje vistaPersonaje;
     private ScrollPane secuenciaBloques;
     private VBox contenedor;
     private BarraMenu barraMenu;
     private Scene escenaJuego;
     private ControladorModelo controladorModelo;
+    private ControladorPersonaje controladorPersonaje;
     private VistaBloquesColocables botoneras;
     private Canvas tablero;
-    private VistaPersonaje vista;
+    private VistaDibujo vista;
     private StackPane contenedorDibujo;
+    private GridPane dibujo;
+    private ImageView view;
 
 
     public void inicializar(Stage stage) {
         controladorModelo = new ControladorModelo();
+        controladorPersonaje = new ControladorPersonaje(controladorModelo.obtenerPersonaje());
         this.setMenu(stage);
         this.setBotonera();
         this.setContenedor();
@@ -56,6 +57,9 @@ public class PantallaPrincipal extends BorderPane {
         Button ejecutar = new Button("Ejecutar");
         ejecutar.setStyle("-fx-background-color: #F7FD81; ");
         ejecutar.setMinSize(90, 25);
+        ejecutar.setOnAction(accion -> {
+            controladorModelo.ejecutar();
+        });
         Button guardar = new Button("Guardar");
         guardar.setStyle("-fx-background-color: #C8FD81; ");
         guardar.setMinSize(90, 25);
@@ -77,7 +81,7 @@ public class PantallaPrincipal extends BorderPane {
 
 
     public void setDibujo(){
-        ImageView view = new ImageView();
+        this.view = new ImageView();
         view.setFitWidth(50);
         view.setFitHeight(50);
         Image img = new Image("Ash.jpeg");
@@ -86,7 +90,7 @@ public class PantallaPrincipal extends BorderPane {
         ImageView view2 = new ImageView();
 
         this.contenedorDibujo = new StackPane();
-        GridPane dibujo = new GridPane();
+        this.dibujo = new GridPane();
         dibujo.setMinWidth(800);
         dibujo.setMinHeight(600);
         dibujo.setHgap(50);
@@ -97,7 +101,7 @@ public class PantallaPrincipal extends BorderPane {
         dibujo.setAlignment(Pos.CENTER);
 
         tablero = new Canvas(800, 600);
-        vista = new VistaPersonaje(225, 150, tablero);
+        vista = new VistaDibujo(225, 150, tablero);
         vista.dibujar();
 
         Image imagen = new Image("Fond.jpg");
@@ -105,5 +109,8 @@ public class PantallaPrincipal extends BorderPane {
         contenedorDibujo.setBackground(new Background(imagenDeFondo));
         contenedorDibujo.getChildren().addAll(tablero, dibujo);
         this.setCenter(contenedorDibujo);
+
+        vistaPersonaje = new VistaPersonaje(controladorPersonaje, view, dibujo);
+        controladorModelo.obtenerPersonaje().agregarObservador(vistaPersonaje);
     }
 }

@@ -5,8 +5,8 @@ import static java.lang.Math.abs;
 public class Posicion{
     private int fila;
     private int columna;
-    private static int filaMax = 9;
-    private static int columnaMax = 9;
+    private static int filaMax = 11;
+    private static int columnaMax = 16;
 
     public Posicion(int x, int y){
         this.columna = (x + columnaMax) % columnaMax;

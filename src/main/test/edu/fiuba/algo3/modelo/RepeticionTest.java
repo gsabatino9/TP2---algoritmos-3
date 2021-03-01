@@ -47,7 +47,7 @@ public class RepeticionTest {
         algoritmo.agregarBloque(bloqueRepetir);
         algoritmo.ejecutar(personaje);
 
-        Posicion posicionFinal = new Posicion(0, 2);
+        Posicion posicionFinal = new Posicion(0, -2);
         assertTrue(posicionFinal.equals(personaje.devolverPosicion()));
     }
 
@@ -68,7 +68,7 @@ public class RepeticionTest {
         algoritmo.agregarBloque(bloqueRepetir);
         algoritmo.ejecutar(personaje);
 
-        Posicion posicionFinal = new Posicion(0, 1);
+        Posicion posicionFinal = new Posicion(0, -1);
 
         Segmento segmento = new Segmento(posicionInicio, posicionFinal);
         assertTrue(dibujo.segmentoEstaPintado(segmento));
@@ -88,7 +88,7 @@ public class RepeticionTest {
         algoritmo.agregarBloque(bloqueRepetir);
         algoritmo.ejecutar(personaje);
 
-        Posicion posicionFinal = new Posicion(0, 3);
+        Posicion posicionFinal = new Posicion(0, -3);
         assertTrue(posicionFinal.equals(personaje.devolverPosicion()));
     }
 
@@ -109,8 +109,8 @@ public class RepeticionTest {
         algoritmo.agregarBloque(bloqueRepetir);
         algoritmo.ejecutar(personaje);
 
-        Posicion posicionIntermedia = new Posicion(0, 1);
-        Posicion posicionFinal = new Posicion(0, 2);
+        Posicion posicionIntermedia = new Posicion(0, -1);
+        Posicion posicionFinal = new Posicion(0, -2);
 
         Segmento segmento1 = new Segmento(posicionInicio, posicionIntermedia);
         assertTrue(dibujo.segmentoEstaPintado(segmento1));
@@ -136,7 +136,7 @@ public class RepeticionTest {
         algoritmo.agregarBloque(bloqueAbajo);
         algoritmo.ejecutar(personaje);
 
-        Posicion posicionFinal = new Posicion(0, 2);
+        Posicion posicionFinal = new Posicion(0, -2);
         assertTrue(posicionFinal.equals(personaje.devolverPosicion()));
     }
 

@@ -37,7 +37,7 @@ public class BloqueMoverTest {
         BloqueMover bloque = new BloqueMover(Direccion.obtenerArriba());
 
         bloque.ejecutar(personaje);
-        Posicion arriba = new Posicion(0,1);
+        Posicion arriba = new Posicion(0,-1);
         assertTrue(personaje.devolverPosicion().equals(arriba));
     }
 
@@ -49,7 +49,7 @@ public class BloqueMoverTest {
         BloqueMover bloque = new BloqueMover(Direccion.obtenerAbajo());
 
         bloque.ejecutar(personaje);
-        Posicion abajo = new Posicion(0,-1);
+        Posicion abajo = new Posicion(0,1);
         assertTrue(personaje.devolverPosicion().equals(abajo));
     }
 
@@ -62,7 +62,7 @@ public class BloqueMoverTest {
 
         bloque.invertir();
         bloque.ejecutar(personaje);
-        Posicion arriba = new Posicion(0,1);
+        Posicion arriba = new Posicion(0,-1);
         assertTrue(personaje.devolverPosicion().equals(arriba));
     }
 
@@ -75,7 +75,7 @@ public class BloqueMoverTest {
 
         bloque.invertir();
         bloque.ejecutar(personaje);
-        Posicion abajo = new Posicion(0,-1);
+        Posicion abajo = new Posicion(0,1);
         assertTrue(personaje.devolverPosicion().equals(abajo));
     }
 
@@ -141,7 +141,7 @@ public class BloqueMoverTest {
         bloque.invertir();
         bloque.invertir();
         bloque.ejecutar(personaje);
-        Posicion arriba = new Posicion(0,1);
+        Posicion arriba = new Posicion(0,-1);
         assertTrue(personaje.devolverPosicion().equals(arriba));
     }
 
@@ -154,7 +154,7 @@ public class BloqueMoverTest {
         bloque.invertir();
         bloque.invertir();
         bloque.ejecutar(personaje);
-        Posicion abajo = new Posicion(0,-1);
+        Posicion abajo = new Posicion(0,1);
         assertTrue(personaje.devolverPosicion().equals(abajo));
     }
 

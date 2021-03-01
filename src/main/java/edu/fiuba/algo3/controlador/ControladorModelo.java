@@ -14,7 +14,7 @@ public class ControladorModelo {
 
     public ControladorModelo(){
         algoritmo = new Algoritmo();
-        Posicion posicionInicio = new Posicion(0, 0);
+        Posicion posicionInicio = new Posicion(8, 6);
         dibujo = new Dibujo();
         Lapiz lapiz = new Lapiz(dibujo);
         personaje = new Personaje(posicionInicio, lapiz);
@@ -25,6 +25,8 @@ public class ControladorModelo {
     public Algoritmo obtenerAlgoritmo(){
         return algoritmo;
     }
+
+    public Personaje obtenerPersonaje() {return personaje;}
 
     public void agregarBloque(Bloque bloque){
         secuenciasAnidadas.peek().agregarBloque(bloque);
@@ -40,5 +42,10 @@ public class ControladorModelo {
         secuenciasAnidadas.pop();
         if(secuenciasAnidadas.size() == 1)
             vista.desactivarBloqueFinalizar();
+    }
+
+    public void ejecutar()
+    {
+        algoritmo.ejecutar(personaje);
     }
 }
