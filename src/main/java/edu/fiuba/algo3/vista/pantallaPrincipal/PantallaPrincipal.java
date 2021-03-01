@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.vista.pantallaPrincipal;
 
+import edu.fiuba.algo3.controlador.ControladorBloqueFinalizar;
+import edu.fiuba.algo3.controlador.ControladorBotonEjecutar;
 import edu.fiuba.algo3.controlador.ControladorModelo;
 import edu.fiuba.algo3.controlador.ControladorPersonaje;
 import javafx.geometry.Insets;
@@ -57,16 +59,6 @@ public class PantallaPrincipal extends BorderPane {
         Button ejecutar = new Button("Ejecutar");
         ejecutar.setStyle("-fx-background-color: #F7FD81; ");
         ejecutar.setMinSize(90, 25);
-        ejecutar.setOnAction(accion -> {
-            controladorModelo.ejecutar();
-            controladorModelo.vaciarSecuencia();
-
-            contenedor.getChildren().remove(this.secuenciaBloques);
-            vistaAlgoritmo.actualizar();
-            secuenciaBloques = new ScrollPane(vistaAlgoritmo);
-            secuenciaBloques.setMinSize(170, 25);
-            contenedor.getChildren().add(this.secuenciaBloques);
-        });
 
         Button guardar = new Button("Guardar");
         guardar.setStyle("-fx-background-color: #C8FD81; ");
@@ -83,6 +75,10 @@ public class PantallaPrincipal extends BorderPane {
         secuenciaBloques = new ScrollPane(vistaAlgoritmo);
         secuenciaBloques.setMinSize(170, 25);
         contenedor.getChildren().add(this.secuenciaBloques);
+
+        ejecutar.setOnAction(new ControladorBotonEjecutar(controladorModelo, contenedor, vistaAlgoritmo,
+                this.secuenciaBloques));
+
     }
 
 
