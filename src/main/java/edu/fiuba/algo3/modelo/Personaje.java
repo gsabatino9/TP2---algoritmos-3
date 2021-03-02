@@ -21,6 +21,7 @@ public class Personaje implements Observado{
 
     public void cambiarEstadoDelLapiz(EstadoLapiz nuevoEstado){
         this.lapiz.cambiarEstado(nuevoEstado);
+        notificarObservadores();
     }
 
     public EstadoLapiz obtenerEstado()

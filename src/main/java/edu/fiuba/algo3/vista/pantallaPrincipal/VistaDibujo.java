@@ -1,32 +1,45 @@
 package edu.fiuba.algo3.vista.pantallaPrincipal;
 
+import edu.fiuba.algo3.controlador.ControladorDibujo;
+import edu.fiuba.algo3.modelo.Observador;
+import edu.fiuba.algo3.modelo.Segmento;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.paint.Color;
 
-public class VistaDibujo {
-    //private Personaje personaje;
-    Canvas canvas;
-    private int x;
-    private int y;
+import java.util.ArrayList;
+import java.util.List;
 
-    public VistaDibujo(int x, int y, Canvas canvas) {
-        this.x = x;
-        this.y = y;
+public class VistaDibujo implements Observador {
+    private ControladorDibujo controlador;
+    Canvas canvas;
+
+    public VistaDibujo(ControladorDibujo controlador, Canvas canvas) {
+        this.controlador = controlador;
         this.canvas = canvas;
     }
 
-    public void dibujar() {
-        this.dibujarFormas();
+    private void dibujarFormas(Segmento segmento) {
+        int x1 = segmento.obtenerInicio().obtenerColumna()*50;
+        int x2 = segmento.obtenerFin().obtenerColumna()*50;
+
+        int y1 = segmento.obtenerInicio().obtenerFila()*50;
+        int y2 = segmento.obtenerFin().obtenerFila()*50;
+
+        canvas.getGraphicsContext2D().setFill(Color.WHITE);
+        canvas.getGraphicsContext2D().setStroke(Color.WHITE);
+        canvas.getGraphicsContext2D().setLineWidth(3);
+        canvas.getGraphicsContext2D().strokeLine(x1 + 25, y1 + 25, x2 + 25, y2 + 25);
     }
 
-    private void dibujarFormas() {
-        //this.clean();
-        canvas.getGraphicsContext2D().setFill(Color.BLUE);
-        canvas.getGraphicsContext2D().strokeLine(x + 50, y, x, y);
+    public void dibujar(){
+        List<Segmento> segmentos = controlador.obtenerSegmentos();
+        for(int i = 0; i < segmentos.size(); i++){
+            dibujarFormas(segmentos.get(i));
+        }
     }
 
-    /*public void clean() {
-        canvas.getGraphicsContext2D().setFill(Color.BEIGE);
-        canvas.getGraphicsContext2D().fillRect(0, 0, 460, 220);
-    }*/
+    @Override
+    public void actualizar() {
+        dibujar();
+    }
 }

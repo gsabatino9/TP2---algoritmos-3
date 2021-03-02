@@ -13,9 +13,9 @@ public class ControladorModelo {
     private Personaje personaje;
     private Stack<SecuenciaBloques> secuenciasAnidadas;
 
-    public ControladorModelo(){
+    public ControladorModelo(int x, int y){
         algoritmo = new Algoritmo();
-        Posicion posicionInicio = new Posicion(8, 6);
+        Posicion posicionInicio = new Posicion(x, y);
         dibujo = new Dibujo();
         Lapiz lapiz = new Lapiz(dibujo);
         personaje = new Personaje(posicionInicio, lapiz);
@@ -28,6 +28,10 @@ public class ControladorModelo {
     }
 
     public Personaje obtenerPersonaje() {return personaje;}
+
+    public Dibujo obtenerDibujo(){
+        return dibujo;
+    }
 
     public void agregarBloque(Bloque bloque){
         secuenciasAnidadas.peek().agregarBloque(bloque);
