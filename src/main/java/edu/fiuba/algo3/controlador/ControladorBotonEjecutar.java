@@ -23,13 +23,6 @@ public class ControladorBotonEjecutar implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent actionEvent) {
         controladorModelo.ejecutar();
-        controladorModelo.vaciarSecuencia();
-
-        contenedor.getChildren().remove(this.secuenciaBloques);
-        vistaAlgo.actualizar();
-        secuenciaBloques = new ScrollPane(vistaAlgo);
-        secuenciaBloques.setMinSize(170, 25);
-        contenedor.getChildren().add(this.secuenciaBloques);
     }
 }
 

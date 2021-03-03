@@ -34,10 +34,10 @@ public class PantallaPrincipal extends BorderPane {
         controladorModelo = new ControladorModelo(8, 5);
         controladorPersonaje = new ControladorPersonaje(controladorModelo.obtenerPersonaje());
         controladorDibujo = new ControladorDibujo(controladorModelo.obtenerDibujo());
-        this.setMenu(stage);
-        this.setBotonera();
-        this.setContenedor();
-        this.setDibujo();
+        setMenu(stage);
+        setBotonera();
+        setContenedor();
+        setDibujo();
     }
 
     public void setScene(Scene escenaJuego) {
@@ -55,6 +55,8 @@ public class PantallaPrincipal extends BorderPane {
     }
 
     public void setContenedor() {
+
+        /*
         Button ejecutar = new Button("Ejecutar");
         ejecutar.setStyle("-fx-background-color: #F7FD81; ");
         ejecutar.setMinSize(90, 25);
@@ -77,6 +79,13 @@ public class PantallaPrincipal extends BorderPane {
 
         ejecutar.setOnAction(new ControladorBotonEjecutar(controladorModelo, contenedor, vistaAlgoritmo,
                 this.secuenciaBloques));
+
+*/
+        PanelDerecho vistaAlgoritmo = new PanelDerecho(controladorModelo);
+        setRight(vistaAlgoritmo);
+
+
+        //guardar.setOnAction(new ControladorGuardar(controladorModelo, botoneras));
 
     }
 

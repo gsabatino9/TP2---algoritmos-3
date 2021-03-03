@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.controlador;
 
 import edu.fiuba.algo3.modelo.*;
-import edu.fiuba.algo3.vista.pantallaPrincipal.VistaAlgoritmo;
 import edu.fiuba.algo3.vista.pantallaPrincipal.VistaBloquesColocables;
 
 import java.util.Stack;
@@ -52,8 +51,13 @@ public class ControladorModelo {
     public void vaciarSecuencia(){ algoritmo.vaciar(); }
 
 
-    public void ejecutar()
-    {
+    public void ejecutar() {
         algoritmo.ejecutar(personaje);
+        algoritmo.vaciar();
+        algoritmo.notificarObservadores();
+    }
+
+    public void guardarAlgoritmo(VistaBloquesColocables botoneras){
+       // algoritmo.guardar(personaje, );
     }
 }
