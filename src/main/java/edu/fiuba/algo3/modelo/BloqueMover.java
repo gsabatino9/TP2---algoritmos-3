@@ -16,4 +16,10 @@ public class BloqueMover extends Bloque {
     public void invertir(){
         direccion = direccion.obtenerDireccionInversa();
     }
+
+    public BloqueMover clonar(){
+        BloqueMover bloque =  new BloqueMover(direccion);
+        bloque.agregarNombre(this.obtenerNombre());
+        return bloque;
+    }
 }

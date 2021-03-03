@@ -337,4 +337,25 @@ public class AlgoritmoTest {
         assertTrue(dibujo.segmentoEstaPintado(new Segmento(new Posicion(3,-3), new Posicion(3,-4))));
     }
 
+    /*@Test
+    public void creoDosBloquesPersonalizadosYVeoSiSeGuardanCorrectamente() throws BloquePersonalizadoYaExisteException {
+        Algoritmo algoritmo = new Algoritmo();
+        Posicion posicionInicio = new Posicion(0, 0);
+        Dibujo dibujo = new Dibujo();
+        Lapiz lapiz = new Lapiz(dibujo);
+        Personaje personaje = new Personaje(posicionInicio, lapiz);
+
+        BloqueMover bloqueArriba = new BloqueMover(Direccion.obtenerArriba());
+        BloqueMover bloqueDerecha = new BloqueMover(Direccion.obtenerDerecha());
+
+        Algoritmo bloquePersonalizado1 = new Algoritmo();
+        Algoritmo bloquePersonalizado2 = new Algoritmo();
+
+        bloquePersonalizado1.agregarBloque(bloqueArriba);
+        bloquePersonalizado1.guardar("A", personaje);
+        bloquePersonalizado2.agregarBloque(bloqueDerecha);
+        bloquePersonalizado2.guardar("D", personaje);
+
+        assertEquals(bloquePersonalizado1, personaje.obtenerAlgoritmo("A"));
+    }*/
 }

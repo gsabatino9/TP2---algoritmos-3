@@ -21,4 +21,6 @@ public abstract class Bloque {
     public ArrayList<Bloque> obtenerHijos(){
         return new ArrayList<>();
     }
+
+    public abstract Bloque clonar();
 }

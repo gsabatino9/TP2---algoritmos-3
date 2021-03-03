@@ -8,4 +8,11 @@ public class Invertido extends SecuenciaBloques{
         super.ejecutar(personaje);
         bloques.forEach(Bloque::invertir);
     }
+
+    public Invertido clonar()
+    {
+        Invertido bloque = new Invertido();
+        bloque.agregarNombre(this.obtenerNombre());
+        return bloque;
+    }
 }

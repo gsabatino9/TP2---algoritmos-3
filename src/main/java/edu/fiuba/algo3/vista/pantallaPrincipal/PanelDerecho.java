@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.vista.pantallaPrincipal;
 
+import edu.fiuba.algo3.controlador.ControladorBorrarAlgoritmo;
 import edu.fiuba.algo3.controlador.ControladorBotonEjecutar;
 import edu.fiuba.algo3.controlador.ControladorGuardar;
 import edu.fiuba.algo3.controlador.ControladorModelo;
@@ -19,17 +20,17 @@ public class PanelDerecho extends VBox {
         this.controladorModelo = controladorModelo;
         Button ejecutar = new Button("Ejecutar");
         ejecutar.setStyle("-fx-background-color: #F7FD81; ");
-        ejecutar.setMinSize(90, 25);
+        ejecutar.setMinSize(120, 25);
 
         Button guardar = new Button("Guardar");
         guardar.setStyle("-fx-background-color: #C8FD81; ");
-        guardar.setMinSize(90, 25);
+        guardar.setMinSize(120, 25);
 
         Button borrar = new Button("Borrar Algoritmo");
-        guardar.setStyle("-fx-background-color: #C8FD81; ");
-        guardar.setMinSize(90, 25);
+        borrar.setStyle("-fx-background-color: #33C1FF; ");
+        borrar.setMinSize(120, 25);
 
-        getChildren().addAll(ejecutar, guardar, new Label("Secuencia de Bloques"));
+        getChildren().addAll(ejecutar, guardar, borrar, new Label("Secuencia de Bloques"));
         setSpacing(5);
         setPadding(new Insets(20));
 
@@ -43,7 +44,7 @@ public class PanelDerecho extends VBox {
 
         ejecutar.setOnAction(new ControladorBotonEjecutar(controladorModelo));
         guardar.setOnAction(new ControladorGuardar(controladorModelo));
-        //borrar.setOnAction(new ControladorBorrarAlgoritmo(controladorModelo));
+        borrar.setOnAction(new ControladorBorrarAlgoritmo(controladorModelo));
     }
 
 

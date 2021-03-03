@@ -36,7 +36,7 @@ public class Personaje implements Observado{
         return this.posicion;
     }
 
-    public Bloque obtenerAlgoritmo(String nombreAlgoritmo) throws BloquePersonalizadoNoExisteException{
+    public Algoritmo obtenerAlgoritmo(String nombreAlgoritmo) throws BloquePersonalizadoNoExisteException{
         Algoritmo algoritmo = null;
         for (int i = 0; i < bloquesGuardados.size(); i++) {
             if (bloquesGuardados.get(i).obtenerNombre().equals(nombreAlgoritmo))

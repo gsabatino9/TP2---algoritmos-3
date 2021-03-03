@@ -15,4 +15,11 @@ public class Repeticion extends SecuenciaBloques{
             super.ejecutar(personaje);
         }
     }
+
+    public Repeticion clonar()
+    {
+        Repeticion bloque = new Repeticion(cantidadRepeticiones);
+        bloque.agregarNombre(bloque.obtenerNombre());
+        return bloque;
+    }
 }

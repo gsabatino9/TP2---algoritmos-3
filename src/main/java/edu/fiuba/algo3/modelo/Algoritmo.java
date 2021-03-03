@@ -18,7 +18,19 @@ public class Algoritmo extends SecuenciaBloques implements Observado{
         personaje.agregarBloque(this, nombreAlgoritmo);
     }
 
-    public void vaciar(){ this.bloques.clear(); }
+
+    public void vaciar(){ this.bloques.clear();
+    notificarObservadores();}
+
+    public Algoritmo crearCopia()
+    {
+        Algoritmo algoritmo = new Algoritmo();
+        bloques.forEach(bloque->{
+            algoritmo.agregarBloque(bloque.clonar());
+        });
+        algoritmo.agregarNombre(this.obtenerNombre());
+        return algoritmo;
+    }
 
     @Override
     public void agregarObservador(Observador observador) {
