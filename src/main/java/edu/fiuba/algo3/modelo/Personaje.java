@@ -1,22 +1,19 @@
 package edu.fiuba.algo3.modelo;
 
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Personaje implements Observado{
     private Posicion posicion;
     private Lapiz lapiz;
-    private Map<String, Bloque> bloquesGuardados;
+    private ArrayList<Algoritmo> bloquesGuardados;
     private ArrayList<Observador> observadores;
 
     public Personaje(Posicion posicion, Lapiz lapiz){
         this.lapiz = lapiz;
         this.posicion = posicion;
-        this.bloquesGuardados = new HashMap<>();
-        this.observadores = new ArrayList<Observador>();
+        this.bloquesGuardados = new ArrayList<>();
+        this.observadores = new ArrayList<>();
     }
 
     public void cambiarEstadoDelLapiz(EstadoLapiz nuevoEstado){
@@ -40,17 +37,23 @@ public class Personaje implements Observado{
     }
 
     public Bloque obtenerAlgoritmo(String nombreAlgoritmo) throws BloquePersonalizadoNoExisteException{
-        Bloque bloque = bloquesGuardados.get(nombreAlgoritmo);
-        if (bloque == null) {
+        Algoritmo algoritmo = null;
+        for (int i = 0; i < bloquesGuardados.size(); i++) {
+            if (bloquesGuardados.get(i).obtenerNombre().equals(nombreAlgoritmo))
+                algoritmo = bloquesGuardados.get(i);
+        }
+        if (algoritmo == null) {
             throw new BloquePersonalizadoNoExisteException("El bloque personalizado buscado no fue encontrado.");
         }
-        return bloque;
+        return algoritmo;
     }
 
     public void agregarBloque(Algoritmo algoritmoPersonalizado, String nombreAlgoritmo) throws BloquePersonalizadoYaExisteException{
-        if (bloquesGuardados.get(nombreAlgoritmo) != null)
+        if (bloquesGuardados.stream().anyMatch(bloque -> bloque.obtenerNombre().equals(nombreAlgoritmo)))
             throw new BloquePersonalizadoYaExisteException("El nombre elegido no esta disponible.");
-        bloquesGuardados.put(nombreAlgoritmo, algoritmoPersonalizado);
+        algoritmoPersonalizado.agregarNombre(nombreAlgoritmo);
+        bloquesGuardados.add(algoritmoPersonalizado);
+        notificarObservadores();
     }
 
     @Override
@@ -61,5 +64,9 @@ public class Personaje implements Observado{
     @Override
     public void notificarObservadores() {
         observadores.forEach(Observador::actualizar);
+    }
+
+    public ArrayList<Algoritmo> obtenerAlgoritmos() {
+        return bloquesGuardados;
     }
 }

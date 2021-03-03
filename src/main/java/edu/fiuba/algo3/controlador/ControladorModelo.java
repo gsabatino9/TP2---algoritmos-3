@@ -48,14 +48,11 @@ public class ControladorModelo {
             vista.desactivarBloqueFinalizar();
     }
 
-    public void vaciarSecuencia(){ algoritmo.vaciar(); }
-
-
     public void ejecutar() {
         algoritmo.ejecutar(personaje);
     }
 
-    public void guardarAlgoritmos(String nombreAlgoritmo) throws BloquePersonalizadoYaExisteException {
-       personaje.agregarBloque(algoritmo, nombreAlgoritmo);
+    public void guardarAlgoritmos(String nombreAlgoritmo) throws BloquePersonalizadoYaExisteException, AlgoritmoVacioException {
+       algoritmo.guardar(nombreAlgoritmo, personaje);
     }
 }

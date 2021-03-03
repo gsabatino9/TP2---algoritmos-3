@@ -8,16 +8,8 @@ import javafx.scene.layout.VBox;
 
 public class ControladorBotonEjecutar implements EventHandler<ActionEvent> {
     private ControladorModelo controladorModelo;
-    private VBox contenedor;
-    private VistaAlgoritmo vistaAlgo;
-    private ScrollPane secuenciaBloques;
-
-    public ControladorBotonEjecutar(ControladorModelo controladorModelo, VBox contenedor, VistaAlgoritmo vistaAlgo,
-                                    ScrollPane secuenciaDeBloques){
+    public ControladorBotonEjecutar(ControladorModelo controladorModelo){
         this.controladorModelo = controladorModelo;
-        this.contenedor = contenedor;
-        this.vistaAlgo = vistaAlgo;
-        this.secuenciaBloques = secuenciaDeBloques;
     }
 
     @Override

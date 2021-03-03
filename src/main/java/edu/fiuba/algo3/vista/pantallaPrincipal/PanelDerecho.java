@@ -41,7 +41,7 @@ public class PanelDerecho extends VBox {
         getChildren().add(this.secuenciaBloques);
 
 
-        ejecutar.setOnAction(new ControladorBotonEjecutar(controladorModelo, this, vistaAlgoritmo, this.secuenciaBloques));
+        ejecutar.setOnAction(new ControladorBotonEjecutar(controladorModelo));
         guardar.setOnAction(new ControladorGuardar(controladorModelo));
         //borrar.setOnAction(new ControladorBorrarAlgoritmo(controladorModelo));
     }

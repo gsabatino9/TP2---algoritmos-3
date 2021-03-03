@@ -21,7 +21,7 @@ public class PantallaPrincipal extends BorderPane {
     private Scene escenaJuego;
     private ControladorModelo controladorModelo;
     private ControladorPersonaje controladorPersonaje;
-    private VistaBloquesColocables botoneras;
+    private VistaBloquesColocables vistaBloques;
     private Canvas tablero;
     private VistaDibujo vistaDibujo;
     private StackPane contenedorDibujo;
@@ -50,8 +50,9 @@ public class PantallaPrincipal extends BorderPane {
     }
 
     public void setBotonera() {
-        botoneras = new VistaBloquesColocables(controladorModelo);
-        this.setLeft(botoneras);
+        vistaBloques = new VistaBloquesColocables(controladorModelo);
+        controladorModelo.obtenerPersonaje().agregarObservador(vistaBloques);
+        this.setLeft(vistaBloques);
     }
 
     public void setContenedor() {

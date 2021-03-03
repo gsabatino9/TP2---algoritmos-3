@@ -8,6 +8,5 @@ public class CreadorBloqueApoyarLapiz implements CreadorDeBloque{
         BloqueLapiz bloque = new BloqueLapiz(new LapizApoyado());
         bloque.agregarNombre("Apoyar Lapiz");
         return bloque;
-
     }
 }

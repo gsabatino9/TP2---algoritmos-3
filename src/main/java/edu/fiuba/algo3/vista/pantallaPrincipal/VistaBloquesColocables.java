@@ -5,21 +5,30 @@ import edu.fiuba.algo3.controlador.ControladorBloqueFinalizar;
 import edu.fiuba.algo3.controlador.ControladorBloqueSimple;
 import edu.fiuba.algo3.controlador.ControladorModelo;
 import edu.fiuba.algo3.controlador.creadorDeBloque.*;
+import edu.fiuba.algo3.modelo.Algoritmo;
+import edu.fiuba.algo3.modelo.Observador;
+import edu.fiuba.algo3.modelo.Personaje;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
-public class VistaBloquesColocables extends VBox  {
+import java.util.ArrayList;
+
+public class VistaBloquesColocables extends VBox implements Observador {
     private ControladorModelo controlador;
     private Button botonFinalizar;
+    private VBox botonesPersonaje;
+    private Personaje personaje;
 
     public VistaBloquesColocables(ControladorModelo controlador){
         this.controlador = controlador;
         getChildren().add(agregarBotonesSimples());
         setPadding(new Insets(20));
+        botonesPersonaje = new VBox();
+        getChildren().add(botonesPersonaje);
+        personaje = controlador.obtenerPersonaje();
     }
-
 
     private Button crearBotonSimple(Button boton, int minWidth, int minHeight, String color, CreadorDeBloque creador){
         crearBoton(boton, minWidth, minHeight, color);
@@ -69,4 +78,14 @@ public class VistaBloquesColocables extends VBox  {
         botonFinalizar.setDisable(true);
     }
 
+    @Override
+    public void actualizar() {
+        botonesPersonaje.getChildren().clear();
+        ArrayList<Algoritmo> algorimosPersonalizados = personaje.obtenerAlgoritmos();
+        algorimosPersonalizados.forEach(algo -> {
+            Button personalizado = crearBotonSimple(new Button(algo.obtenerNombre()), 150, 30, "-fx-background-color: #95B2F9; ", new CreadorAlgoritmo(algo));
+            botonesPersonaje.getChildren().add(personalizado);
+        });
+
+    }
 }
