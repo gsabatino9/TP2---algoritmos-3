@@ -53,8 +53,6 @@ public class ControladorModelo {
 
     public void ejecutar() {
         algoritmo.ejecutar(personaje);
-        algoritmo.vaciar();
-        algoritmo.notificarObservadores();
     }
 
     public void guardarAlgoritmo(VistaBloquesColocables botoneras){
