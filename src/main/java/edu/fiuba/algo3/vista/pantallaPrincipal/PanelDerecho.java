@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.vista.pantallaPrincipal;
 
 import edu.fiuba.algo3.controlador.ControladorBotonEjecutar;
+import edu.fiuba.algo3.controlador.ControladorGuardar;
 import edu.fiuba.algo3.controlador.ControladorModelo;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
@@ -41,6 +42,7 @@ public class PanelDerecho extends VBox {
 
 
         ejecutar.setOnAction(new ControladorBotonEjecutar(controladorModelo, this, vistaAlgoritmo, this.secuenciaBloques));
+        guardar.setOnAction(new ControladorGuardar(controladorModelo));
         //borrar.setOnAction(new ControladorBorrarAlgoritmo(controladorModelo));
     }
 

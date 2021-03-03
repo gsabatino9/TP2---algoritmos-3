@@ -55,7 +55,7 @@ public class ControladorModelo {
         algoritmo.ejecutar(personaje);
     }
 
-    public void guardarAlgoritmo(VistaBloquesColocables botoneras){
-       // algoritmo.guardar(personaje, );
+    public void guardarAlgoritmos(String nombreAlgoritmo) throws BloquePersonalizadoYaExisteException {
+       personaje.agregarBloque(algoritmo, nombreAlgoritmo);
     }
 }
