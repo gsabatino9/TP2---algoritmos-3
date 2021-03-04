@@ -1,8 +1,6 @@
 package edu.fiuba.algo3.vista.pantallaPrincipal;
 
-import edu.fiuba.algo3.controlador.ControladorDibujo;
 import edu.fiuba.algo3.controlador.ControladorModelo;
-import edu.fiuba.algo3.controlador.ControladorPersonaje;
 import javafx.geometry.Pos;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.image.Image;
@@ -16,7 +14,7 @@ public class PanelCentral extends StackPane {
     private GridPane dibujo;
     private Canvas tablero;
 
-    public PanelCentral(ControladorDibujo controladorDibujo, ControladorModelo controladorModelo, ControladorPersonaje controladorPersonaje)
+    public PanelCentral(ControladorModelo controladorModelo)
     {
         imageView = new ImageView();
         imageView.setFitWidth(50);
@@ -39,7 +37,7 @@ public class PanelCentral extends StackPane {
         dibujo.setAlignment(Pos.CENTER);
 
         tablero = new Canvas(800, 550);
-        vistaDibujo = new VistaDibujo(controladorDibujo, tablero);
+        vistaDibujo = new VistaDibujo(controladorModelo.obtenerDibujo(), tablero);
         controladorModelo.obtenerDibujo().agregarObservador(vistaDibujo);
 
 
@@ -50,7 +48,7 @@ public class PanelCentral extends StackPane {
         this.getChildren().addAll(tablero, dibujo);
         this.setAlignment(Pos.CENTER);
 
-        vistaPersonaje = new VistaPersonaje(controladorPersonaje, imageView, dibujo);
+        vistaPersonaje = new VistaPersonaje(controladorModelo.obtenerPersonaje(), imageView, dibujo);
         controladorModelo.obtenerPersonaje().agregarObservador(vistaPersonaje);
     }
 }

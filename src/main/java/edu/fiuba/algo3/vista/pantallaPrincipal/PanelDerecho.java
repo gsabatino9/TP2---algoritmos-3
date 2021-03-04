@@ -17,15 +17,15 @@ public class PanelDerecho extends VBox {
 
     public PanelDerecho(ControladorModelo controladorModelo){
         Button ejecutar = new Button("Ejecutar");
-        ejecutar.setStyle("-fx-background-color: #F7FD81; ");
+        ejecutar.setStyle("-fx-background-color: #AA95F9; ");
         ejecutar.setMinSize(120, 25);
 
         Button guardar = new Button("Guardar");
-        guardar.setStyle("-fx-background-color: #C8FD81; ");
+        guardar.setStyle("-fx-background-color: #F995B2; ");
         guardar.setMinSize(120, 25);
 
         Button borrar = new Button("Borrar Algoritmo");
-        borrar.setStyle("-fx-background-color: #33C1FF; ");
+        borrar.setStyle("-fx-background-color: #B2F995; ");
         borrar.setMinSize(120, 25);
 
         getChildren().addAll(ejecutar, guardar, borrar, new Label("Secuencia de Bloques"));

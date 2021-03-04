@@ -36,6 +36,14 @@ public class Personaje implements Observado{
         return this.posicion;
     }
 
+    public int obtenerColumna(){
+        return posicion.obtenerColumna();
+    }
+
+    public int obtenerFila(){
+        return posicion.obtenerFila();
+    }
+
     public Algoritmo obtenerAlgoritmo(String nombreAlgoritmo) throws BloquePersonalizadoNoExisteException{
         Algoritmo algoritmo = null;
         for (int i = 0; i < bloquesGuardados.size(); i++) {

@@ -60,22 +60,22 @@ public class VistaBloquesColocables extends VBox implements Observador {
 
     private VBox agregarBotonesFijos(){
         CreadorBloqueMover creadorBloqueMover = new CreadorBloqueMover(Direccion.obtenerDerecha(), "Mover Derecha");
-        Button bloqueDerecha = crearBoton(creadorBloqueMover, new ControladorBloqueSimple(controlador, creadorBloqueMover), "-fx-background-color: #ADC4FA; ");
+        Button bloqueDerecha = crearBoton(creadorBloqueMover, new ControladorBloqueSimple(controlador, creadorBloqueMover), "-fx-background-color: #B2F995; ");
 
         CreadorBloqueMover creadorBloqueIzquierda = new CreadorBloqueMover(Direccion.obtenerIzquierda(), "Mover Izquierda");
-        Button bloqueIzquierda = crearBoton(creadorBloqueIzquierda, new ControladorBloqueSimple(controlador, creadorBloqueIzquierda), "-fx-background-color: #ADC4FA; ");
+        Button bloqueIzquierda = crearBoton(creadorBloqueIzquierda, new ControladorBloqueSimple(controlador, creadorBloqueIzquierda), "-fx-background-color: #B2F995; ");
 
         CreadorBloqueMover creadorBloqueArriba = new CreadorBloqueMover(Direccion.obtenerArriba(), "Mover Arriba");
-        Button bloqueArriba = crearBoton(creadorBloqueArriba, new ControladorBloqueSimple(controlador, creadorBloqueArriba), "-fx-background-color: #ADC4FA; ");
+        Button bloqueArriba = crearBoton(creadorBloqueArriba, new ControladorBloqueSimple(controlador, creadorBloqueArriba), "-fx-background-color: #B2F995; ");
 
         CreadorBloqueMover creadorBloqueAbajo = new CreadorBloqueMover(Direccion.obtenerAbajo(), "Mover Abajo");
-        Button bloqueAbajo = crearBoton(creadorBloqueAbajo, new ControladorBloqueSimple(controlador, creadorBloqueAbajo), "-fx-background-color: #ADC4FA; ");
+        Button bloqueAbajo = crearBoton(creadorBloqueAbajo, new ControladorBloqueSimple(controlador, creadorBloqueAbajo), "-fx-background-color: #B2F995; ");
 
         CreadorBloqueLapiz creadorBloqueLevantado = new CreadorBloqueLapiz(new LapizLevantado(), "Levantar lapiz");
-        Button bloqueLevantado = crearBoton(creadorBloqueLevantado, new ControladorBloqueSimple(controlador, creadorBloqueLevantado), "-fx-background-color: #ADC4FA; ");
+        Button bloqueLevantado = crearBoton(creadorBloqueLevantado, new ControladorBloqueSimple(controlador, creadorBloqueLevantado), "-fx-background-color: #B2F995; ");
 
         CreadorBloqueLapiz creadorBloqueApoyado = new CreadorBloqueLapiz(new LapizApoyado(), "Apoyar lapiz");
-        Button bloqueApoyado = crearBoton(creadorBloqueApoyado, new ControladorBloqueSimple(controlador, creadorBloqueApoyado), "-fx-background-color: #ADC4FA; ");
+        Button bloqueApoyado = crearBoton(creadorBloqueApoyado, new ControladorBloqueSimple(controlador, creadorBloqueApoyado), "-fx-background-color: #B2F995; ");
 
 
         CreadorBloqueInvertir creadorBloqueInvertir = new CreadorBloqueInvertir();

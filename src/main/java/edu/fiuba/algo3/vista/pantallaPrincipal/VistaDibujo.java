@@ -1,20 +1,20 @@
 package edu.fiuba.algo3.vista.pantallaPrincipal;
 
-import edu.fiuba.algo3.controlador.ControladorDibujo;
+
+import edu.fiuba.algo3.modelo.Dibujo;
 import edu.fiuba.algo3.modelo.Observador;
 import edu.fiuba.algo3.modelo.Segmento;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.paint.Color;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class VistaDibujo implements Observador {
-    private ControladorDibujo controlador;
+    private Dibujo dibujo;
     Canvas canvas;
 
-    public VistaDibujo(ControladorDibujo controlador, Canvas canvas) {
-        this.controlador = controlador;
+    public VistaDibujo(Dibujo unDibujo, Canvas canvas) {
+        this.dibujo = unDibujo;
         this.canvas = canvas;
     }
 
@@ -32,7 +32,7 @@ public class VistaDibujo implements Observador {
     }
 
     public void dibujar(){
-        List<Segmento> segmentos = controlador.obtenerSegmentos();
+        List<Segmento> segmentos = dibujo.obtenerSegmentos();
         for(int i = 0; i < segmentos.size(); i++){
             dibujarFormas(segmentos.get(i));
         }

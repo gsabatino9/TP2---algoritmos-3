@@ -53,6 +53,7 @@ public class ControladorModelo {
         else
             vista.activarBloqueFinalizar();
     }
+
     public void vaciarAlgoritmo(){
         algoritmo.vaciar();
         secuenciasAnidadas.clear();
