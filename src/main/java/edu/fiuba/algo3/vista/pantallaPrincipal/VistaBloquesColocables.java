@@ -2,9 +2,7 @@ package edu.fiuba.algo3.vista.pantallaPrincipal;
 
 import edu.fiuba.algo3.controlador.*;
 import edu.fiuba.algo3.controlador.creadorDeBloque.*;
-import edu.fiuba.algo3.modelo.Algoritmo;
-import edu.fiuba.algo3.modelo.Observador;
-import edu.fiuba.algo3.modelo.Personaje;
+import edu.fiuba.algo3.modelo.*;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -47,12 +45,12 @@ public class VistaBloquesColocables extends VBox implements Observador {
     }
 
     private VBox agregarBotonesFijos(){
-        Button bloqueDerecha = crearBotonSimple(new Button("Mover Derecha"), 150, 30, "-fx-background-color: #95B2F9; ", new CreadorBloqueMoverDerecha());
-        Button bloqueIzquierda = crearBotonSimple(new Button("Mover Izquierda"), 150, 30, "-fx-background-color: #95B2F9; ", new CreadorBloqueMoverIzquierda());
-        Button bloqueArriba = crearBotonSimple(new Button("Mover Arriba"), 150, 30, "-fx-background-color: #95B2F9; ", new CreadorBloqueMoverArriba());
-        Button bloqueAbajo = crearBotonSimple(new Button("Mover Abajo"), 150, 30, "-fx-background-color: #95B2F9; ", new CreadorBloqueMoverAbajo());
-        Button bloqueLevantar = crearBotonSimple(new Button("Levantar lapiz"), 150, 30, "-fx-background-color: #95B2F9; ", new CreadorBloqueLevantarLapiz());
-        Button bloqueApoyar = crearBotonSimple(new Button("Apoyar lapiz"), 150, 30, "-fx-background-color: #95B2F9; ", new CreadorBloqueApoyarLapiz());
+        Button bloqueDerecha = crearBotonSimple(new Button("Mover Derecha"), 150, 30, "-fx-background-color: #95B2F9; ", new CreadorBloqueMover(Direccion.obtenerDerecha(), "Mover Derecha"));
+        Button bloqueIzquierda = crearBotonSimple(new Button("Mover Izquierda"), 150, 30, "-fx-background-color: #95B2F9; ", new CreadorBloqueMover(Direccion.obtenerIzquierda(), "Mover Izquierda"));
+        Button bloqueArriba = crearBotonSimple(new Button("Mover Arriba"), 150, 30, "-fx-background-color: #95B2F9; ", new CreadorBloqueMover(Direccion.obtenerArriba(), "Mover Arriba"));
+        Button bloqueAbajo = crearBotonSimple(new Button("Mover Abajo"), 150, 30, "-fx-background-color: #95B2F9; ", new CreadorBloqueMover(Direccion.obtenerAbajo(), "Mover Abajo"));
+        Button bloqueLevantar = crearBotonSimple(new Button("Levantar lapiz"), 150, 30, "-fx-background-color: #95B2F9; ", new CreadorBloqueLapiz(new LapizLevantado(), "Levantar lapiz"));
+        Button bloqueApoyar = crearBotonSimple(new Button("Apoyar lapiz"), 150, 30, "-fx-background-color: #95B2F9; ", new CreadorBloqueLapiz(new LapizApoyado(), "Apoyar lapiz"));
 
         Button bloqueInvertir = crearBotonComplejo(new Button("Invertir"), 150, 30, "-fx-background-color: #C781FD; ", new CreadorBloqueInvertir());
         Button bloqueRepetir2 = crearBotonComplejo(new Button("Repetir x2"), 150, 30, "-fx-background-color: #C781FD; ", new CreadorBloqueRepeticion(2));
