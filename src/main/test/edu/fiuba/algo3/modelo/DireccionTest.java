@@ -23,7 +23,6 @@ public class DireccionTest {
 
     @Test
     public void moverConDireccionArribaRetornaLaPosicionCorrecta(){
-
         Posicion posicionActual = new Posicion(0, 0);
         Direccion arriba = Direccion.obtenerArriba();
         assertTrue(arriba.siguientePosicion(posicionActual).equals(new Posicion(0, -1)));
