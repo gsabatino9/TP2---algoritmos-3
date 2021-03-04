@@ -23,14 +23,19 @@ public class VistaAlgoritmo extends VBox implements Observador {
         return boton;
     }
 
-
     public void mostrar(ArrayList<Bloque> listaBloques, double ancho, double alto, VBox celda){
-        listaBloques.forEach((bloque) -> {
-            Button boton = crearBoton(bloque.obtenerNombre(), ancho, alto, "-fx-background-color: #95B2F9; ");
-            VBox anidado = new VBox();
-            mostrar(bloque.obtenerHijos(), ancho * 0.85, alto * 0.85, anidado);
-            celda.getChildren().add(boton);
-            celda.getChildren().add(anidado);
+        listaBloques.forEach(bloque -> {
+            if(!bloque.obtenerHijos().isEmpty()){
+                Button boton = crearBoton(bloque.obtenerNombre(), ancho, alto, "-fx-background-color: #58D68D; ");
+                VBox anidado = new VBox();
+                mostrar(bloque.obtenerHijos(), ancho * 0.9, alto * 0.9, anidado);
+                celda.getChildren().add(boton);
+                celda.getChildren().add(anidado);
+            }else{
+                Button boton = crearBoton(bloque.obtenerNombre(), ancho, alto, "-fx-background-color: #95B2F9; ");
+                boton.setMaxSize(ancho, alto);
+                celda.getChildren().add(boton);
+            }
             celda.setSpacing(5);
         });
     }

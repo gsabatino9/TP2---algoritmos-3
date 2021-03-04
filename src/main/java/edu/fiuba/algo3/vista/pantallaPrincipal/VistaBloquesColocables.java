@@ -74,8 +74,8 @@ public class VistaBloquesColocables extends VBox implements Observador {
     }
 
     private VBox agregarBotonesFijos(){
-        CreadorBloqueMover creadorBloqueMover = new CreadorBloqueMover(Direccion.obtenerDerecha(), "Mover Derecha");
-        Button bloqueDerecha = crearBoton(creadorBloqueMover, new ControladorBloqueSimple(controlador, creadorBloqueMover), "-fx-background-color: #B2F995; ");
+        CreadorBloqueMover creadorBloqueDerecha = new CreadorBloqueMover(Direccion.obtenerDerecha(), "Mover Derecha");
+        Button bloqueDerecha = crearBoton(creadorBloqueDerecha, new ControladorBloqueSimple(controlador, creadorBloqueDerecha), "-fx-background-color: #B2F995; ");
 
         CreadorBloqueMover creadorBloqueIzquierda = new CreadorBloqueMover(Direccion.obtenerIzquierda(), "Mover Izquierda");
         Button bloqueIzquierda = crearBoton(creadorBloqueIzquierda, new ControladorBloqueSimple(controlador, creadorBloqueIzquierda), "-fx-background-color: #B2F995; ");
