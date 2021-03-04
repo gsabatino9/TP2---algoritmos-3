@@ -98,6 +98,7 @@ public class VistaBloquesColocables extends VBox implements Observador {
                     new CreadorBloquePersonalizado(algo));
             botonesPersonalizados.getChildren().add(personalizado);
         });
+        controlador.actualizarBloqueFinalizar(this);
 
     }
 }

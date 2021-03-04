@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.controlador;
 
+import edu.fiuba.algo3.modelo.Algoritmo;
+import edu.fiuba.algo3.modelo.AlgoritmoVacioException;
 import edu.fiuba.algo3.modelo.BloquePersonalizadoYaExisteException;
 import edu.fiuba.algo3.vista.pantallaPrincipal.VistaBloquesColocables;
 import javafx.event.ActionEvent;
@@ -13,7 +15,7 @@ public class ControladorGuardar implements EventHandler<ActionEvent> {
 
     private ControladorModelo controladorModelo;
 
-    public ControladorGuardar(ControladorModelo controladorModelo){
+    public ControladorGuardar(ControladorModelo controladorModelo) {
         this.controladorModelo = controladorModelo;
     }
 
@@ -26,7 +28,7 @@ public class ControladorGuardar implements EventHandler<ActionEvent> {
 
         Optional<String> result = dialog.showAndWait();
 
-        if(result.isPresent()){
+        if (result.isPresent()) {
             try {
                 controladorModelo.guardarAlgoritmos(result.get());
                 controladorModelo.vaciarAlgoritmo();
@@ -35,7 +37,12 @@ public class ControladorGuardar implements EventHandler<ActionEvent> {
                 alert.setTitle("Nombre ya existente");
                 alert.setHeaderText("El nombre que esta intentando ingresar ya esta ocupado");
                 alert.setContentText("Ingrese otro nombre!");
-
+                alert.showAndWait();
+            } catch (AlgoritmoVacioException e) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Error al ejecutar");
+                alert.setHeaderText("No se puede ejecutar un Algoritmo sin Bloques");
+                alert.setContentText("Agregue Bloques y ejecute nuevamente");
                 alert.showAndWait();
             }
         }

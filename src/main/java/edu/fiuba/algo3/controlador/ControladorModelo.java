@@ -48,8 +48,18 @@ public class ControladorModelo {
             vista.desactivarBloqueFinalizar();
     }
 
+    public void actualizarBloqueFinalizar(VistaBloquesColocables vista){
+        if(secuenciasAnidadas.size() == 1)
+            vista.desactivarBloqueFinalizar();
+        else
+            vista.activarBloqueFinalizar();
+    }
     public void vaciarAlgoritmo(){
-        this.algoritmo.vaciar();
+        algoritmo.vaciar();
+        secuenciasAnidadas.clear();
+        secuenciasAnidadas.push(algoritmo);
+        algoritmo.notificarObservadores();
+        personaje.notificarObservadores();
     }
 
     public void ejecutar() {
@@ -63,5 +73,6 @@ public class ControladorModelo {
         secuenciasAnidadas = new Stack<>();
         secuenciasAnidadas.push(algoritmo);
         algoritmo.notificarObservadores();
+        personaje.notificarObservadores();
     }
 }
