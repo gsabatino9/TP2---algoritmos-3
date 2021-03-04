@@ -19,7 +19,7 @@ public class PanelCentral extends StackPane {
         imageView = new ImageView();
         imageView.setFitWidth(50);
         imageView.setFitHeight(50);
-        Image img = new Image("FondoCapo.png");
+        Image img = new Image("LapizLevantado.png");
         imageView.setImage(img);
 
         ImageView view2 = new ImageView();

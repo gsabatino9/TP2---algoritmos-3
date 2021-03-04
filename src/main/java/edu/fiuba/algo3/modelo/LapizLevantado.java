@@ -2,6 +2,10 @@ package edu.fiuba.algo3.modelo;
 
 public class LapizLevantado implements EstadoLapiz{
 
+    private static final String nombre = "LapizLevantado";
+    public String obtenerNombre(){
+        return nombre;
+    }
     @Override
     public EstadoLapiz obtenerEstado(){
         return new LapizLevantado();

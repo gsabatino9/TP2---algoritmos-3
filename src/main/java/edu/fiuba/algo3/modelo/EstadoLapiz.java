@@ -9,4 +9,5 @@ public interface EstadoLapiz {
         
         void pintar(Segmento segmento, Dibujo dibujo);
 
+        String obtenerNombre();
 }
