@@ -35,7 +35,6 @@ public class VistaAlgoritmo extends VBox implements Observador {
         });
     }
 
-
     @Override
     public void actualizar() {
         getChildren().clear();

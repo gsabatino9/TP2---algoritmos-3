@@ -53,38 +53,8 @@ public class PantallaPrincipal extends BorderPane {
     }
 
     public void setContenedor() {
-
-        /*
-        Button ejecutar = new Button("Ejecutar");
-        ejecutar.setStyle("-fx-background-color: #F7FD81; ");
-        ejecutar.setMinSize(90, 25);
-
-        Button guardar = new Button("Guardar");
-        guardar.setStyle("-fx-background-color: #C8FD81; ");
-        guardar.setMinSize(90, 25);
-
-        contenedor = new VBox(ejecutar, guardar, new Label("Secuencia de Bloques"));
-        contenedor.setSpacing(5);
-        contenedor.setPadding(new Insets(20));
-        this.setRight(contenedor);
-
-        vistaAlgoritmo = new VistaAlgoritmo(controladorModelo.obtenerAlgoritmo());
-        controladorModelo.obtenerAlgoritmo().agregarObservador(vistaAlgoritmo);
-        vistaAlgoritmo.actualizar();
-        secuenciaBloques = new ScrollPane(vistaAlgoritmo);
-        secuenciaBloques.setMinSize(170, 25);
-        contenedor.getChildren().add(this.secuenciaBloques);
-
-        ejecutar.setOnAction(new ControladorBotonEjecutar(controladorModelo, contenedor, vistaAlgoritmo,
-                this.secuenciaBloques));
-
-*/
         PanelDerecho vistaAlgoritmo = new PanelDerecho(controladorModelo);
         setRight(vistaAlgoritmo);
-
-
-        //guardar.setOnAction(new ControladorGuardar(controladorModelo, botoneras));
-
     }
 
     public void setDibujo(){

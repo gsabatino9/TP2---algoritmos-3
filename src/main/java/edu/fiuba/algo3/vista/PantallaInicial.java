@@ -2,7 +2,6 @@ package edu.fiuba.algo3.vista;
 
 import edu.fiuba.algo3.vista.evento.BotonEntrarEventHandler;
 import edu.fiuba.algo3.vista.evento.OpcionComoJugarEventHandler;
-import edu.fiuba.algo3.vista.evento.OpcionPantallaCompletaEventHandler;
 import edu.fiuba.algo3.vista.evento.OpcionSalirEventHandler;
 import edu.fiuba.algo3.vista.pantallaPrincipal.PantallaPrincipal;
 import javafx.geometry.Insets;
@@ -16,8 +15,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
-
-import java.util.Collections;
 
 public class PantallaInicial extends VBox {
     private Stage stage;

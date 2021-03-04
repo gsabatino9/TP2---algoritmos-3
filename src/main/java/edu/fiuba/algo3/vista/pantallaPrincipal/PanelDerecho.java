@@ -12,12 +12,10 @@ import javafx.scene.layout.VBox;
 
 public class PanelDerecho extends VBox {
 
-    private ControladorModelo controladorModelo;
     private VistaAlgoritmo vistaAlgoritmo;
     private ScrollPane secuenciaBloques;
 
     public PanelDerecho(ControladorModelo controladorModelo){
-        this.controladorModelo = controladorModelo;
         Button ejecutar = new Button("Ejecutar");
         ejecutar.setStyle("-fx-background-color: #F7FD81; ");
         ejecutar.setMinSize(120, 25);
