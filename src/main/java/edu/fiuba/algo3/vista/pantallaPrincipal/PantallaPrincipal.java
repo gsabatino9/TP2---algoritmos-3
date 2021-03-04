@@ -19,11 +19,11 @@ public class PantallaPrincipal extends BorderPane {
     private ControladorModelo controladorModelo;
     private ControladorPersonaje controladorPersonaje;
     private VistaBloquesColocables vistaBloques;
-    private Canvas tablero;
+    //private Canvas tablero;
     private VistaDibujo vistaDibujo;
-    private StackPane contenedorDibujo;
+    //private StackPane contenedorDibujo;
     private GridPane dibujo;
-    private ImageView view;
+    //private ImageView view;
     private ControladorDibujo controladorDibujo;
 
 
@@ -58,7 +58,7 @@ public class PantallaPrincipal extends BorderPane {
     }
 
     public void setDibujo(){
-        this.view = new ImageView();
+        /*this.view = new ImageView();
         view.setFitWidth(50);
         view.setFitHeight(50);
         Image img = new Image("FondoCapo.png");
@@ -94,6 +94,8 @@ public class PantallaPrincipal extends BorderPane {
         vistaPersonaje = new VistaPersonaje(controladorPersonaje, view, dibujo);
         controladorModelo.obtenerPersonaje().agregarObservador(vistaPersonaje);
 
-        this.setCenter(contenedorDibujo);
+        this.setCenter(contenedorDibujo);*/
+        PanelCentral vistaDibujo = new PanelCentral(controladorDibujo, controladorModelo, controladorPersonaje);
+        this.setCenter(vistaDibujo);
     }
 }
