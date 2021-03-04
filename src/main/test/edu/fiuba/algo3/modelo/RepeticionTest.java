@@ -184,4 +184,38 @@ public class RepeticionTest {
         assertTrue(dibujo.segmentoEstaPintado(segmento));
     }
 
+
+    @Test
+    public void unBloqueRepetirSeClonaBien(){
+        Posicion posicionInicio = new Posicion(0, 0);
+        Dibujo dibujo = new Dibujo();
+        Lapiz lapiz = new Lapiz(dibujo);
+        Personaje personaje = new Personaje(posicionInicio, lapiz);
+        Repeticion repeticion = new Repeticion(2);
+
+        BloqueLapiz bloqueBajarLapiz = new BloqueLapiz(new LapizApoyado());
+        repeticion.agregarBloque(bloqueBajarLapiz);
+
+        BloqueMover bloqueDerecha = new BloqueMover(Direccion.obtenerDerecha());
+        repeticion.agregarBloque(bloqueDerecha);
+
+        Repeticion clonRepeticion = repeticion.clonar();
+
+        BloqueMover bloqueDerecha2 = new BloqueMover(Direccion.obtenerDerecha());
+        clonRepeticion.agregarBloque(bloqueDerecha2);
+
+
+        Posicion posicionInicioClonado = new Posicion(0, 0);
+        Dibujo dibujoClonado = new Dibujo();
+        Lapiz lapizClonado = new Lapiz(dibujoClonado);
+        Personaje personajeClonado = new Personaje(posicionInicioClonado, lapizClonado);
+
+        clonRepeticion.ejecutar(personajeClonado);
+        repeticion.ejecutar(personaje);
+
+        assertTrue(personaje.devolverPosicion().equals(new Posicion(2,0)));
+        assertTrue(personajeClonado.devolverPosicion().equals(new Posicion(4,0)));
+
+    }
+
 }

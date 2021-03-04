@@ -564,4 +564,50 @@ public class InvertidoTest {
     }
 
 
+    @Test
+    public void unBloqueInvertirConUnRepeticionVacioNoSePuedeEjecutar(){
+
+        Invertido invertido = new Invertido();
+        invertido.agregarBloque(new Repeticion(2));
+        Posicion posicionInicio = new Posicion(0, 0);
+        Dibujo dibujo = new Dibujo();
+        Lapiz lapiz = new Lapiz(dibujo);
+        Personaje personaje = new Personaje(posicionInicio, lapiz);
+
+        assertThrows(AlgoritmoVacioException.class, () ->  invertido.ejecutar(personaje));
+    }
+
+    @Test
+    public void unBloqueInvertirSeClonaBien(){
+        Posicion posicionInicio = new Posicion(0, 0);
+        Dibujo dibujo = new Dibujo();
+        Lapiz lapiz = new Lapiz(dibujo);
+        Personaje personaje = new Personaje(posicionInicio, lapiz);
+        Invertido invertido = new Invertido();
+
+        BloqueLapiz bloqueBajarLapiz = new BloqueLapiz(new LapizApoyado());
+        invertido.agregarBloque(bloqueBajarLapiz);
+
+        BloqueMover bloqueDerecha = new BloqueMover(Direccion.obtenerDerecha());
+        invertido.agregarBloque(bloqueDerecha);
+
+        Invertido clonInvertido = invertido.clonar();
+
+        BloqueMover bloqueDerecha2 = new BloqueMover(Direccion.obtenerDerecha());
+        clonInvertido.agregarBloque(bloqueDerecha2);
+
+
+        Posicion posicionInicioClonado = new Posicion(0, 0);
+        Dibujo dibujoClonado = new Dibujo();
+        Lapiz lapizClonado = new Lapiz(dibujoClonado);
+        Personaje personajeClonado = new Personaje(posicionInicioClonado, lapizClonado);
+
+        clonInvertido.ejecutar(personajeClonado);
+        invertido.ejecutar(personaje);
+
+        assertTrue(personaje.devolverPosicion().equals(new Posicion(-1,0)));
+        assertTrue(personajeClonado.devolverPosicion().equals(new Posicion(-2,0)));
+
+    }
+
 }

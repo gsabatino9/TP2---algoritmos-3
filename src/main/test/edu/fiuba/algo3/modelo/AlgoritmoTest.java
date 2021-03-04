@@ -368,7 +368,6 @@ public class AlgoritmoTest {
 
         assertTrue(personaje.devolverPosicion().equals(new Posicion(1,0)));
         assertTrue(personajeClonado.devolverPosicion().equals(new Posicion(2,0)));
-
     }
 
    @Test
@@ -388,4 +387,34 @@ public class AlgoritmoTest {
        algoritmo.vaciar();
        assertThrows(AlgoritmoVacioException.class, () ->  algoritmo.ejecutar(personaje));
    }
+
+   @Test
+   public void unAlgoritmoConUnBloqueRepeticionVacioNoSePuedeEjecutar(){
+
+       Algoritmo algoritmo = new Algoritmo();
+       Posicion posicionInicio = new Posicion(0, 0);
+       Dibujo dibujo = new Dibujo();
+       Lapiz lapiz = new Lapiz(dibujo);
+       Personaje personaje = new Personaje(posicionInicio, lapiz);
+       Repeticion bloqueRepetir = new Repeticion(2);
+
+       algoritmo.agregarBloque(bloqueRepetir);
+
+       assertThrows(AlgoritmoVacioException.class, () ->  algoritmo.ejecutar(personaje));
+   }
+
+    @Test
+    public void unAlgoritmoConUnBloqueInvertirVacioNoSePuedeEjecutar(){
+
+        Algoritmo algoritmo = new Algoritmo();
+        Posicion posicionInicio = new Posicion(0, 0);
+        Dibujo dibujo = new Dibujo();
+        Lapiz lapiz = new Lapiz(dibujo);
+        Personaje personaje = new Personaje(posicionInicio, lapiz);
+        Invertido invertido = new Invertido();
+
+        algoritmo.agregarBloque(invertido);
+
+        assertThrows(AlgoritmoVacioException.class, () ->  algoritmo.ejecutar(personaje));
+    }
 }
