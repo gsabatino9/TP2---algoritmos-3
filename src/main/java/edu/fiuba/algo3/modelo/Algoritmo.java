@@ -19,7 +19,7 @@ public class Algoritmo extends SecuenciaBloques implements Observado{
     }
 
 
-    public void vaciar(){
+    public void vaciar() {
         this.bloques.clear();
     }
 
