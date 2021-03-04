@@ -48,6 +48,13 @@ public class ControladorModelo {
             vista.desactivarBloqueFinalizar();
     }
 
+    public void vaciarAlgoritmo(){
+        this.algoritmo = new Algoritmo();
+        secuenciasAnidadas = new Stack<>();
+        secuenciasAnidadas.push(algoritmo);
+        //algoritmo.notificarObservadores();
+    }
+
     public void ejecutar() {
         algoritmo.ejecutar(personaje);
     }

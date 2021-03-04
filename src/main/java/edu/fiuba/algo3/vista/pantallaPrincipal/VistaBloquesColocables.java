@@ -16,6 +16,7 @@ public class VistaBloquesColocables extends VBox implements Observador {
     private ControladorModelo controlador;
     private Button botonFinalizar;
     private VBox botonesPersonaje;
+    private VBox botonesPersonalizados;
     private Personaje personaje;
 
     public VistaBloquesColocables(ControladorModelo controlador){
@@ -23,7 +24,8 @@ public class VistaBloquesColocables extends VBox implements Observador {
         getChildren().add(agregarBotonesSimples());
         setPadding(new Insets(20));
         botonesPersonaje = new VBox();
-        getChildren().add(botonesPersonaje);
+        botonesPersonalizados = new VBox();
+        getChildren().addAll(botonesPersonaje, botonesPersonalizados);
         personaje = controlador.obtenerPersonaje();
     }
 
@@ -81,16 +83,35 @@ public class VistaBloquesColocables extends VBox implements Observador {
         botonFinalizar.setDisable(true);
     }
 
+    /*private void agregarBotonPersonalizado(Button personalizado) {
+
+    }*/
+
     @Override
     public void actualizar() {
-        botonesPersonaje.getChildren().clear();
+
+
         ArrayList<Algoritmo> algorimosPersonalizados = personaje.obtenerAlgoritmos();
-        algorimosPersonalizados.forEach(algo -> {
-            Button boton = new Button(algo.obtenerNombre());
+
+        botonesPersonalizados.getChildren().clear();
+
+        /*if(algorimosPersonalizados.size() > 0) {
+
+            Button boton = new Button(algorimosPersonalizados.get(algorimosPersonalizados.size() - 1).obtenerNombre());
             Button personalizado = crearBotonPersonalizado(boton,
                     150, 30, "-fx-background-color: #95B2F9; ",
-                    new CreadorBloquePersonalizado(algo));
-            botonesPersonaje.getChildren().add(personalizado);
-        });
+                    new CreadorBloquePersonalizado(algorimosPersonalizados.get(algorimosPersonalizados.size() - 1)));
+
+            botonesPersonalizados.getChildren().add(personalizado);
+        }*/
+
+        for(int i = 0; i < algorimosPersonalizados.size(); i++){
+            Button boton = new Button(algorimosPersonalizados.get(i).obtenerNombre());
+            Button personalizado = crearBotonPersonalizado(boton,
+                    150, 30, "-fx-background-color: #95B2F9; ",
+                    new CreadorBloquePersonalizado(algorimosPersonalizados.get(i)));
+            botonesPersonalizados.getChildren().add(personalizado);
+        }
+
     }
 }

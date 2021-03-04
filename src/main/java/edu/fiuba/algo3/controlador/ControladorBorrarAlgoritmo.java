@@ -15,6 +15,6 @@ public class ControladorBorrarAlgoritmo implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent event) {
-        controlador.obtenerAlgoritmo().vaciar();
+        controlador.vaciarAlgoritmo();
     }
 }
