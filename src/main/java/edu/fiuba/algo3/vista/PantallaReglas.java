@@ -24,19 +24,12 @@ public class PantallaReglas extends VBox {
         this.stage = stage;
         this.escenaAnterior = escenaAnterior;
 
+        agregarParamentros();
+        agregarEtiquetas();
+        agregarBotones();
+    }
 
-        this.setAlignment(Pos.CENTER);
-        this.setSpacing(20);
-        this.setPadding(new Insets(25));
-        Image imagen = new Image("Fond.jpg");
-        BackgroundImage imagenDeFondo = new BackgroundImage(imagen, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(1000, 800, false, false, false, false));
-        this.setBackground(new Background(imagenDeFondo));
-
-        Label ponerBloques = crearEtiqueta("Por cada bloque que se inserte, el personaje realizará una acción");
-        Label mover = crearEtiqueta("Los bloques mover sirven para desplazar al personaje por la pizarra");
-        Label lapiz = crearEtiqueta("Si te moves con el lápiz apoyado, el personaje pintará");
-        Label especiales = crearEtiqueta("Podes invertir el recorrido de los bloques, o repetir toda la secuencia");
-
+    private void agregarBotones() {
         Button botonVolver = new Button();
         botonVolver.setText("Atras");
         BotonEntrarEventHandler botonVolverHandler = new BotonEntrarEventHandler(stage, escenaAnterior);
@@ -56,10 +49,26 @@ public class PantallaReglas extends VBox {
         botones.setAlignment(Pos.CENTER);
         botones.setSpacing(10);
 
-        this.getChildren().addAll(ponerBloques, mover, lapiz, especiales, botones);
-
-
+        getChildren().add(botones);
     }
+
+    private void agregarEtiquetas() {
+        Label ponerBloques = crearEtiqueta("Por cada bloque que se inserte, el personaje realizará una acción");
+        Label mover = crearEtiqueta("Los bloques mover sirven para desplazar al personaje por la pizarra");
+        Label lapiz = crearEtiqueta("Si te moves con el lápiz apoyado, el personaje pintará");
+        Label especiales = crearEtiqueta("Podes invertir el recorrido de los bloques, o repetir toda la secuencia");
+        getChildren().addAll(ponerBloques, mover, lapiz, especiales);
+    }
+
+    private void agregarParamentros() {
+        this.setAlignment(Pos.CENTER);
+        this.setSpacing(20);
+        this.setPadding(new Insets(25));
+        Image imagen = new Image("Fond.jpg");
+        BackgroundImage imagenDeFondo = new BackgroundImage(imagen, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(1000, 800, false, false, false, false));
+        this.setBackground(new Background(imagenDeFondo));
+    }
+
     private Label crearEtiqueta(String texto){
         Label etiqueta = new Label();
         etiqueta.setFont(Font.font("Tahoma", FontWeight.BOLD, 14));
@@ -67,4 +76,5 @@ public class PantallaReglas extends VBox {
         etiqueta.setTextFill(Color.web("#FDB281"));
         return etiqueta;
     }
+
 }
