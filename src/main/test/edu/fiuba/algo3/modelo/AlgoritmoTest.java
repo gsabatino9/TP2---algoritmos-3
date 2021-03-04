@@ -337,6 +337,40 @@ public class AlgoritmoTest {
         assertTrue(dibujo.segmentoEstaPintado(new Segmento(new Posicion(3,-3), new Posicion(3,-4))));
     }
 
+
+    @Test
+    public void dosCopiasDelMismoAlgoritmoSeLeAgregaAlgoAUnoYElOtroNoSeModifica(){
+        Algoritmo algoritmo = new Algoritmo();
+        Posicion posicionInicio = new Posicion(0, 0);
+        Dibujo dibujo = new Dibujo();
+        Lapiz lapiz = new Lapiz(dibujo);
+        Personaje personaje = new Personaje(posicionInicio, lapiz);
+
+        BloqueLapiz bloqueBajarLapiz = new BloqueLapiz(new LapizApoyado());
+        algoritmo.agregarBloque(bloqueBajarLapiz);
+
+        BloqueMover bloqueDerecha = new BloqueMover(Direccion.obtenerDerecha());
+        algoritmo.agregarBloque(bloqueDerecha);
+
+        Algoritmo clonAlgoritmo = algoritmo.clonar();
+
+        BloqueMover bloqueDerecha2 = new BloqueMover(Direccion.obtenerDerecha());
+        clonAlgoritmo.agregarBloque(bloqueDerecha2);
+
+
+        Posicion posicionInicioClonado = new Posicion(0, 0);
+        Dibujo dibujoClonado = new Dibujo();
+        Lapiz lapizClonado = new Lapiz(dibujoClonado);
+        Personaje personajeClonado = new Personaje(posicionInicioClonado, lapizClonado);
+
+        clonAlgoritmo.ejecutar(personajeClonado);
+        algoritmo.ejecutar(personaje);
+
+        assertTrue(personaje.devolverPosicion().equals(new Posicion(1,0)));
+        assertTrue(personajeClonado.devolverPosicion().equals(new Posicion(2,0)));
+
+    }
+
     /*@Test
     public void creoDosBloquesPersonalizadosYVeoSiSeGuardanCorrectamente() throws BloquePersonalizadoYaExisteException {
         Algoritmo algoritmo = new Algoritmo();

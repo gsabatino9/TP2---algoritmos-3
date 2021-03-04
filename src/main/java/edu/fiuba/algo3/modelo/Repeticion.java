@@ -18,8 +18,8 @@ public class Repeticion extends SecuenciaBloques{
 
     public Repeticion clonar()
     {
-        Repeticion bloque = new Repeticion(cantidadRepeticiones);
-        bloque.agregarNombre(bloque.obtenerNombre());
-        return bloque;
+        Repeticion repeticionClonado = new Repeticion(cantidadRepeticiones);
+        return (Repeticion) super.clonarSecuencia(repeticionClonado);
+
     }
 }

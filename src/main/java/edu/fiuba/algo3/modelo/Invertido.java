@@ -11,8 +11,8 @@ public class Invertido extends SecuenciaBloques{
 
     public Invertido clonar()
     {
-        Invertido bloque = new Invertido();
-        bloque.agregarNombre(this.obtenerNombre());
-        return bloque;
+        Invertido invertidoClonado = new Invertido();
+        return (Invertido) super.clonarSecuencia(invertidoClonado);
+
     }
 }

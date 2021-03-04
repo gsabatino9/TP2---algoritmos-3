@@ -43,7 +43,7 @@ public class VistaBloquesColocables extends VBox implements Observador {
 
     private Button crearBotonPersonalizado(Button boton, int minWidth, int minHeight, String color, CreadorBloquePersonalizado creador){
         crearBoton(boton, minWidth, minHeight, color);
-        boton.setOnAction(new ControladorBloquePersonalizado(creador.crearBloque(), controlador));
+        boton.setOnAction(new ControladorBloquePersonalizado(creador, controlador));
         return boton;
     }
 
@@ -90,15 +90,14 @@ public class VistaBloquesColocables extends VBox implements Observador {
     @Override
     public void actualizar() {
         ArrayList<Algoritmo> algorimosPersonalizados = personaje.obtenerAlgoritmos();
-        //botonesPersonalizados.getChildren().clear();
+        botonesPersonalizados.getChildren().clear();
 
-        if(algorimosPersonalizados.size() > 0) {
-            Button boton = new Button(algorimosPersonalizados.get(algorimosPersonalizados.size() - 1).obtenerNombre());
-            Button personalizado = crearBotonPersonalizado(boton,
-                    150, 30, "-fx-background-color: #95B2F9; ",
-                    new CreadorBloquePersonalizado(algorimosPersonalizados.get(algorimosPersonalizados.size() - 1)));
-
+        algorimosPersonalizados.forEach(algo -> {
+            Button boton = new Button(algo.obtenerNombre());
+            Button personalizado = crearBotonPersonalizado(boton, 150, 30, "-fx-background-color: #95B2F9; ",
+                    new CreadorBloquePersonalizado(algo));
             botonesPersonalizados.getChildren().add(personalizado);
-        }
+        });
+
     }
 }

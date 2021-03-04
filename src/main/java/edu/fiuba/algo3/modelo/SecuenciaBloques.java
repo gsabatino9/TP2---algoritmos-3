@@ -1,11 +1,9 @@
 package edu.fiuba.algo3.modelo;
 
-import javafx.beans.Observable;
-
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class SecuenciaBloques extends Bloque {
+public abstract class SecuenciaBloques extends Bloque {
 
     protected ArrayList<Bloque> bloques;
 
@@ -42,9 +40,12 @@ public class SecuenciaBloques extends Bloque {
         return bloques;
     }
 
-    @Override
-    public Bloque clonar() {
-        return null;
+    public SecuenciaBloques clonarSecuencia(SecuenciaBloques secuenciaClonada) {
+        bloques.forEach(b -> {
+            secuenciaClonada.agregarBloque(b.clonar());
+        });
+        secuenciaClonada.agregarNombre(obtenerNombre());
+        return secuenciaClonada;
     }
 
 }

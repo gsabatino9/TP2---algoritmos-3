@@ -10,8 +10,7 @@ public class CreadorBloquePersonalizado implements CreadorDeBloque{
     }
 
     @Override
-    public Algoritmo crearBloque()
-    {
-         return algoritmo.crearCopia();
+    public Algoritmo crearBloque() {
+         return algoritmo.clonar();
     }
 }

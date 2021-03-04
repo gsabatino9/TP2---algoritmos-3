@@ -57,6 +57,11 @@ public class ControladorModelo {
     }
 
     public void guardarAlgoritmos(String nombreAlgoritmo) throws BloquePersonalizadoYaExisteException, AlgoritmoVacioException {
-       algoritmo.guardar(nombreAlgoritmo, personaje);
+        Algoritmo algoritmoCopia = algoritmo.clonar();
+        algoritmoCopia.guardar(nombreAlgoritmo, personaje);
+        algoritmo.vaciar();
+        secuenciasAnidadas = new Stack<>();
+        secuenciasAnidadas.push(algoritmo);
+        algoritmo.notificarObservadores();
     }
 }

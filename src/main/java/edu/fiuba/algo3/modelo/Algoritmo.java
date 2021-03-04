@@ -24,14 +24,9 @@ public class Algoritmo extends SecuenciaBloques implements Observado{
         notificarObservadores();
     }
 
-    public Algoritmo crearCopia()
-    {
-        Algoritmo algoritmo = new Algoritmo();
-        bloques.forEach(bloque->{
-            algoritmo.agregarBloque(bloque.clonar());
-        });
-        algoritmo.agregarNombre(this.obtenerNombre());
-        return algoritmo;
+    public Algoritmo clonar() {
+        Algoritmo algoritmoClonado = new Algoritmo();
+        return (Algoritmo) super.clonarSecuencia(algoritmoClonado);
     }
 
     @Override
