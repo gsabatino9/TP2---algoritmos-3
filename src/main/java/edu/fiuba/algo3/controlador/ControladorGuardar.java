@@ -29,6 +29,7 @@ public class ControladorGuardar implements EventHandler<ActionEvent> {
         if(result.isPresent()){
             try {
                 controladorModelo.guardarAlgoritmos(result.get());
+                controladorModelo.vaciarAlgoritmo();
             } catch (BloquePersonalizadoYaExisteException e) {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Nombre ya existente");

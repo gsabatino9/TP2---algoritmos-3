@@ -19,8 +19,10 @@ public class Algoritmo extends SecuenciaBloques implements Observado{
     }
 
 
-    public void vaciar(){ this.bloques.clear();
-    notificarObservadores();}
+    public void vaciar(){
+        this.bloques.clear();
+        notificarObservadores();
+    }
 
     public Algoritmo crearCopia()
     {

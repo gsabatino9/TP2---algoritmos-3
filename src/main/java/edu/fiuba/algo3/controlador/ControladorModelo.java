@@ -49,10 +49,7 @@ public class ControladorModelo {
     }
 
     public void vaciarAlgoritmo(){
-        this.algoritmo = new Algoritmo();
-        secuenciasAnidadas = new Stack<>();
-        secuenciasAnidadas.push(algoritmo);
-        //algoritmo.notificarObservadores();
+        this.algoritmo.vaciar();
     }
 
     public void ejecutar() {
