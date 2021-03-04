@@ -17,8 +17,7 @@ public class BloqueLapiz extends Bloque{
         this.estadoDelLapiz = estadoDelLapiz.obtenerEstadoInverso();
     }
 
-    public BloqueLapiz clonar()
-    {
+    public BloqueLapiz clonar() {
         BloqueLapiz bloque =  new BloqueLapiz(estadoDelLapiz);
         bloque.agregarNombre(this.obtenerNombre());
         return bloque;

@@ -11,13 +11,9 @@ public class Algoritmo extends SecuenciaBloques implements Observado{
     }
 
     public void guardar(String nombreAlgoritmo, Personaje personaje) throws AlgoritmoVacioException, BloquePersonalizadoYaExisteException {
-        if (bloques.size() == 0){
-            throw new AlgoritmoVacioException(
-                    "El bloque personalizado debe contener al menos un bloque.");
-        }
+        super.esEjecutable();
         personaje.agregarBloque(this, nombreAlgoritmo);
     }
-
 
     public void vaciar() {
         this.bloques.clear();

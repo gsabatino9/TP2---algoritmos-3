@@ -3,7 +3,6 @@ package edu.fiuba.algo3.controlador;
 import edu.fiuba.algo3.controlador.creadorDeBloque.CreadorBloqueComplejo;
 import edu.fiuba.algo3.vista.pantallaPrincipal.VistaBloquesColocables;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 
 public class ControladorBloqueComplejo implements Controlador{
 

@@ -23,10 +23,7 @@ public abstract class SecuenciaBloques extends Bloque {
 
     @Override
     public void ejecutar(Personaje personaje) throws AlgoritmoVacioException {
-        if (bloques.size() == 0) {
-            throw new AlgoritmoVacioException(
-                    "no se puede ejecutar una secuencia sin bloques.");
-        }
+        esEjecutable();
         bloques.forEach(bloque -> bloque.ejecutar(personaje));
     }
 
@@ -47,5 +44,15 @@ public abstract class SecuenciaBloques extends Bloque {
         secuenciaClonada.agregarNombre(obtenerNombre());
         return secuenciaClonada;
     }
+
+
+    public void esEjecutable() throws AlgoritmoVacioException{
+        if (bloques.isEmpty()) {
+            throw new AlgoritmoVacioException(
+                    "no se puede ejecutar una secuencia sin bloques.");
+        }
+        bloques.forEach(bloque -> bloque.esEjecutable());
+    }
+
 
 }

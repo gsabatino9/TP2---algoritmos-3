@@ -26,10 +26,6 @@ public class Dibujo implements Observado {
         return segmentosPintados;
     }
 
-    public Segmento obtenerSiguienteSegmento(){
-        return segmentosPintados.get(segmentosPintados.size() - 1);
-    }
-
     @Override
     public void agregarObservador(Observador observador) {
         observadores.add(observador);

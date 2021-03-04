@@ -23,4 +23,7 @@ public abstract class Bloque {
     }
 
     public abstract Bloque clonar();
+
+    public void esEjecutable(){}
+
 }

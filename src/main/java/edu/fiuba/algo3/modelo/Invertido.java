@@ -9,10 +9,8 @@ public class Invertido extends SecuenciaBloques{
         bloques.forEach(Bloque::invertir);
     }
 
-    public Invertido clonar()
-    {
+    public Invertido clonar() {
         Invertido invertidoClonado = new Invertido();
         return (Invertido) super.clonarSecuencia(invertidoClonado);
-
     }
 }
