@@ -2,8 +2,8 @@ package edu.fiuba.algo3.modelo;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class RepeticionTest {
 
@@ -216,6 +216,67 @@ public class RepeticionTest {
         assertTrue(personaje.devolverPosicion().equals(new Posicion(2,0)));
         assertTrue(personajeClonado.devolverPosicion().equals(new Posicion(4,0)));
 
+    }
+
+    @Test
+    public void unBloqueRepeticionConUnBloqueRepeticionVacioNoEsEjecutable(){
+        Repeticion repeticion = new Repeticion(2);
+        Repeticion bloqueRepetir = new Repeticion(2);
+        repeticion.agregarBloque(bloqueRepetir);
+
+        assertThrows(AlgoritmoVacioException.class, () ->  repeticion.esEjecutable());
+    }
+
+    @Test
+    public void unBloqueRepeticionAlInvertirSeEjecutaLaListaDadaVuelta(){
+        Posicion posicionInicio = new Posicion(0, 0);
+        Dibujo dibujo = new Dibujo();
+        Lapiz lapiz = new Lapiz(dibujo);
+        Personaje personaje = new Personaje(posicionInicio, lapiz);
+
+        Repeticion repetir = new Repeticion(2);
+
+        repetir.agregarBloque(new BloqueLapiz(new LapizApoyado()));
+        repetir.agregarBloque(new BloqueMover(Direccion.obtenerArriba()));
+        repetir.agregarBloque(new BloqueLapiz(new LapizLevantado()));
+        repetir.agregarBloque(new BloqueMover(Direccion.obtenerArriba()));
+
+        //al ejecutar hara: (0,0) -> (0,-1) -> LEVANTA LAPIZ -> (0,-2) -> APOYA LAPIZ -> (0,-3) -> LEVANTA LAPIZ -> (0,-4) -> APOYA LAPIZ
+        repetir.invertir();
+        repetir.ejecutar(personaje);
+
+
+        assertFalse(dibujo.segmentoEstaPintado(new Segmento(new Posicion(0,0), new Posicion(0,-1))));
+        assertFalse(dibujo.segmentoEstaPintado(new Segmento(new Posicion(0,-1), new Posicion(0,-2))));
+        assertTrue(dibujo.segmentoEstaPintado(new Segmento(new Posicion(0,-2), new Posicion(0,-3))));
+        assertFalse(dibujo.segmentoEstaPintado(new Segmento(new Posicion(0,-3), new Posicion(0,-4))));
+
+    }
+
+    @Test
+    public void agregarBloquePersonalizadoABloqueRepeticion() throws BloquePersonalizadoYaExisteException {
+
+        Repeticion repetir = new Repeticion(2);
+        Posicion posicionInicio = new Posicion(0, 0);
+        Dibujo dibujo = new Dibujo();
+        Lapiz lapiz = new Lapiz(dibujo);
+        Personaje personaje = new Personaje(posicionInicio, lapiz);
+
+        BloqueLapiz bloqueBajarLapiz = new BloqueLapiz(new LapizApoyado());
+        BloqueMover bloqueArriba = new BloqueMover(Direccion.obtenerArriba());
+
+        Algoritmo algoritmoPersonalizado = new Algoritmo();
+        algoritmoPersonalizado.agregarBloque(bloqueBajarLapiz);
+        algoritmoPersonalizado.agregarBloque(bloqueArriba);
+
+        algoritmoPersonalizado.guardar("Pintar y subir", personaje);
+        repetir.agregarBloquePersonalizado("Pintar y subir", personaje);
+
+        repetir.ejecutar(personaje);
+
+        assertTrue(dibujo.segmentoEstaPintado(new Segmento(new Posicion(0,0), new Posicion(0,-1))));
+        assertTrue(dibujo.segmentoEstaPintado(new Segmento(new Posicion(0,-1), new Posicion(0,-2))));
+        
     }
 
 }
