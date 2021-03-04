@@ -21,7 +21,7 @@ public class VistaBloquesColocables extends VBox implements Observador {
 
     public VistaBloquesColocables(ControladorModelo controlador){
         this.controlador = controlador;
-        getChildren().add(agregarBotonesSimples());
+        getChildren().add(agregarBotonesFijos());
         setPadding(new Insets(20));
         botonesPersonaje = new VBox();
         botonesPersonalizados = new VBox();
@@ -41,18 +41,12 @@ public class VistaBloquesColocables extends VBox implements Observador {
         return boton;
     }
 
-    private Button crearBotonPersonalizado(Button boton, int minWidth, int minHeight, String color, CreadorBloquePersonalizado creador){
-        crearBoton(boton, minWidth, minHeight, color);
-        boton.setOnAction(new ControladorBloquePersonalizado(creador, controlador));
-        return boton;
-    }
-
     private void crearBoton(Button boton, int minWidth, int minHeight, String color){
         boton.setMinSize(minWidth, minHeight);
         boton.setStyle(color);
     }
 
-    private VBox agregarBotonesSimples(){
+    private VBox agregarBotonesFijos(){
         Button bloqueDerecha = crearBotonSimple(new Button("Mover Derecha"), 150, 30, "-fx-background-color: #95B2F9; ", new CreadorBloqueMoverDerecha());
         Button bloqueIzquierda = crearBotonSimple(new Button("Mover Izquierda"), 150, 30, "-fx-background-color: #95B2F9; ", new CreadorBloqueMoverIzquierda());
         Button bloqueArriba = crearBotonSimple(new Button("Mover Arriba"), 150, 30, "-fx-background-color: #95B2F9; ", new CreadorBloqueMoverArriba());
@@ -61,18 +55,19 @@ public class VistaBloquesColocables extends VBox implements Observador {
         Button bloqueApoyar = crearBotonSimple(new Button("Apoyar lapiz"), 150, 30, "-fx-background-color: #95B2F9; ", new CreadorBloqueApoyarLapiz());
 
         Button bloqueInvertir = crearBotonComplejo(new Button("Invertir"), 150, 30, "-fx-background-color: #C781FD; ", new CreadorBloqueInvertir());
-        Button bloqueRepetir = crearBotonComplejo(new Button("Repetir x2"), 150, 30, "-fx-background-color: #C781FD; ", new CreadorBloqueRepeticion(2));
+        Button bloqueRepetir2 = crearBotonComplejo(new Button("Repetir x2"), 150, 30, "-fx-background-color: #C781FD; ", new CreadorBloqueRepeticion(2));
+        Button bloqueRepetir3 = crearBotonComplejo(new Button("Repetir x3"), 150, 30, "-fx-background-color: #C781FD; ", new CreadorBloqueRepeticion(3));
 
         botonFinalizar = new Button("Finalizar Secuencia");
-        botonFinalizar.setMinSize(150, 30);
-        botonFinalizar.setStyle("-fx-background-color: #95b2f9; ");
-        botonFinalizar.setOnAction(new ControladorBloqueFinalizar(this, controlador));
+        crearBoton(botonFinalizar, 150, 30, "-fx-background-color: #95b2f9; ");
+        botonFinalizar.setOnAction(new ControladorBloqueFinalizar(controlador));
         botonFinalizar.setDisable(true);
 
-        VBox bottomControl = new VBox(new Label("Bloques disponibles"),  bloqueDerecha, bloqueIzquierda, bloqueArriba, bloqueAbajo, bloqueLevantar, bloqueApoyar, bloqueInvertir, bloqueRepetir, botonFinalizar);
-        bottomControl.setSpacing(5);
+        VBox botonesFijos = new VBox(new Label("Bloques disponibles"),  bloqueDerecha, bloqueIzquierda, bloqueArriba, bloqueAbajo,
+                bloqueLevantar, bloqueApoyar, bloqueInvertir, bloqueRepetir2, bloqueRepetir3, botonFinalizar);
+        botonesFijos.setSpacing(5);
 
-        return bottomControl;
+        return botonesFijos;
     }
 
     public void activarBloqueFinalizar(){
@@ -83,10 +78,6 @@ public class VistaBloquesColocables extends VBox implements Observador {
         botonFinalizar.setDisable(true);
     }
 
-    /*private void agregarBotonPersonalizado(Button personalizado) {
-
-    }*/
-
     @Override
     public void actualizar() {
         ArrayList<Algoritmo> algorimosPersonalizados = personaje.obtenerAlgoritmos();
@@ -94,11 +85,11 @@ public class VistaBloquesColocables extends VBox implements Observador {
 
         algorimosPersonalizados.forEach(algo -> {
             Button boton = new Button(algo.obtenerNombre());
-            Button personalizado = crearBotonPersonalizado(boton, 150, 30, "-fx-background-color: #95B2F9; ",
+            Button personalizado = crearBotonSimple(boton, 150, 30, "-fx-background-color: #95B2F9; ",
                     new CreadorBloquePersonalizado(algo));
             botonesPersonalizados.getChildren().add(personalizado);
         });
+        botonesPersonalizados.setSpacing(5);
         controlador.actualizarBloqueFinalizar(this);
-
     }
 }

@@ -13,10 +13,7 @@ import javafx.stage.Stage;
 
 public class PantallaPrincipal extends BorderPane {
 
-    private VistaAlgoritmo vistaAlgoritmo;
     private VistaPersonaje vistaPersonaje;
-    private ScrollPane secuenciaBloques;
-    private VBox contenedor;
     private BarraMenu barraMenu;
     private Scene escenaJuego;
     private ControladorModelo controladorModelo;
@@ -116,7 +113,6 @@ public class PantallaPrincipal extends BorderPane {
         vistaDibujo = new VistaDibujo(controladorDibujo, tablero);
         controladorModelo.obtenerDibujo().agregarObservador(vistaDibujo);
 
-        //vistaDibujo.actualizar();
 
 
         Image imagen = new Image("Fond.jpg");

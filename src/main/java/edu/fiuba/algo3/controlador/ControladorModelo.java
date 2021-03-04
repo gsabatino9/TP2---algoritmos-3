@@ -42,10 +42,9 @@ public class ControladorModelo {
         secuenciasAnidadas.push(bloques);
     }
 
-    public void finalizarSecuencia(VistaBloquesColocables vista){
+    public void finalizarSecuencia(){
         secuenciasAnidadas.pop();
-        if(secuenciasAnidadas.size() == 1)
-            vista.desactivarBloqueFinalizar();
+        personaje.notificarObservadores();
     }
 
     public void actualizarBloqueFinalizar(VistaBloquesColocables vista){
