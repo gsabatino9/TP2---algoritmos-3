@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.vista.pantallaPrincipal;
 
-import edu.fiuba.algo3.modelo.LapizLevantado;
 import edu.fiuba.algo3.modelo.Observador;
 import edu.fiuba.algo3.modelo.Personaje;
 import javafx.geometry.Pos;
@@ -25,11 +24,6 @@ public class VistaPersonaje implements Observador {
         Image img;
 
         img = new Image(personaje.obtenerEstado().obtenerNombre() + ".png");
-        /*if(personaje.obtenerEstado().obtenerNombre() instanceof LapizLevantado)
-            img = new Image("LapizLevantado.png");
-        else
-            img = new Image("LapizApoyado.png");
-*/
         view.setImage(img);
 
         ImageView view2 = new ImageView();

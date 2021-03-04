@@ -371,25 +371,21 @@ public class AlgoritmoTest {
 
     }
 
-    /*@Test
-    public void creoDosBloquesPersonalizadosYVeoSiSeGuardanCorrectamente() throws BloquePersonalizadoYaExisteException {
-        Algoritmo algoritmo = new Algoritmo();
-        Posicion posicionInicio = new Posicion(0, 0);
-        Dibujo dibujo = new Dibujo();
-        Lapiz lapiz = new Lapiz(dibujo);
-        Personaje personaje = new Personaje(posicionInicio, lapiz);
+   @Test
+    public void unAlgoSeVaciaNoTieneElementos() throws AlgoritmoVacioException{
+       Algoritmo algoritmo = new Algoritmo();
+       Posicion posicionInicio = new Posicion(0, 0);
+       Dibujo dibujo = new Dibujo();
+       Lapiz lapiz = new Lapiz(dibujo);
+       Personaje personaje = new Personaje(posicionInicio, lapiz);
 
-        BloqueMover bloqueArriba = new BloqueMover(Direccion.obtenerArriba());
-        BloqueMover bloqueDerecha = new BloqueMover(Direccion.obtenerDerecha());
+       BloqueLapiz bloqueBajarLapiz = new BloqueLapiz(new LapizApoyado());
+       algoritmo.agregarBloque(bloqueBajarLapiz);
 
-        Algoritmo bloquePersonalizado1 = new Algoritmo();
-        Algoritmo bloquePersonalizado2 = new Algoritmo();
+       BloqueMover bloqueDerecha = new BloqueMover(Direccion.obtenerDerecha());
+       algoritmo.agregarBloque(bloqueDerecha);
 
-        bloquePersonalizado1.agregarBloque(bloqueArriba);
-        bloquePersonalizado1.guardar("A", personaje);
-        bloquePersonalizado2.agregarBloque(bloqueDerecha);
-        bloquePersonalizado2.guardar("D", personaje);
-
-        assertEquals(bloquePersonalizado1, personaje.obtenerAlgoritmo("A"));
-    }*/
+       algoritmo.vaciar();
+       assertThrows(AlgoritmoVacioException.class, () ->  algoritmo.ejecutar(personaje));
+   }
 }
