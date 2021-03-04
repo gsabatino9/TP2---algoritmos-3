@@ -34,15 +34,15 @@ public class ControladorGuardar implements EventHandler<ActionEvent> {
                 controladorModelo.vaciarAlgoritmo();
             } catch (BloquePersonalizadoYaExisteException e) {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Nombre ya existente");
-                alert.setHeaderText("El nombre que esta intentando ingresar ya esta ocupado");
+                alert.setTitle("Error al guardar");
+                alert.setHeaderText("El nombre que esta intentando ingresar ya existe");
                 alert.setContentText("Ingrese otro nombre!");
                 alert.showAndWait();
             } catch (AlgoritmoVacioException e) {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Error al ejecutar");
-                alert.setHeaderText("No se puede ejecutar un Algoritmo sin Bloques");
-                alert.setContentText("Agregue Bloques y ejecute nuevamente");
+                alert.setTitle("Error al guardar");
+                alert.setHeaderText("No se puede guardar un Algoritmo sin Bloques");
+                alert.setContentText("Agregue Bloques y guarde nuevamente");
                 alert.showAndWait();
             }
         }
