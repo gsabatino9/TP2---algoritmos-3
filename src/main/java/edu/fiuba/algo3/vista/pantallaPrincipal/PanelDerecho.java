@@ -35,8 +35,13 @@ public class PanelDerecho extends VBox {
         vistaAlgoritmo = new VistaAlgoritmo(controladorModelo.obtenerAlgoritmo());
         controladorModelo.obtenerAlgoritmo().agregarObservador(vistaAlgoritmo);
         vistaAlgoritmo.actualizar();
+
         secuenciaBloques = new ScrollPane(vistaAlgoritmo);
         secuenciaBloques.setMinSize(170, 25);
+        secuenciaBloques.setMaxSize(170, 500);
+        secuenciaBloques.setHbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
+        secuenciaBloques.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
+
         getChildren().add(this.secuenciaBloques);
 
 

@@ -6,6 +6,7 @@ import edu.fiuba.algo3.modelo.*;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
@@ -15,15 +16,29 @@ public class VistaBloquesColocables extends VBox implements Observador {
     private Button botonFinalizar;
     private VBox botonesPersonaje;
     private VBox botonesPersonalizados;
+    private VBox contenedorPrincipal;
+    private ScrollPane contenedorBotones;
     private Personaje personaje;
 
     public VistaBloquesColocables(ControladorModelo controlador){
         this.controlador = controlador;
-        getChildren().add(agregarBotonesFijos());
         setPadding(new Insets(20));
-        botonesPersonaje = new VBox();
+        contenedorPrincipal = new VBox();
         botonesPersonalizados = new VBox();
-        getChildren().addAll(botonesPersonaje, botonesPersonalizados);
+        contenedorBotones = new ScrollPane(botonesPersonalizados);
+        botonesPersonaje = new VBox();
+
+        contenedorBotones.setHbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
+        contenedorBotones.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
+        contenedorBotones.setStyle("-fx-background-color:transparent;");
+
+        contenedorBotones.setMinSize(150, 80);
+        contenedorBotones.setMaxSize(150, 300);
+
+        contenedorPrincipal.getChildren().add(contenedorBotones);
+        botonesPersonaje.getChildren().addAll(agregarBotonesFijos(), contenedorPrincipal);
+
+        getChildren().add(botonesPersonaje);
         personaje = controlador.obtenerPersonaje();
     }
 
